@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
  
- root "home#index"
+ root 'home#index'
  
- devise_for :users, :controllers => { :omniauth_callbacks => "callbacks" }
- 
+ devise_for :users, :controllers => { :omniauth_callbacks => 'callbacks' }
+
+  devise_scope :user do
+    get 'users/:user_id/remove_social', to: 'callbacks#remove_social', as: 'remove_social'
+  end
+    
 
   end
 
