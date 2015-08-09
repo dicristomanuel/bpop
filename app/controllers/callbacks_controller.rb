@@ -3,9 +3,9 @@ class CallbacksController < Devise::OmniauthCallbacksController
   	unless session[:facebook]
 			identity = current_user.identities.create(facebook_categorize(request.env["omniauth.auth"]))
 			session[:facebook] = 'loggedin'
-			new_user_identity_fbpost_path(current_user.id, identity.id)
+			redirect_to new_user_identity_fbpost_path(current_user, identity)
 		end
-    redirect_to root_path
+    
   end
 
   def twitter
