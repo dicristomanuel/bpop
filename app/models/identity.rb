@@ -1,5 +1,6 @@
 class Identity < ActiveRecord::Base
 	belongs_to :User
+	has_many :fbposts, dependent: :destroy
 
 	# scraping information
   def fb_authorize

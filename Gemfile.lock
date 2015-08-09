@@ -80,6 +80,7 @@ GEM
     ffi (1.9.10)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
+    guess (0.1.0)
     hashie (3.4.2)
     hitimes (1.2.2)
     i18n (0.7.0)
@@ -228,6 +229,7 @@ DEPENDENCIES
   chronic
   coffee-rails (~> 4.1.0)
   devise
+  guess
   jbuilder (~> 2.0)
   jquery-rails
   json

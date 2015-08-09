@@ -48,6 +48,8 @@ gem "koala", "~> 2.0"
 #interact with facebook graph API
 gem 'chronic'
 #to handle dates
+gem 'guess'
+#guess the gender for a given name
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
