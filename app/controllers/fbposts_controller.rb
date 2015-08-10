@@ -1,5 +1,5 @@
 class FbpostsController < ApplicationController
-	def new
+	def create
 		identity = Identity.find_by_id(params[:identity_id])
 		for_user = identity.fb_authorize
 		six_months_ago=Chronic.parse('six months ago').to_s[0..9]
@@ -7,27 +7,32 @@ class FbpostsController < ApplicationController
 		posts.each do |post|
 		identity.fbposts.create(fbpost_params(post, identity))
 		end
-		redirect_to root_path
+		render :back
 	end
 
 	private
 
 	def fbpost_params(post, identity)
-		binding.pry
-		{
+		if post['likes']
+			likes = post['likes']['data'].length
+
+				# post['likes']['data'].each do |like| 
+				# 	redirect_to new_user_identity_fbpost_fblike_path(current_user, identity, post, like)
+				# end
+		else 
+			likes = 0
+		end
+		
+		params = {
 			story: post["story"],
 			message: post["message"],
 			url: post["link"],
-			date: post["created_time"]
+			date: post["created_time"],
+			likes: likes
 		}
-		
-		if post["likes"]
-			new_user_identity_fbpost_fblike(current_user, identity, post)
 			#CREATE LIKES WITH ALL THE FIELDS
 			#NEXT COMMENTS
 			#NEXT TWITTER
-		end
-
 	end
 end
 

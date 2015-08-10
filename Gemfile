@@ -50,6 +50,8 @@ gem 'chronic'
 #to handle dates
 gem 'guess'
 #guess the gender for a given name
+gem 'has_secure_token'
+#generate token for bPop_api
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

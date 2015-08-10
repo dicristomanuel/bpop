@@ -1,11 +1,35 @@
 class CallbacksController < Devise::OmniauthCallbacksController
+  
   def facebook
-  	unless session[:facebook]
-			identity = current_user.identities.create(facebook_categorize(request.env["omniauth.auth"]))
-			session[:facebook] = 'loggedin'
-			redirect_to new_user_identity_fbpost_path(current_user, identity)
-		end
-    
+    #check if user has already facebook identity
+    	if session[:facebook] || current_user.identities.any? { |x| x[:provider]["facebook"] }
+    		redirect_to root_path
+    	else
+        session[:facebook] = 'loggedin'
+       #get facebook access_token
+        fb_response = request.env["omniauth.auth"]
+        fb_token = fb_response["credentials"]["token"]
+       #create identity and initialize Koala contant with it
+        identity = current_user.identities.create(facebook_categorize(fb_response))
+        for_user = identity.fb_authorize(fb_token)
+       #get the last six month's fbposts
+        posts = get_posts(for_user)
+       #API call post request to bPop_api for fbposts
+        params = {
+          fbpost: {identity_token: current_user.bpop_token}
+        } 
+
+
+    response = Typhoeus::Request.new(
+      "http://localhost:4000/fbposts",
+      method: :post,
+      params: params
+    ).run
+
+        # get fbposts and post them to bPop_api + bpop_token
+        # get fblikes and post them to bPop_api + bpop_token
+  			redirect_to root_path
+  		end
   end
 
   def twitter
@@ -26,13 +50,18 @@ class CallbacksController < Devise::OmniauthCallbacksController
 
   private
 
-  def facebook_categorize(auth)
+  def get_posts(for_user)
+    since_this_date = Chronic.parse("six months ago").to_s[0..9]
+    for_user.get_object('me/posts?limit=5000&since=' + since_this_date)
+  end
+
+  def facebook_categorize(fb_auth)
   	return {
-  		provider: auth.provider,
-      name: auth.info.name,
-      image_url: auth.info.image,
-      profile_url: auth.info.urls.Facebook,
-      access_token: auth.credentials["token"]
+  		provider: fb_auth.provider,
+      name: fb_auth.info.name,
+      image_url: fb_auth.info.image,
+      profile_url: fb_auth.info.urls.Facebook,
+      access_token: fb_auth.credentials["token"]
     } 
   end
 
