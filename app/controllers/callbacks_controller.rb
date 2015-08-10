@@ -15,19 +15,8 @@ class CallbacksController < Devise::OmniauthCallbacksController
        #get the last six month's fbposts
         posts = get_posts(for_user)
        #API call post request to bPop_api for fbposts
-        params = {
-          fbpost: {identity_token: current_user.bpop_token}
-        } 
+        post_fbposts_to_bPop_api(posts, fb_token)
 
-
-    response = Typhoeus::Request.new(
-      "http://localhost:4000/fbposts",
-      method: :post,
-      params: params
-    ).run
-
-        # get fbposts and post them to bPop_api + bpop_token
-        # get fblikes and post them to bPop_api + bpop_token
   			redirect_to root_path
   		end
   end
@@ -78,4 +67,40 @@ class CallbacksController < Devise::OmniauthCallbacksController
       secret_token: auth.extra.access_token.consumer.secret 
     }
   end
+
+  def post_fbposts_to_bPop_api(posts, fb_token)
+    #create likes / likes_data variables
+    posts.each do |post| 
+      
+      if post['likes']
+        likes = post['likes']['data'].length
+        likes_data = post['likes']['data'].to_json
+        
+      else
+        likes = 0
+        likes_data = "0"
+      end
+      #define params post request
+      params = {
+        fbpost: {
+          user_token: current_user.bpop_token,
+          story: post['story'],
+          message: post['message'],
+          likes: likes,
+          likes_data: likes_data,
+          url: post['link'],
+          date: post['created_time'][0..9],
+          fb_user_token: fb_token
+        }
+      } 
+      #send post request
+      response = Typhoeus::Request.new(
+        "http://localhost:4000/fbposts",
+        method: :post,
+        params: params
+      ).run
+    end
+    
+  end
+
 end
