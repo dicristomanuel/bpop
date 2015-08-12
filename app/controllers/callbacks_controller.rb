@@ -70,8 +70,8 @@ class CallbacksController < Devise::OmniauthCallbacksController
 
   def post_fbposts_to_bPop_api(posts, fb_token)
     #create likes / likes_data variables
+    
     posts.each do |post| 
-      
       if post['likes']
         likes = post['likes']['data'].length
         likes_data = post['likes']['data'].to_json
