@@ -15,7 +15,6 @@ class CallbacksController < Devise::OmniauthCallbacksController
         #get the last six month's fbposts
         posts = get_posts(for_user)
         #API call post request to bPop_api for fbposts
-
         user = User.find_by_id(current_user.id)
         post_fbposts_to_bPop_api(posts, fb_token, user.bpopToken)
 

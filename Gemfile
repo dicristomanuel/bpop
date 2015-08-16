@@ -26,6 +26,8 @@ gem 'better_errors'
 #for better errors debugging
 gem 'pry-rails'
 #use pry console
+gem 'pry-byebug'
+#pry helper
 gem 'nokogiri'
 #to perform scraping
 gem 'sidekiq'
