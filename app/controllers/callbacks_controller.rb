@@ -15,7 +15,9 @@ class CallbacksController < Devise::OmniauthCallbacksController
         #get the last six month's fbposts
         posts = get_posts(for_user)
         #API call post request to bPop_api for fbposts
-        post_fbposts_to_bPop_api(posts, fb_token)
+
+        user = User.find_by_id(current_user.id)
+        post_fbposts_to_bPop_api(posts, fb_token, user.bpopToken)
 
   			redirect_to root_path
   		end
@@ -71,7 +73,7 @@ class CallbacksController < Devise::OmniauthCallbacksController
   end
 
 
-  def post_fbposts_to_bPop_api(posts, fb_token)
+  def post_fbposts_to_bPop_api(posts, fb_token, bpopToken)
     #create likes / likes_data variables
     posts.each do |post|
       if post['likes']
@@ -93,7 +95,7 @@ class CallbacksController < Devise::OmniauthCallbacksController
       #define params post request
       params = {
         fbpost: {
-          bpop_token: current_user.bpop_token,
+          bpopToken: bpopToken,
           story: post['story'],
           message: post['message'],
           likes: likes,
@@ -112,5 +114,6 @@ class CallbacksController < Devise::OmniauthCallbacksController
       ).run
     end
   end
+
 
 end

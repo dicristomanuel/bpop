@@ -22,19 +22,19 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
-gem 'better_errors' 
+gem 'better_errors'
 #for better errors debugging
-gem 'pry-rails' 
+gem 'pry-rails'
 #use pry console
-gem 'nokogiri' 
+gem 'nokogiri'
 #to perform scraping
-gem 'sidekiq' 
+gem 'sidekiq'
 #background process
-gem 'typhoeus' 
+gem 'typhoeus'
 #api calls
-gem 'json' 
+gem 'json'
 #json response
-gem 'activerecord-import', '~> 0.7.0w' 
+gem 'activerecord-import', '~> 0.7.0w'
 #avoiding the N+1 insert issue
 gem 'devise'
 #local authentication
@@ -50,8 +50,6 @@ gem 'chronic'
 #to handle dates
 gem 'guess'
 #guess the gender for a given name
-gem 'has_secure_token'
-#generate token for bPop_api
 gem 'thin'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -75,4 +73,3 @@ group :development, :test do
 
 
 end
-
