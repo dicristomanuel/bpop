@@ -1,0 +1,71 @@
+
+<% if current_user %>
+	<%= current_user.email  %>
+		<% current_user.identities.each do |identity| %>
+			<h3><%= identity.provider %></h3>
+			<p><%= identity.name %></p>
+			<p><a href="<%= identity.profile_url %>"><img src="<%= identity.image_url %>"></a></p>
+
+<% if session[:facebook] %>
+
+	<!-- retrieve posts -->
+	<% posts = get_posts(identity.fb_authorize, 'two month ago') %>
+			<h3>Number of posts: <%= posts.length %></h3>
+<br/>
+<br/>
+	<!-- display posts and link to them -->	
+		<% display_posts(posts, 'story').each do |story| %>
+		<p><a href="<%= story[1] %>"><%= story[0] %></a></p>
+		<% end %>
+<br/>
+<br/>
+		<a href="<%= posts[3]["actions"][0]["link"] %>"><%= posts[3]["story"] %>
+	<%= posts[3]["message"] %></a>
+<br/>
+<br/>
+	<p>Created at <%= posts[3]["created_time"].to_s[0..9] %></p>
+
+	<p>Likes <%= posts[3]["likes"]["data"].length %></p>
+
+	<% @genders = [] %>
+	<% posts[3]["likes"]["data"].each do |like| %>
+	<%= like["name"] %>
+	<% @genders << get_gender(identity.fb_authorize, like["id"]) %>
+	<br/>
+	<% end %> 
+
+	<% counts = Hash.new 0
+
+	@genders.each do |gender|
+		unless gender == "unknown"
+	  counts[gender] += 1
+	end
+	end %>
+
+	<%= counts  %>
+	<br/>
+	<br/>
+	<%= get_percentage_of_genders(counts) %>
+	<br/>
+	<br/>
+					<%= posts[3]["comments"]["data"] %>
+	<br/>
+	<br/>
+			<%= link_to "logout #{identity.provider}", remove_social_path(current_user, identityId: identity.id) %>
+		<% end %>
+
+
+<% if session[:twitter] %>
+<%= link_to "logout #{identity.provider}", remove_social_path(current_user, identityId: identity.id) %>
+<% end %>
+<% end %>
+<% end %>
+<br />
+<br />
+<%= link_to "connect facebook", user_omniauth_authorize_path('facebook')%>
+<%= link_to "connect twitter", user_omniauth_authorize_path('twitter')%>
+<br />
+************************
+<br />
+<br />
+<%= link_to "Sign out", destroy_user_session_path, method: :delete %>
