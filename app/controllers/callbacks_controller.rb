@@ -99,6 +99,7 @@ class CallbacksController < Devise::OmniauthCallbacksController
           story: post['story'],
           message: post['message'],
           likes: likes,
+          comments: comments,
           likes_data: likes_data,
           comments_data: comments_data,
           url: post['link'],
