@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
- 
+
  root 'home#index'
- 
+
+ get '/search-fan', to: 'home#search_byfan'
+
  devise_for :users, :controllers => { :omniauth_callbacks => 'callbacks' }
 
   devise_scope :user do
     get 'users/:user_id/remove_social', to: 'callbacks#remove_social', as: 'remove_social'
-  end 
+  end
 
 	resources :users 			do
 	  resources :identities do
@@ -14,7 +16,7 @@ Rails.application.routes.draw do
 	  		resources :fblikes
 	  		end
 	  	end
-	  end 
+	  end
 	end
 
 #                          Prefix Verb     URI Pattern                                                                           Controller#Action

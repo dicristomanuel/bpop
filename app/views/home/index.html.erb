@@ -7,3 +7,93 @@
 <br />
 <br />
 <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+
+<main>
+  <div class="social-container">
+    <div class="social-title">
+      Facebook Stats
+    </div>
+    <% if session[:facebook] %>
+    <div class="stats-container">
+
+      <div class="posts-data">
+        <span style="font-size:30px">posts facts</span>
+        <br/>
+        <span>number of posts: </span><%= @posts_stats %>
+        <br/>
+        <span>number of likes: </span><%= @likes_stats %>
+        <br/>
+        <span>number of comments: </span><%= @comments_stats %>
+      </div>
+
+
+      <div class="posts-data">
+        <span style="font-size:30px">gender percentage</span>
+        <br/>
+        <span>Gender Stats: </span>
+        <br/>
+        <span>Male: </span><%= @gender_stats['total']['male'] %>
+        <br/>
+        <span>Female: </span><%= @gender_stats['total']['female'] %>
+        <br/>
+        <span>Likes Gender Stats: </span>
+        <br/>
+        <span>Male: </span><%= @gender_stats['likes']['male'] %>
+        <br/>
+        <span>Female: </span><%= @gender_stats['likes']['female'] %>
+        <br/>
+        <span>Comments Gender Stats: </span>
+        <br/>
+        <span>Male: </span><%= @gender_stats['comments']['male'] %>
+        <br/>
+        <span>Female: </span><%= @gender_stats['comments']['female'] %>
+      </div>
+
+      <div class="posts-data">
+        <span style="font-size:30px">fans facts</span>
+        <br/>
+        <span>number of active fans: </span><%= @active_fans %>
+        <br/>
+        <span>top fan: </span><%= @fans.first[0] %> with <span><%= @fans.first[1] %></span> interactions
+        <br/>
+        <span>top 5: </span><%= @fans.first 5 %>
+      </div>
+
+
+      <div class="posts-data" style="width:1200px">
+        <span style="font-size:30px">fan likes</span>
+        <br/>
+        <span>Name: Daniela Luna</span>
+        <br/>
+        <span>likes / comments </span> <%= @things_fan_likes[0] %>
+        <br/>
+        <span>posts: </span>
+          <% @things_fan_likes[1].each do |post| %>
+            <%= link_to post['story'], post['url'], :target => "_blank" %>
+            <br/>
+            <%= post['message'] %>
+            <%= link_to image_tag(post['picture']), post['url'], :target => "_blank" %>
+          <br/>
+          <% end %>
+      </div>
+
+      <div class="posts-data">
+        <span style="font-size:30px">Group Fans</span>
+        <br/>
+        <% @common_likes.each do |post| %>
+        <%= link_to post['story'], post['url'], :target => "_blank" %>
+        <br/>
+        <%= post['message'] %>
+        <%= link_to image_tag(post['picture']), post['url'], :target => "_blank" %>
+      <br/>
+      <% end %>
+      </div>
+
+    </div>
+    <% end %>
+
+    </div>
+
+
+  </div>
+</main>

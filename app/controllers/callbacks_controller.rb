@@ -95,6 +95,7 @@ class CallbacksController < Devise::OmniauthCallbacksController
           owner: owner,
           story: post['story'],
           message: post['message'],
+          picture: post['picture'],
           likes: likes,
           comments: comments,
           likes_data: likes_data,
