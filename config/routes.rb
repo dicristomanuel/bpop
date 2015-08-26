@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
 
  root 'home#index'
-
  get '/search-fan', to: 'home#search_byfan'
 
  devise_for :users, :controllers => { :omniauth_callbacks => 'callbacks' }
 
   devise_scope :user do
     get 'users/:user_id/remove_social', to: 'callbacks#remove_social', as: 'remove_social'
+    get 'users/:user_id/facebook/update', to: 'callbacks#facebook_update', as: 'facebook_update'
   end
 
 	resources :users 			do

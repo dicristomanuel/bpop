@@ -1,11 +1,6 @@
 class CallbacksController < Devise::OmniauthCallbacksController
 
   def facebook
-    #check if user has already facebook identity connected
-    	if session[:facebook] || current_user.identities.any? { |x| x[:provider]["facebook"] }
-    		redirect_to root_path
-    	else
-        session[:facebook] = 'loggedin'
         #get facebook access_token
         fb_response = request.env["omniauth.auth"]
         fb_token = fb_response["credentials"]["token"]
@@ -15,11 +10,11 @@ class CallbacksController < Devise::OmniauthCallbacksController
         #get the last six month's fbposts
         posts = get_posts(for_user)
         #API call post request to bPop_api for fbposts / passing posts, tokens and owner's name
-        post_fbposts_to_bPop_api(posts, fb_token, current_user.bpopToken, fb_response['info']['name'])
+        fbposts_to_bPop_api(posts, fb_token, current_user.bpopToken, fb_response['info']['name'])
 
   			redirect_to root_path
-  		end
   end
+
 
   def twitter
   	unless session[:twitter]
@@ -71,7 +66,7 @@ class CallbacksController < Devise::OmniauthCallbacksController
   end
 
 
-  def post_fbposts_to_bPop_api(posts, fb_token, bpopToken, owner)
+  def fbposts_to_bPop_api(posts, fb_token, bpopToken, owner)
     #create likes / likes_data variables
     posts.each do |post|
       if post['likes']
@@ -103,17 +98,27 @@ class CallbacksController < Devise::OmniauthCallbacksController
           url: post['link'],
           date: post['created_time'][0..9],
           bpopToken: bpopToken,
-          fb_user_token: fb_token
+          fb_user_token: fb_token,
+          fb_post_id: post['id']
         }
       }
-      #send post request to bPop_api
-      response = Typhoeus::Request.new(
-        "http://localhost:4000/fbposts",
-        method: :post,
-        params: params
-      ).run
+      #check if the user already connected facebook account
+      if session[:facebook]
+        #send put request to bPop_api to update posts
+        response = Typhoeus::Request.new(
+          "http://localhost:4000/fbposts/" + post['id'],
+          method: :put,
+          params: params
+        ).run
+      else
+        #send post request to bPop_api to create posts (occurs first time only)
+        response = Typhoeus::Request.new(
+          "http://localhost:4000/fbposts",
+          method: :post,
+          params: params
+        ).run
+      end
     end
+    session[:facebook] = 'loggedin'
   end
-
-
 end
