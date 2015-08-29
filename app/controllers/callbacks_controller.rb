@@ -84,6 +84,12 @@ class CallbacksController < Devise::OmniauthCallbacksController
         comments = 0
         comments_data = "0"
       end
+
+      if post == posts.last
+        is_last = 'true'
+      else
+        is_last = 'false'
+      end
       #define params post request
       params = {
         fbpost: {
@@ -99,7 +105,8 @@ class CallbacksController < Devise::OmniauthCallbacksController
           date: post['created_time'][0..9],
           bpopToken: bpopToken,
           fb_user_token: fb_token,
-          fb_post_id: post['id']
+          fb_post_id: post['id'],
+          is_last: is_last
         }
       }
       #check if the user already connected facebook account
