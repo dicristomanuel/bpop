@@ -3,7 +3,6 @@
     color: darken($pink, 20%);
     margin: 10px 9.5vw -5px 0;
     align-self: flex-end;
-
   }
 
   main-for-auth {
@@ -12,6 +11,19 @@
   auth-box-left {
     bpop-auth {
       @include loginMains;
+
+        .flash {
+          align-self: flex-end;
+          margin-right: 9.5vw;
+          &.flash-alert {
+              color: $pink;
+          }
+          &.flash-notice {
+            color: $green;
+          }
+        }
+
+
 
         logo {
           background: {

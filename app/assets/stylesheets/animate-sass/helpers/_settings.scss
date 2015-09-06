@@ -4,7 +4,7 @@
 
 
 // Base module settings
-$base-duration					: 1s !default;           // used in 1-base module
+$base-duration					: .4s !default;           // used in 1-base module
 $base-origin 					: top center !default;
 $base-degrees 					: 30deg !default;        // used in lightspeed & special modules
 $base-fill-mode					: both !default;
@@ -137,7 +137,7 @@ $use-flash				:	false !default;
 $use-pulse				:	false !default;
 $use-wiggle				:	false !default;
 $use-swing				:	false !default;
-$use-shake				:	false !default;
+$use-shake				:	true !default;
 $use-tada				:	false !default;
 $use-wobble				:	false !default;
 

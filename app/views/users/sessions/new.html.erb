@@ -6,6 +6,9 @@
         <bpop-auth>
           <logo></logo>
 
+
+            <div class="flash flash-alert animated shake"><%=flash[:alert]%></div>
+            <div class="flash flash-notice" ng-model="flashMessage"><%=flash[:notice]%></div>
             <!-- login/signup form or confirmation page -->
             <div ng-view></div>
 

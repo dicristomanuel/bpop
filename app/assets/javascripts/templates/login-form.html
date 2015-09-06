@@ -5,7 +5,7 @@
     <input autocomplete="off" placeholder="password" type="password" name="user[password]" id="user_password" ng-model="loginForm.password" required="required">
 
     <p id="forgot-password">
-        <a href="http://localhost:3000/users/sign_in#/recover-password">forgot password</a>
+        <a href="http://localhost:3000/users/sign_in#/recover-password" ng-click="resetFlash()">forgot password</a>
     </p>
 
     <button name="commit" type="submit">
@@ -15,6 +15,6 @@
 
 <p id="info-sm">
   <span>
-    <a href="http://localhost:3000/users/sign_in#/signup">signup</a>
+    <a href="http://localhost:3000/users/sign_in#/signup" ng-click="resetFlash()">signup</a>
   </span> for a new account
 </p>

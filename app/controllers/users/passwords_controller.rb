@@ -1,4 +1,4 @@
-########OVERRIDING DEVISE CONTROLLER 
+########OVERRIDING DEVISE CONTROLLER
 
 class Users::PasswordsController < Devise::PasswordsController
   # GET /resource/password/new
@@ -8,8 +8,15 @@ class Users::PasswordsController < Devise::PasswordsController
 
   # POST /resource/password
   def create
-    super
-    binding.pry
+    @user = User.where(email: params[:user][:email])
+    if @user
+      flash[:alert] = "email not found"
+      redirect_to :back
+    else
+      @flashes = 'email sent!'
+      redirect_to new_user_session_path
+    end
+    puts @flashes
   end
 
   # GET /resource/password/edit?reset_password_token=abcdef

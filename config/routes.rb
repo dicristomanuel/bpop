@@ -3,7 +3,10 @@ Rails.application.routes.draw do
  root 'home#index'
  get '/search-fan', to: 'home#search_byfan'
 
- devise_for :users, :controllers => { sessions: 'users/sessions', :omniauth_callbacks => 'callbacks' }
+ devise_for :users, :controllers => {
+   sessions: 'users/sessions',
+   passwords: 'users/passwords',
+   omniauth_callbacks: 'callbacks' }
 
 
   devise_scope :user do
@@ -13,9 +16,6 @@ Rails.application.routes.draw do
 
 	resources :users 			do
 	  resources :identities do
-	  	resources :fbposts 		do
-	  		resources :fblikes
-	  		end
 	  	end
 	  end
 	end
