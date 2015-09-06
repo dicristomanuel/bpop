@@ -1,0 +1,9 @@
+{
+  "name": "bower-rails generated lib assets",
+  "dependencies": {
+    "angular": "latest",
+    "angular-cookie": "latest",
+    "angular-route": "latest",
+    "ng-token-auth": "latest"
+  }
+}

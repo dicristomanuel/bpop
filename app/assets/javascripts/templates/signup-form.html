@@ -1,0 +1,16 @@
+<span id="welcome">Create a new account</span>
+
+<form id="auth-form" class="new_user" accept-charset="UTF-8" action="/users" method="post">
+    <input autofocus="autofocus" placeholder="email" spellcheck="false" type="email" value="" name="user[email]" required="required" id="user_email">
+    <input autocomplete="off" placeholder="password" type="password" name="user[password]" id="user_password" required="required">
+    <input autocomplete="off" placeholder="confirm password" type="password" name="user[password_confirmation]" id="user_password" required="required">
+
+    <button name="commit" type="submit">
+      <span>SIGNUP</span>
+    </button>
+</form>
+
+<p id="info-sm">
+  <span style="color:#4edcd2; margin-left:5vw" class="fa fa-arrow-left"></span>
+    <a style="color:#5a5a5a" href="http://localhost:3000/users/sign_in#/">back</a>
+</p>

@@ -1,0 +1,270 @@
+ .notice {
+    font-size: 10px;
+    color: darken($pink, 20%);
+    margin: 10px 9.5vw -5px 0;
+    align-self: flex-end;
+
+  }
+
+  main-for-auth {
+    display: flex;
+
+  auth-box-left {
+    bpop-auth {
+      @include loginMains;
+
+        logo {
+          background: {
+            image: url('logo.png');
+            repeat: no-repeat;
+            size: contain;
+          }
+          padding: 110px;
+          margin-top: 5px;
+        }
+
+        span#welcome {
+          @include title-md;
+          align-self: flex-start;
+          margin: 3vw 0 0 -2vw;
+        }
+
+        form#auth-form {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+
+          p#forgot-password {
+            @include p-sm;
+            margin-top: 5px;
+            align-self: flex-end;
+            &:hover {
+              color: $lightblue;
+            }
+          }
+
+          #info {
+            @include p-sm;
+            margin-top: 5vw;
+            align-self: center;
+            span {
+              margin-left: 0.5vw;
+            }
+            &:hover {
+              color: $lightblue ;
+            }
+          }
+
+          input {
+            @include input;
+          }
+
+          button {
+            @include button;
+            margin-top: 2vw;
+            align-self: center;
+              &:hover {
+                span {
+                  opacity: 0.8;
+                }
+              }
+            span {
+              color: white;
+            }
+          }
+        }
+
+        p#info-sm {
+            @include p-md;
+            margin-top: 20px;
+            margin-left: 8.5vw;
+            font-weight: 300;
+          span {
+            color: $lightblue;
+            &:hover {
+              color: lighten($lightblue, 20%);
+            }
+          }
+        }
+
+
+
+        background: {
+          image: url('clouds.png');
+          repeat: no-repeat;
+          size: contain;
+        }
+    }
+  }
+
+
+  pink-background {
+    @include loginMains;
+    background: $pink;
+  }
+
+
+  auth-box-right {
+    a {
+      width: 100%;
+    }
+    @include loginMains;
+
+    span#title-blue {
+      color: $lightblue;
+      font-size: 4.5vw;
+      font-weight: 600;
+      margin: 7.5vw 6vw 0 0;
+      z-index: 1;
+    }
+
+    span#title-green {
+      color: $green;
+      font-size: 7vw;
+      font-weight: 700;
+      margin: -2.5vw 0 0 9vw;
+    }
+
+    span#title-pink {
+      color: lighten($pink, 10%);
+      font-size: 3vw;
+      font-weight: 100;
+      margin: -1.2vw 5vw 0 0;
+      letter-spacing: 0.2vw;
+    }
+
+    icon#people {
+      background: {
+        image: url('icons/people.png');
+        repeat: no-repeat;
+        size: contain;
+      }
+      padding: 1.5vw;
+      margin-top: 1vw;
+    }
+
+    p {
+      @include p-md;
+        text-align: center;
+        margin: 0.2vw 0 0 0;
+      }
+
+    connect-social {
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+      padding-top: 2vw;
+      text-align: center;
+
+      container-button-social {
+        display: flex;
+        flex-direction: column;
+        max-width: 210px;
+
+          &.connected {
+            button {
+              z-index: 1;
+                @include button-round($green);
+                  &.fa {
+                    font-size: 3vw;
+                    color: $green;
+                    color: rgba(196,220,78, 0.3);
+                    text-shadow: 1px 1px 23px $green, 0 0 0 black, 1px 4px 10px $green;
+                  }
+                }
+
+              profile-thumb-pic {
+                margin-top: -3vw;
+                margin-left: 1.5vw;
+
+                img {
+                  width: 10.5vw;
+                  border-radius: 50%;
+                  box-shadow: $box-shadow;
+                }
+              }
+            }
+
+            &.not-connected {
+              button {
+                z-index: 1;
+                  @include button-round($light-grey);
+                    &.fa {
+                      font-size: 3vw;
+                      color: $light-grey;
+                      color: rgba(213, 213, 213, 0.3);
+                      text-shadow: 1px 1px 23px $light-grey, 0 0 0 black, 1px 4px 10px $light-grey;
+                    }
+                  }
+
+                profile-thumb-pic {
+                  @include profile-thumb-pic;
+                  margin-top: -3vw;
+                  margin-left: 1.5vw;
+                  padding: 4.1vw;
+
+                  &.fa-user {
+                    font-size: 2.5vw;
+                  }
+                }
+              }
+            p {
+              @include p-sm;
+              margin: 1vw 0 0 1.5vw;
+
+              &#username {
+                font: {
+                  weight: bold;
+                  size: 1.5vw;
+                }
+                margin-top: .2vw;
+
+              }
+            }
+          }
+        }
+
+        button {
+          margin-top: 2.5vw;
+          width: 5vw;
+          height: 2vw;
+          background-color: #7fbdb9;
+          border-radius: 24px;
+          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12), inset 0 -2px 0 rgba(0, 0, 0, 0.2);
+          font: {
+            weight: 600;
+            size: 0.8vw;
+          }
+            a {
+              &:hover {
+                opacity: 0.8;
+              }
+            }
+        }
+
+        #info {
+          @include p-sm;
+          margin-top: 1vw;
+          margin-left: 30vw;
+          span {
+            margin-left: 0.5vw;
+          }
+          &:hover {
+            color: darken($lightblue, 10%);
+          }
+        }
+
+        dots {
+          text-align: center;
+          margin-top: .5vw;
+          span {
+            font-size: .7vw;
+            color: darken($light-grey, 9%);
+            margin: 0 .3vw 0 .3vw;
+            &.active {
+              color: $dark-grey;
+            }
+          }
+        }
+      }
+    }

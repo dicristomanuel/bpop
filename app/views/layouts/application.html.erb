@@ -1,19 +1,15 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>BpopApp1</title>
-  <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <html>
+    <head>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+      <title>bpop</title>
+      <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => false %>
+      <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
+      <%= csrf_meta_tags %>
+    </head>
+    <body>
 
- <p class="notice"><%= notice %></p>
- <p class="alert"><%= alert %></p>
-
-<%= yield %>
-
-</body>
-</html>
+      <%= yield %>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
+    </body>
+  </html>

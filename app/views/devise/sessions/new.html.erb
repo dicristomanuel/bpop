@@ -1,26 +1,57 @@
-<h2>Log in</h2>
+<div ng-app="bpopApp" ng-controller="authController">
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+  <main-for-auth>
+      <!-- <auth-box-left class="animated" ng-class="{fadeInUp: !isFirstVisit}">  not working properly -->
+      <auth-box-left class="animated fadeInUp">
+        <bpop-auth>
+          <logo></logo>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
+            <!-- login/signup form or confirmation page -->
+            <div ng-view></div>
 
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end -%>
+        </bpop-auth>
+      </auth-box-left>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
 
-<%= render "devise/shared/links" %>
+    <pink-background>
+      <auth-box-right class="animated fadeInDown">
+        <span id="title-blue">DISCOVER HOW</span>
+        <span id="title-green">POPULAR</span>
+        <span id="title-pink">you are in the clouds</span>
+        <icon id="people"></icon>
+        <p>connect to the social newtorks you want the stats from</p>
+
+      <a href="#">
+        <connect-social>
+          <container-button-social class="connected">
+            <button class="fa fa-facebook"></button>
+            <profile-thumb-pic>
+              <%= image_tag "facebook_profile_pic.jpg" %>
+            </profile-thumb-pic>
+            <p>logged in as</p>
+            <p id="username">MANUEL DI CRISTO</p>
+          </container-button-social>
+
+          <container-button-social class="not-connected">
+            <button class="fa fa-twitter"></button>
+            <profile-thumb-pic class="fa fa-user"></profile-thumb-pic>
+            <p>not connected</p>
+          </container-button-social>
+
+        </connect-social>
+      </a>
+
+        <button><a href="#">SKIP</a></button>
+        <a href="#" id="info"><p class="fa">why should I connect my social accounts?<span class="fa-arrow-right"></span></p></a>
+
+        <dots class="fa">
+          <a href="#"><span class="fa-circle active"></span></a>
+          <a href="#"><span class="fa-circle"></span></a>
+          <a href="#"><span class="fa-circle"></span></a>
+        </dots>
+      </auth-box-right>
+    <pink-background>
+
+  </main-for-auth>
+  <!-- {{test}} -->
+</div>

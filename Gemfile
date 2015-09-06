@@ -7,6 +7,8 @@ gem 'rails', '4.2.3'
 gem 'pg'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
+# Use compass helpers
+gem "compass-rails", github: "Compass/compass-rails", branch: "master"
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
@@ -60,6 +62,9 @@ gem 'thin'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem 'angular-rails-templates'
+gem 'bower-rails'
+# gem 'devise_token_auth'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
