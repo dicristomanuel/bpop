@@ -5,22 +5,52 @@
     align-self: flex-end;
   }
 
+  span {
+    &.step-arrow {
+      font-size: 3vw;
+      position: absolute;
+      top: 39vh;
+      left: 47.65vw;
+      color: darken($dark-grey, 17%);
+      background: rgba(0,0,0,0.3);
+      border-radius: 40%;
+      padding: 0.8vw 1vw;
+    }
+  }
+
   main-for-auth {
     display: flex;
 
   auth-box-left {
+    overflow: hidden;
+    div.cover {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      padding: 500px;
+      background: rgba(0,0,0,0.2);
+      z-index: 5;
+    }
     bpop-auth {
       @include loginMains;
 
         .flash {
+          font-size: 1vw;
           align-self: flex-end;
           margin-right: 9.5vw;
-          &.flash-alert {
-              color: $pink;
-          }
-          &.flash-notice {
-            color: $green;
-          }
+        }
+
+        .flash-alert {
+          color: $pink;
+        }
+
+        .flash-notice {
+          color: $green;
+        }
+
+        .flash-success {
+          color: $lightblue;
         }
 
 
@@ -35,6 +65,25 @@
           margin-top: 5px;
         }
 
+      container-circle {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        circle {
+          padding: 5vw;
+          border: 3px solid $green;
+          border-radius: 100%;
+          font-size: 5vw;
+          .fa {
+            color: $green;
+          }
+        }
+
+        p {
+          margin-top: 2vw;
+          font-size: 1.5vw;
+        }
+      }
         span#welcome {
           @include title-md;
           align-self: flex-start;
@@ -46,45 +95,45 @@
           flex-direction: column;
           justify-content: center;
 
-          p#forgot-password {
-            @include p-sm;
-            margin-top: 5px;
-            align-self: flex-end;
-            &:hover {
-              color: $lightblue;
-            }
-          }
-
-          #info {
-            @include p-sm;
-            margin-top: 5vw;
-            align-self: center;
-            span {
-              margin-left: 0.5vw;
-            }
-            &:hover {
-              color: $lightblue ;
-            }
-          }
-
-          input {
-            @include input;
-          }
-
-          button {
-            @include button;
-            margin-top: 2vw;
-            align-self: center;
-              &:hover {
-                span {
-                  opacity: 0.8;
-                }
-              }
-            span {
-              color: white;
-            }
+        p#forgot-password {
+          @include p-sm;
+          margin-top: 5px;
+          align-self: flex-end;
+          &:hover {
+            color: $lightblue;
           }
         }
+
+        #info {
+          @include p-sm;
+          margin-top: 5vw;
+          align-self: center;
+          span {
+            margin-left: 0.5vw;
+          }
+          &:hover {
+            color: $lightblue ;
+          }
+        }
+
+        input {
+          @include input;
+        }
+
+        button {
+          @include button;
+          margin-top: 2vw;
+          align-self: center;
+            &:hover {
+              span {
+                opacity: 0.8;
+              }
+            }
+          span {
+            color: white;
+          }
+        }
+      }
 
         p#info-sm {
             @include p-md;
@@ -109,6 +158,12 @@
     }
   }
 
+  middle-box {
+    height: 100vh;
+    width: 40vw;
+    background: grey;
+  }
+
 
   pink-background {
     @include loginMains;
@@ -117,6 +172,16 @@
 
 
   auth-box-right {
+    div.cover {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      padding: 500px;
+      background: rgba(0,0,0,0.2);
+      z-index: 5;
+    }
+
     a {
       width: 100%;
     }
@@ -126,7 +191,7 @@
       color: $lightblue;
       font-size: 4.5vw;
       font-weight: 600;
-      margin: 7.5vw 6vw 0 0;
+      margin: 6.5vw 6vw 0 0;
       z-index: 1;
     }
 
@@ -164,7 +229,8 @@
     connect-social {
       display: flex;
       justify-content: space-around;
-      width: 100%;
+      width: 85%;
+      margin-left: 5vw;
       padding-top: 2vw;
       text-align: center;
 
@@ -173,15 +239,17 @@
         flex-direction: column;
         max-width: 210px;
 
+
+
           &.connected {
             button {
               z-index: 1;
-                @include button-round($green);
+                @include button-round(#B2DCD7);
                   &.fa {
                     font-size: 3vw;
-                    color: $green;
-                    color: rgba(196,220,78, 0.3);
-                    text-shadow: 1px 1px 23px $green, 0 0 0 black, 1px 4px 10px $green;
+                    color: #B2DCD7;
+                    color: rgba(78, 216, 221, 0.3);
+                    text-shadow: 1px 1px 23px #B2DCD7, 0 0 0 black, 1px 4px 10px #B2DCD7;
                   }
                 }
 
@@ -212,8 +280,10 @@
                 profile-thumb-pic {
                   @include profile-thumb-pic;
                   margin-top: -3vw;
-                  margin-left: 1.5vw;
-                  padding: 4.1vw;
+                  margin-left: 3.7vw;
+                  padding-top: 4vw;
+                  width: 10.2vw;
+                  height: 6.3vw;
 
                   &.fa-user {
                     font-size: 2.5vw;
@@ -237,7 +307,7 @@
         }
 
         button {
-          margin-top: 2.5vw;
+          margin-top: 4vw;
           width: 5vw;
           height: 2vw;
           background-color: #7fbdb9;
@@ -256,8 +326,8 @@
 
         #info {
           @include p-sm;
-          margin-top: 1vw;
-          margin-left: 30vw;
+          margin-top: .6vw;
+          margin-left: 35vw;
           span {
             margin-left: 0.5vw;
           }

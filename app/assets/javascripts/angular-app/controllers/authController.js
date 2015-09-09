@@ -1,10 +1,9 @@
-angular.module('bpopApp').controller("authController", ['$scope', function($scope) {
+angular.module('bpopApp').controller("authController", ['$scope', '$http', function($scope, $http) {
 
-  $scope.flashMessage = "test flashhh";
-
-  $scope.resetFlash = function() {
-    console.log("before " + $scope.flashMessage);
-        $scope.flashMessage = "";
-    console.log("after " + $scope.flashMessage);
-      };
+  showLogin = true;
+  
+  // $scope.flashMessage = "";
+  // $scope.resetFlash = function() {
+  //       $scope.flashMessage = "";
+  //     };
 }]);

@@ -2,10 +2,10 @@
 
 <form id="auth-form" class="new_user" accept-charset="UTF-8" action="/users/sign_in" method="post">
     <input autofocus="autofocus" placeholder="email" spellcheck="false" type="email" value="" name="user[email]" required="required" id="user_email">
-    <input autocomplete="off" placeholder="password" type="password" name="user[password]" id="user_password" ng-model="loginForm.password" required="required">
+    <input autocomplete="off" placeholder="password" type="password" name="user[password]" id="user_password" required="required">
 
     <p id="forgot-password">
-        <a href="http://localhost:3000/users/sign_in#/recover-password" ng-click="resetFlash()">forgot password</a>
+        <a href="http://localhost:3000/users/sign_in#/recover-password">forgot password</a>
     </p>
 
     <button name="commit" type="submit">

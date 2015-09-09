@@ -1,20 +1,35 @@
 <div ng-app="bpopApp" ng-controller="authController">
 
+  <!-- TODO redirect to /success if session user id -->
   <main-for-auth>
+    <span class="step-arrow fa fa-arrow-left" ng-show="<%= session[:user_id].nil? %>" ng-cloak></span>
+    <span class="step-arrow fa fa-arrow-right" ng-hide="<%= session[:user_id].nil? %>" ng-cloak></span>
+      <!-- TODO make it animate only when is first visit -->
       <!-- <auth-box-left class="animated" ng-class="{fadeInUp: !isFirstVisit}">  not working properly -->
       <auth-box-left class="animated fadeInUp">
         <bpop-auth>
           <logo></logo>
-
-
-            <div class="flash flash-alert animated shake"><%=flash[:alert]%></div>
-            <div class="flash flash-notice" ng-model="flashMessage"><%=flash[:notice]%></div>
+            <!-- TODO reset flash message -->
+            <div class="flash flash-alert animated fadeIn"><%=flash[:alert]%></div>
+            <div class="flash flash-notice animated fadeIn"><%=flash[:notice]%></div>
+            <div class="flash flash-success animated fadeIn"><%=flash[:success]%></div>
             <!-- login/signup form or confirmation page -->
-            <div ng-view></div>
+            <div ng-view class="animated fadeIn" ng-show="<%= session[:user_id].nil? %>"></div>
+
+            <container-circle ng-hide="<%= session[:user_id].nil? %>">
+              <circle>
+                <span class="fa fa-check"></span>
+              </circle>
+              <p>you are logged in</p>
+              <p>now connect your social networks <span class="fa fa-arrow-right"></span></p>
+            </container-circle>
+
 
         </bpop-auth>
+        <div class="cover" ng-hide="<%= session[:user_id].nil? %>" ng-cloak></div>
       </auth-box-left>
 
+      <middle-box></middle-box>
 
     <pink-background>
       <auth-box-right class="animated fadeInDown">
@@ -23,38 +38,69 @@
         <span id="title-pink">you are in the clouds</span>
         <icon id="people"></icon>
         <p>connect to the social newtorks you want the stats from</p>
+        <connect-social ng-cloak>
 
-      <a href="#">
-        <connect-social>
-          <container-button-social class="connected">
-            <button class="fa fa-facebook"></button>
-            <profile-thumb-pic>
-              <%= image_tag "facebook_profile_pic.jpg" %>
-            </profile-thumb-pic>
-            <p>logged in as</p>
-            <p id="username">MANUEL DI CRISTO</p>
-          </container-button-social>
+    <% if @fb_connected %>
+      <%= link_to(remove_social_path({user_id: current_user.id, provider: 'facebook'})) do %>
+            <container-button-social class="connected">
+              <button class="fa fa-facebook"></button>
+                  <profile-thumb-pic ng-cloak>
+                    <%= image_tag @fb_profile_pic %>
+                  </profile-thumb-pic>
+                    <p>logged in as</p>
+                    <p id="username"><%= @fb_name %></p>
+              </container-button-social>
+              <% end %>
+          <% else %>
+            <%= link_to(user_omniauth_authorize_path('facebook')) do %>
+              <container-button-social class="not-connected">
+                <button class="fa fa-facebook"></button>
+                  <profile-thumb-pic class="fa fa-user"></profile-thumb-pic>
+                  <p>click to connect</p>
+                </container-button-social>
+              <% end %>
+          <% end %>
 
-          <container-button-social class="not-connected">
-            <button class="fa fa-twitter"></button>
-            <profile-thumb-pic class="fa fa-user"></profile-thumb-pic>
-            <p>not connected</p>
-          </container-button-social>
+
+          <% if @tw_connected %>
+            <%= link_to(remove_social_path({user_id: current_user.id, provider: 'twitter'})) do %>
+                  <container-button-social class="connected" ng-disabled>
+                    <button class="fa fa-twitter"></button>
+                        <profile-thumb-pic ng-cloak>
+                          <%= image_tag @tw_profile_pic %>
+                        </profile-thumb-pic>
+                          <p>logged in as</p>
+                          <p id="username"><%= @tw_name %></p>
+                    </container-button-social>
+                    <% end %>
+                <% else %>
+                  <%= link_to(user_omniauth_authorize_path('twitter')) do %>
+                    <container-button-social class="not-connected" ng-disabled>
+                      <button class="fa fa-twitter"></button>
+                        <profile-thumb-pic class="fa fa-user"></profile-thumb-pic>
+                        <p>click to connect</p>
+                      </container-button-social>
+                    <% end %>
+                <% end %>
+
+
+
 
         </connect-social>
       </a>
 
-        <button><a href="#">SKIP</a></button>
-        <a href="#" id="info"><p class="fa">why should I connect my social accounts?<span class="fa-arrow-right"></span></p></a>
+        <button><%= link_to 'HOME', root_path%></button>
 
-        <dots class="fa">
+        <a href="#" id="info"><p class="fa">skip to the website and do this later</p></a>
+
+        <!-- <dots class="fa">
           <a href="#"><span class="fa-circle active"></span></a>
           <a href="#"><span class="fa-circle"></span></a>
           <a href="#"><span class="fa-circle"></span></a>
-        </dots>
+        </dots> -->
+        <div class="cover" ng-show="<%= session[:user_id].nil? %>" ng-cloak</div>
       </auth-box-right>
-    <pink-background>
-
+    </pink-background>
   </main-for-auth>
-  <!-- {{test}} -->
+
 </div>

@@ -48,10 +48,10 @@ $hinge-translate 				: 700px !default;
 //==================================================================================================//
 
 // Fade Enter
-$use-fadeIn 			:	false !default;
-$use-fadeInUp 			:	false !default;
+$use-fadeIn 			:	true !default;
+$use-fadeInUp 			:	true !default;
 $use-fadeInUpBig 		:	false !default;
-$use-fadeInDown 		:	false !default;
+$use-fadeInDown 		:	true !default;
 $use-fadeInDownBig 		:	false !default;
 $use-fadeInLeft 		:	false !default;
 $use-fadeInLeftBig 		:	false !default;

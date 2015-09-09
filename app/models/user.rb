@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
 	before_create :generate_bpopToken
 
+	validates_uniqueness_of :email
+
 	has_many :identities, dependent: :destroy
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -11,6 +13,6 @@ class User < ActiveRecord::Base
 	private
 
 	def generate_bpopToken
-		 self.bpopToken = SecureRandom.hex		
+		 self.bpopToken = SecureRandom.hex
 	end
 end

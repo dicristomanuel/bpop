@@ -9,14 +9,13 @@ class Users::PasswordsController < Devise::PasswordsController
   # POST /resource/password
   def create
     @user = User.where(email: params[:user][:email])
-    if @user
-      flash[:alert] = "email not found"
+    if @user.first
+      flash[:notice] = "email sent!"
       redirect_to :back
     else
-      @flashes = 'email sent!'
-      redirect_to new_user_session_path
+      flash[:alert] = "email not found"
+      redirect_to :back
     end
-    puts @flashes
   end
 
   # GET /resource/password/edit?reset_password_token=abcdef

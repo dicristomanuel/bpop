@@ -12,7 +12,7 @@ class CallbacksController < Devise::OmniauthCallbacksController
         #API call post request to bPop_api for fbposts / passing posts, tokens and owner's name
         fbposts_to_bPop_api(posts, fb_token, current_user.bpopToken, fb_response['info']['name'])
 
-  			redirect_to root_path
+  			redirect_to :back
   end
 
 
@@ -21,14 +21,14 @@ class CallbacksController < Devise::OmniauthCallbacksController
 			current_user.identities.create(twitter_categorize(request.env["omniauth.auth"]))
 			session[:twitter] = 'loggedin'
 		end
-    redirect_to root_path
+    redirect_to 'http://localhost:3000/users/sign_in#/success'
   end
 
   def remove_social
-  	identity = current_user.identities.find_by_id(params[:identityId])
-  	session[identity.provider] = nil
-  	identity.destroy
-  	redirect_to root_path
+  	identity = current_user.identities.where(provider: params[:provider])
+  	session[identity.first.provider] = nil
+  	identity.destroy_all
+  	redirect_to :back
   end
 
 
@@ -52,6 +52,7 @@ class CallbacksController < Devise::OmniauthCallbacksController
 
 
   def twitter_categorize(auth)
+    auth.info.image.slice!('_normal')
   	return {
   		provider: auth.provider,
       name: auth.info.nickname,

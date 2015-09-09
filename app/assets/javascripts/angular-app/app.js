@@ -11,14 +11,17 @@ app.config(function ($routeProvider) {
             .when('/', {
                 templateUrl: 'login-form.html',
                 controller: 'authController'
-            }).when('/sign_in', {
-              templateUrl: 'views/user_sessions/new.html',
-              controller: 'UserSessionsCtrl'
             }).when('/signup', {
                 templateUrl: 'signup-form.html',
                 controller: 'authController'
             }).when('/recover-password', {
                 templateUrl: 'recover-password.html',
                 controller: 'authController'
-            });
+            }).when('/success', {
+                templateUrl: 'singned_in.html',
+                controller: 'authController'
+            }).when('/_=_', {
+                templateUrl: 'singned_in.html',
+                controller: 'authController'
+            });;
     });

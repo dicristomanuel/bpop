@@ -4,6 +4,8 @@
 //= require angular-route
 //= require angular-rails-templates
 //= require angular-cookie
+//= require_tree ../stylesheets/materialize/js
+
 
 //= require angular-app/app
 //= require_tree ./templates

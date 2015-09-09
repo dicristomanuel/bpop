@@ -1,10 +1,9 @@
 class HomeController < ApplicationController
 
-	before_action :current_user, :authenticate_user!, :user_signed_in?
+	before_action :user_signed_in?
 	helper_method :search_byfan
 
   def index
-
 		# posts_response = Typhoeus::Request.new(
 		#   "http://localhost:4000/fbposts/" + current_user.bpopToken
 		# ).run

@@ -2,8 +2,25 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   # protect_from_forgery with: :null_session
+  before_action :current_user
 
+  def user_signed_in?
+    unless session[:user_id]
+      flash[:alert] = "please signin"
+      redirect_to new_user_session_path
+    end
+  end
 
-  # facebook scraping Chronic.parse('last week')
+  def home_signed_in?
+    if session[:user_id]
+      redirect_to 'http://localhost:3000/users/sign_in#/success'
+    end
+  end
+
+  def current_user
+    if session[:user_id]
+      current_user = User.where(bpopToken: session[:user_id]).first
+    end
+  end
 
 end
