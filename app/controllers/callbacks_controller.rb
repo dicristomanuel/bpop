@@ -6,6 +6,9 @@ class CallbacksController < Devise::OmniauthCallbacksController
         fb_token = fb_response["credentials"]["token"]
         #create identity and initialize Koala contant with it
         identity = current_user.identities.create(facebook_categorize(fb_response))
+        if identity.errors.messages[:profile_url]
+          flash[:error] = 'already connected to other user'
+        end
         for_user = identity.fb_authorize(fb_token)
         #get the last six month's fbposts
         posts = get_posts(for_user)

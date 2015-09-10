@@ -1,23 +1,7 @@
-<h1>Home</h1>
+<div ng-app="bpopApp" ng-controller="homeController">
+  <logo></logo>
 
 
-<%= link_to "connect facebook", user_omniauth_authorize_path('facebook')%>
-<%= link_to "update facebook", user_omniauth_authorize_path('facebook') %>
 
-<%= link_to "connect twitter", user_omniauth_authorize_path('twitter')%>
-<br />
-************************
-<br />
-<br />
-<%= link_to "Sign out", destroy_user_session_path, method: :delete %>
-
-<main>
-  <div class="social-container">
-    <div class="social-title">
-      Facebook Stats
-    </div>
-      </div>
-
-
-  </div>
-</main>
+<%= link_to "LOGOUT", destroy_user_session_path, method: :delete, :id => "logout-main-page"%>
+</div>

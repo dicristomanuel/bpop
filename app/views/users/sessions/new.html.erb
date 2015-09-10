@@ -1,9 +1,8 @@
 <div ng-app="bpopApp" ng-controller="authController">
+  <span class="step-arrow fa fa-arrow-left" ng-show="<%= session[:user_id].nil? %>" ng-cloak></span>
+  <span class="step-arrow fa fa-arrow-right" ng-hide="<%= session[:user_id].nil? %>" ng-cloak></span>
 
-  <!-- TODO redirect to /success if session user id -->
   <main-for-auth>
-    <span class="step-arrow fa fa-arrow-left" ng-show="<%= session[:user_id].nil? %>" ng-cloak></span>
-    <span class="step-arrow fa fa-arrow-right" ng-hide="<%= session[:user_id].nil? %>" ng-cloak></span>
       <!-- TODO make it animate only when is first visit -->
       <!-- <auth-box-left class="animated" ng-class="{fadeInUp: !isFirstVisit}">  not working properly -->
       <auth-box-left class="animated fadeInUp">
@@ -16,20 +15,41 @@
             <!-- login/signup form or confirmation page -->
             <div ng-view class="animated fadeIn" ng-show="<%= session[:user_id].nil? %>"></div>
 
-            <container-circle ng-hide="<%= session[:user_id].nil? %>">
-              <circle>
-                <span class="fa fa-check"></span>
-              </circle>
-              <p>you are logged in</p>
-              <p>now connect your social networks <span class="fa fa-arrow-right"></span></p>
-            </container-circle>
+            <about-box ng-hide="<%= session[:user_id].nil? %>">
+              <circles>
+                <span>
+                  <div class="fa fa-circle first"></div>
+                  <div class="fa fa-circle second"></div>
+                  <div class="fa fa-circle third"></div>
+                  <p class="fa fa-connectdevelop text"></p>
+                  <p class="steps">Connect to your social networks</p>
+                </span>
+                <span>
+                  <div class="fa fa-circle first"></div>
+                  <div class="fa fa-circle second"></div>
+                  <div class="fa fa-circle third"></div>
+                  <p class="fa fa-smile-o text"></p>
+                  <p class="steps">Check your popularity</p>
+                </span>
+                <span>
+                  <div class="fa fa-circle first"></div>
+                  <div class="fa fa-circle second"></div>
+                  <div class="fa fa-circle third"></div>
+                  <p class="fa fa-comments-o text"></p>
+                  <p class="steps">Share your stats</p>
+                </span>
+
+                <p class="bottom-title">CONNECT YOUR SOCIALS</p>
+              </circles>
+
+              <%= link_to "LOGOUT", destroy_user_session_path, method: :delete, :id => "logout-main-page"%>
+
+            </about-box>
 
 
         </bpop-auth>
-        <div class="cover" ng-hide="<%= session[:user_id].nil? %>" ng-cloak></div>
+        <!-- <div class="cover" ng-hide="<%= session[:user_id].nil? %>" ng-cloak></div> -->
       </auth-box-left>
-
-      <middle-box></middle-box>
 
     <pink-background>
       <auth-box-right class="animated fadeInDown">
@@ -38,8 +58,8 @@
         <span id="title-pink">you are in the clouds</span>
         <icon id="people"></icon>
         <p>connect to the social newtorks you want the stats from</p>
+        <div class="flash flash-alert animated fadeIn"><%=flash[:error]%></div>
         <connect-social ng-cloak>
-
     <% if @fb_connected %>
       <%= link_to(remove_social_path({user_id: current_user.id, provider: 'facebook'})) do %>
             <container-button-social class="connected">
@@ -89,9 +109,9 @@
         </connect-social>
       </a>
 
-        <button><%= link_to 'HOME', root_path%></button>
+        <button><%= link_to 'GO', root_path%></button>
 
-        <a href="#" id="info"><p class="fa">skip to the website and do this later</p></a>
+        <a href="#" id="info"><p class="fa">do this later and skip to the website ></p></a>
 
         <!-- <dots class="fa">
           <a href="#"><span class="fa-circle active"></span></a>

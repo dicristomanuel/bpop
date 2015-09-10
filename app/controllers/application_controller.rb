@@ -11,12 +11,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def home_signed_in?
-    if session[:user_id]
-      redirect_to 'http://localhost:3000/users/sign_in#/success'
-    end
-  end
-
   def current_user
     if session[:user_id]
       current_user = User.where(bpopToken: session[:user_id]).first

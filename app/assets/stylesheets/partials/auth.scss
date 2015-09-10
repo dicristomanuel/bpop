@@ -5,24 +5,48 @@
     align-self: flex-end;
   }
 
+
   span {
     &.step-arrow {
       font-size: 3vw;
       position: absolute;
       top: 39vh;
       left: 47.65vw;
-      color: darken($dark-grey, 17%);
-      background: rgba(0,0,0,0.3);
+
+
+      background: rgba(0,0,0,0.1);
       border-radius: 40%;
       padding: 0.8vw 1vw;
+      z-index: 5;
+      }
     }
-  }
 
   main-for-auth {
     display: flex;
 
   auth-box-left {
     overflow: hidden;
+
+
+
+    button {
+      margin-top: 4vw;
+      width: 5vw;
+      height: 2vw;
+      background-color: #7fbdb9;
+      border-radius: 24px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12), inset 0 -2px 0 rgba(0, 0, 0, 0.2);
+      font: {
+        weight: 600;
+        size: 0.8vw;
+      }
+        a {
+          &:hover {
+            opacity: 0.8;
+          }
+        }
+    }
+
     div.cover {
       width: 100%;
       height: 100%;
@@ -32,8 +56,86 @@
       background: rgba(0,0,0,0.2);
       z-index: 5;
     }
+
+
     bpop-auth {
       @include loginMains;
+      // animation: curtain-left 1s;
+
+
+  // ============ animation ============
+
+  @keyframes curtain-left {
+  0%   { margin-left: 0; }
+  50%  { margin-left: -10vw; }
+  100% { margin-left: 0; }
+}
+
+  // ===================================
+    about-box {
+      margin-top: 2vw;
+      display: flex;
+      flex-direction: column;
+
+      a#logout-main-page {
+        @include button;
+        width: 5vw;
+        height: 2vw;
+        margin-top: 3.9vw;
+        padding-top: .5vw;
+        align-self: center;
+        text-align: center;
+        color: white;
+        font-size: .8vw;
+      }
+
+        circles {
+          display: flex;
+          flex-direction: column;
+          margin-top: -7vw;
+
+          p.bottom-title {
+            align-self: center;
+            font-weight: bold;
+            font-size: 2vw;
+            margin-top:2vw;
+          }
+
+        span {
+          display: flex;
+          flex-direction: column;
+
+          p {
+            margin-bottom: 1.5vw;
+            font-size: 1vw;
+            align-self: center;
+
+            &.text {
+              font-size: 3vw;
+              margin-bottom: .2vw;
+            }
+          }
+          div {
+
+            &.first {
+              font-size: .5vw;
+              align-self: center;
+            }
+
+            &.second {
+              font-size: .7vw;
+              align-self: center;
+            }
+
+            &.third {
+              font-size: 1vw;
+              align-self: center;
+              margin-bottom: 1vw;
+            }
+          }
+        }
+      }
+    }
 
         .flash {
           font-size: 1vw;
@@ -65,29 +167,11 @@
           margin-top: 5px;
         }
 
-      container-circle {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        circle {
-          padding: 5vw;
-          border: 3px solid $green;
-          border-radius: 100%;
-          font-size: 5vw;
-          .fa {
-            color: $green;
-          }
-        }
 
-        p {
-          margin-top: 2vw;
-          font-size: 1.5vw;
-        }
-      }
         span#welcome {
           @include title-md;
           align-self: flex-start;
-          margin: 3vw 0 0 -2vw;
+          margin: 1vw 0 2vw -2vw;
         }
 
         form#auth-form {
@@ -158,26 +242,42 @@
     }
   }
 
-  middle-box {
-    height: 100vh;
-    width: 40vw;
-    background: grey;
-  }
-
 
   pink-background {
     @include loginMains;
     background: $pink;
   }
 
+  // ============ animation ============
+
+  @keyframes curtain-right {
+  0%   { margin-left: 0; }
+  50%  { margin-left: 20vw; }
+  100% { margin-left: 0; }
+}
+
+  // ===================================
+
 
   auth-box-right {
+
+    div.flash {
+      font-size: 1vw;
+      align-self: center;
+      margin-bottom: -2vw;
+      margin-top: 2vw;
+    }
+
+    div.flash-alert {
+      color: red;
+    }
+
     div.cover {
       width: 100%;
       height: 100%;
       position: absolute;
       top: 0;
-      padding: 500px;
+      padding: 100vw;
       background: rgba(0,0,0,0.2);
       z-index: 5;
     }
@@ -283,7 +383,7 @@
                   margin-left: 3.7vw;
                   padding-top: 4vw;
                   width: 10.2vw;
-                  height: 6.3vw;
+                  height: 10.5vw;
 
                   &.fa-user {
                     font-size: 2.5vw;
@@ -308,11 +408,11 @@
 
         button {
           margin-top: 4vw;
+          @include button;
           width: 5vw;
           height: 2vw;
           background-color: #7fbdb9;
-          border-radius: 24px;
-          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12), inset 0 -2px 0 rgba(0, 0, 0, 0.2);
+          color: $dark-grey;
           font: {
             weight: 600;
             size: 0.8vw;

@@ -62,6 +62,7 @@ gem 'thin'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem 'angularjs-rails'
 gem 'angular-rails-templates'
 gem 'bower-rails'
 # gem 'devise_token_auth'

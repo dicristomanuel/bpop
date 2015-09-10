@@ -4,6 +4,7 @@
 //= require angular-route
 //= require angular-rails-templates
 //= require angular-cookie
+//= require angular-animate
 //= require_tree ../stylesheets/materialize/js
 
 
@@ -15,3 +16,4 @@
 //= require_tree ./angular-app/models
 //= require_tree ./angular-app/services
 //= require_tree ./angular-app/controllers
+//= require main
