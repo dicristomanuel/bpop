@@ -18,6 +18,7 @@
             <about-box ng-hide="<%= session[:user_id].nil? %>">
               <circles>
                 <span>
+                  <p style="font-weight:bold"><%= current_user.email %></p>
                   <div class="fa fa-circle first"></div>
                   <div class="fa fa-circle second"></div>
                   <div class="fa fa-circle third"></div>
@@ -84,7 +85,7 @@
 
           <% if @tw_connected %>
             <%= link_to(remove_social_path({user_id: current_user.id, provider: 'twitter'})) do %>
-                  <container-button-social class="connected" ng-disabled>
+                  <container-button-social class="connected">
                     <button class="fa fa-twitter"></button>
                         <profile-thumb-pic ng-cloak>
                           <%= image_tag @tw_profile_pic %>
@@ -95,7 +96,7 @@
                     <% end %>
                 <% else %>
                   <%= link_to(user_omniauth_authorize_path('twitter')) do %>
-                    <container-button-social class="not-connected" ng-disabled>
+                    <container-button-social class="not-connected">
                       <button class="fa fa-twitter"></button>
                         <profile-thumb-pic class="fa fa-user"></profile-thumb-pic>
                         <p>click to connect</p>

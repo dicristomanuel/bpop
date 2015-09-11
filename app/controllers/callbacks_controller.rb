@@ -7,7 +7,7 @@ class CallbacksController < Devise::OmniauthCallbacksController
         #create identity and initialize Koala contant with it
         identity = current_user.identities.create(facebook_categorize(fb_response))
         if identity.errors.messages[:profile_url]
-          flash[:error] = 'already connected to other user'
+          flash[:error] = 'social account already connected to other user'
         end
         for_user = identity.fb_authorize(fb_token)
         #get the last six month's fbposts
@@ -20,10 +20,11 @@ class CallbacksController < Devise::OmniauthCallbacksController
 
 
   def twitter
-  	unless session[:twitter]
-			current_user.identities.create(twitter_categorize(request.env["omniauth.auth"]))
+			identity = current_user.identities.create(twitter_categorize(request.env["omniauth.auth"]))
+      if identity.errors.messages[:profile_url]
+        flash[:error] = 'social account already connected to other user'
+      end
 			session[:twitter] = 'loggedin'
-		end
     redirect_to 'http://localhost:3000/users/sign_in#/success'
   end
 
