@@ -9,16 +9,17 @@ before_filter :configure_account_update_params, only: [:update]
 
   # POST /resource
   def create
-    is_present = User.where(email: params[:user][:email])
-    if is_present.empty?
       @user = User.create(user_params)
-      session[:user_id] = @user.bpopToken
-      redirect_to 'http://localhost:3000/users/sign_in#/success'
-    else
-      flash[:alert] = "email address already exists"
-      redirect_to :back
-    end
-
+      if @user.errors.messages[:password]
+        flash[:alert] = @user.errors.messages[:password][0]
+        redirect_to 'http://localhost:3000/users/sign_in#/signup'
+      elsif @user.errors.messages[:email]
+        flash[:alert] = @user.errors.messages[:email][0]
+        redirect_to 'http://localhost:3000/users/sign_in#/signup'
+      else
+        session[:user_id] = @user.bpopToken
+        redirect_to 'http://localhost:3000/users/sign_in#/success'
+      end
   end
 
   # GET /resource/edit

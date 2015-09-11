@@ -18,7 +18,9 @@
             <about-box ng-hide="<%= session[:user_id].nil? %>">
               <circles>
                 <span>
+                  <% if current_user %>
                   <p style="font-weight:bold"><%= current_user.email %></p>
+                  <% end %>
                   <div class="fa fa-circle first"></div>
                   <div class="fa fa-circle second"></div>
                   <div class="fa fa-circle third"></div>
