@@ -2,6 +2,15 @@
   animation-timing-function: linear;
 }
 
+  .bold        { font-weight: 900 }
+  .strong      { font-weight: 700 }
+  .medium      { font-weight: 500 }
+  .normal      { font-weight: 400 }
+  .light       { font-weight: 200 }
+  .super-light { font-weight: 100 }
+
+  .profile-thumb-pic { @include profile-thumb-pic }
+
   header {
     min-height: 30vw;
     overflow: hidden;
@@ -136,8 +145,37 @@
       div.carousel-box-right {
         display: flex;
         flex-direction: column;
+        justify-content: center;
+        align-items: center;
         height: 100%;
         width: 70vw;
+
+
+
+        div.subject {
+          margin: 2vw 0 2vw -27vw;
+          font-size: 1.5vw;
+        }
+
+        div.message {
+          display: flex;
+          margin: 0 0 0 0;
+
+          span img{
+            width: 6vw;
+            margin: -1vw 1vw 0 0;
+          }
+
+          p {
+            margin: 0 0 1vw 0;
+            font-size: 3vw;
+          }
+        }
+
+        div.after-message {
+          margin: 0 0 0 0;
+          font-size: 1.2vw;
+        }
 
       }
     }
