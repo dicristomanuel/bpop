@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   # protect_from_forgery with: :null_session
   before_action :current_user
 
+
   def user_signed_in?
     unless session[:user_id]
       flash[:alert] = "please signin"

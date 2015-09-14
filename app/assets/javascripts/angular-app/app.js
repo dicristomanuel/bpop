@@ -17,11 +17,5 @@ app.config(function ($routeProvider) {
             }).when('/recover-password', {
                 templateUrl: 'recover-password.html',
                 controller: 'authController'
-            }).when('/success', {
-                templateUrl: 'singned_in.html',
-                controller: 'authController'
-            }).when('/_=_', {
-                templateUrl: 'singned_in.html',
-                controller: 'authController'
-            });;
+            });
     });

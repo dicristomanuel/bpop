@@ -107,6 +107,8 @@ GEM
       nenv
       rspec-logsplit (>= 0.1.2)
       timers (>= 4.1.1)
+    chart-js-rails (0.0.9)
+      railties (> 3.1)
     chronic (0.10.2)
     chunky_png (1.3.4)
     coderay (1.1.0)
@@ -316,6 +318,7 @@ DEPENDENCIES
   better_errors
   bower-rails
   byebug
+  chart-js-rails
   chronic
   coffee-rails (~> 4.1.0)
   compass-rails!

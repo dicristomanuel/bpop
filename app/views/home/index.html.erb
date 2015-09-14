@@ -1,7 +1,39 @@
-<div ng-app="bpopApp" ng-controller="homeController">
-  <logo></logo>
+<div ng-app="bpopApp" ng-controller="homeController" class="animated fadeIn" ng-cloak>
+
+<header>
+  <div class="layer-one">
+    <div class="logo"></div>
+    <div class="email">dicristomanuel@icloud.com</div>
+  </div>
+
+  <div class="layer-two">
+    <div class="circles-first">
+        <div class="fa fa-circle first"></div>
+        <div class="fa fa-circle second"></div>
+    </div>
+    <div class="circles-second">
+        <div class="fa fa-circle first"></div>
+        <div class="fa fa-circle second"></div>
+    </div>
+  </div>
+
+  <div class="layer-three">
+    <div class="centered-box">
+      <div class="carousel-box-left">
+        <div class="time-range">
+          <p class="range">LAST MONTH'S</p>
+          <p class="provider">facebook</p>
+          <p class="number">151</p>
+          <p class="subject">likes</p>
+        </div>
+      </div>
+
+      <div class="carousel-box-right">
+
+      </div>
+    </div>
+  </div>
+</header>
 
 
-
-<%= link_to "LOGOUT", destroy_user_session_path, method: :delete, :id => "logout-main-page"%>
 </div>

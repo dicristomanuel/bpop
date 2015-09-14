@@ -1,8 +1,8 @@
 <form id="auth-form" class="new_user" accept-charset="UTF-8" action="/users" method="post">
   <span id="welcome">Create a new account</span>
     <input autofocus="autofocus" placeholder="email" spellcheck="false" type="email" value="" name="user[email]" required="required" id="user_email">
-    <input autocomplete="off" placeholder="password" type="password" name="user[password]" id="user_password" required="required">
-    <input autocomplete="off" placeholder="confirm password" type="password" name="user[password_confirmation]" id="user_password" required="required">
+    <input autocomplete="off" placeholder="password" type="password" name="user[password]" id="user_password" required="required" ng-model='password'>
+    <input autocomplete="off" placeholder="confirm password" type="password" name="user[password_confirmation]" id="user_password" required="required" ng-model='passwordConfirmation'>
 
     <button name="commit" type="submit">
       <span>SIGNUP</span>

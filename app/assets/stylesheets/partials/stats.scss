@@ -1,0 +1,136 @@
+
+  header {
+    min-height: 30vw;
+    overflow: hidden;
+
+    background: {
+      image: url('pattern-box-orange.jpg');
+      repeat: no-repeat;
+      size: contain;
+    }
+
+    div.layer-one {
+      display: flex;
+      justify-content: space-around;
+
+      div.logo {
+        background: {
+          image: url('logo.png');
+          repeat: no-repeat;
+          size: contain;
+        }
+        padding: 7vw;
+      }
+      div.email {
+        font-weight: bold;
+        margin-top: 6vw;
+        font-size: 1.15vw;
+        color: darken($dark-grey, 7%);
+      }
+    }
+
+    div.layer-two {
+      display: flex;
+      justify-content: space-around;
+      margin-top: -6.2vw;
+
+      div.circles-first {
+        display: flex;
+        flex-direction: column;
+        // margin: -2vw 0 0 -61vw;
+
+          div {
+            color: darken($dark-grey, 5%);
+            &.first {
+              font-size: .7vw;
+              align-self: center;
+              margin-bottom: .1vw;
+            }
+
+            &.second {
+              font-size: 1vw;
+              align-self: center;
+            }
+          }
+        }
+        div.circles-second {
+          display: flex;
+          flex-direction: column;
+          // margin: -21.3vw 0 0 61vw;
+
+            div {
+              color: darken($dark-grey, 5%);
+              &.first {
+                font-size: .7vw;
+                align-self: center;
+                margin-bottom: .1vw;
+              }
+
+              &.second {
+                font-size: 1vw;
+                align-self: center;
+              }
+            }
+          }
+        }
+
+
+  div.layer-three {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+
+    div.centered-box {
+      overflow: hidden;
+      display: flex;
+      justify-content: space-around;
+      width: 72vw;
+      height: 17.25vw;
+      background-color: rgba(83, 28, 28, .4);
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      margin: 1vw 0 0 0;
+      align-items: center;
+      }
+
+      div.carousel-box-left {
+        display: flex;
+        flex-direction: column;
+        height: 80%;
+        width: 30vw;
+        border-right: 1px solid #733331;
+
+        div.time-range {
+          text-align: center;
+          p {
+            margin-bottom: .7vw;
+          &.range {
+            margin-top: 1.5vw;
+            font-weight: 600;
+          }
+          &.provider {
+            font-weight: 900;
+            margin-bottom: -.2vw;
+          }
+          &.number {
+            font-weight: 600;
+            font-size: 5vw;
+            color: #92c3c0;
+            margin-bottom: 0vw;
+          }
+          &.subject {
+            font-weight: 400;
+          }
+        }
+        }
+      }
+
+      div.carousel-box-right {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        width: 70vw;
+
+      }
+    }
+  }
