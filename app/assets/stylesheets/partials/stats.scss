@@ -1,3 +1,6 @@
+#main-container {
+  animation-timing-function: linear;
+}
 
   header {
     min-height: 30vw;
@@ -102,21 +105,26 @@
 
         div.time-range {
           text-align: center;
-          p {
-            margin-bottom: .7vw;
-          &.range {
-            margin-top: 1.5vw;
-            font-weight: 600;
+
+          div.range-container {
+            p.range {
+              margin-top: 2vw;
+              font-weight: 600;
+            }
           }
+
+          p {
+            margin-bottom: .9vw;
+
           &.provider {
             font-weight: 900;
-            margin-bottom: -.2vw;
+            margin-bottom: -.5vw;
           }
           &.number {
             font-weight: 600;
             font-size: 5vw;
             color: #92c3c0;
-            margin-bottom: 0vw;
+            margin-bottom: .3vw;
           }
           &.subject {
             font-weight: 400;

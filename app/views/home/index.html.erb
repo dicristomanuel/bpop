@@ -1,9 +1,9 @@
-<div ng-app="bpopApp" ng-controller="homeController" class="animated fadeIn" ng-cloak>
+<div ng-app="bpopApp" ng-controller="statsController" class="animated fadeIn" id="main-container">
 
 <header>
   <div class="layer-one">
     <div class="logo"></div>
-    <div class="email">dicristomanuel@icloud.com</div>
+    <div class="email"> <%= current_user.email %></div>
   </div>
 
   <div class="layer-two">
@@ -21,7 +21,7 @@
     <div class="centered-box">
       <div class="carousel-box-left">
         <div class="time-range">
-          <p class="range">LAST MONTH'S</p>
+          <div class="range-container"><p class="range">LAST {{range}}'S</p></div>
           <p class="provider">facebook</p>
           <p class="number">151</p>
           <p class="subject">likes</p>
