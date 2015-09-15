@@ -21,29 +21,47 @@
     <div class="centered-box">
       <div class="carousel-box-left">
         <div class="time-range">
-          <div class="range-container"><p class="range">LAST {{range}}'S</p></div>
+          <div class="range-container">
+            <p class="range">LAST
+              <select ng-model="timeRange">
+                <option value="WEEK" class="fa fa-caret-down"> WEEK'S</option>
+                <option value="MONTH">MONTH'S</option>
+                <option value="2MONTH">2 MONTHS</option>
+                <option value="3MONTH">3 MONTHS</option>
+                <option value="6MONTH">6 MONTHS</option>
+              </select></p></div>
           <p class="provider">facebook</p>
-          <p class="number">151</p>
+          <p class="number" ng-if="timeRange === 'WEEK'">   <%= get_likes_1W %> </p>
+          <p class="number" ng-if="timeRange === 'MONTH'">  <%= get_likes_1M %> </p>
+          <p class="number" ng-if="timeRange === '2MONTH'"> <%= get_likes_2M %> </p>
+          <p class="number" ng-if="timeRange === '3MONTH'"> <%= get_likes_3M %> </p>
+          <p class="number" ng-if="timeRange === '6MONTH'"> <%= get_likes_6M %> </p>
+
           <p class="subject">likes</p>
         </div>
       </div>
 
-      <div class="carousel-box-right">
+      <div class="carousel-box-right" ng-cloak>
+
         <div class="subject">
-          <span class="medium">latest</span> <span class="bold">facebook</span> comments
+          <span class="medium">latest </span><span class="bold">{{elements[counter].provider}}</span> {{elements[counter].subject}}
         </div>
         <div class="message light">
-          <span>
-            <%= image_tag 'facebook_profile_pic.jpg', :class => "profile-thumb-pic"%>
-          </span>
           <p class="light">
-            "Nina! Oh, do I miss her too!!"
+            {{'"' + elements[counter].message + '"'| cut:true:80:' ...'}}
           </p>
+          <span ng-if="elements[counter].pic != ''">
+            <img src="{{elements[counter].pic}}" >
+          </span>
         </div>
         <div class="after-message">
-          test after message
+
+            <span class="strong">from</span> {{elements[counter].author}}
+
         </div>
+
       </div>
+
     </div>
   </div>
 </header>
