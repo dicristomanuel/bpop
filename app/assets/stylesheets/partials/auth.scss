@@ -192,6 +192,7 @@
 
         input {
           @include input;
+          margin-bottom: .7vw;
         }
 
         button {
@@ -371,9 +372,9 @@
                   @include profile-thumb-pic;
                   margin-top: -3vw;
                   margin-left: 3.7vw;
-                  padding-top: 4vw;
+                  padding-top: 3.5vw;
                   width: 10.2vw;
-                  height: 10.5vw;
+                  height: 6.5vw;
 
                   &.fa-user {
                     font-size: 2.5vw;

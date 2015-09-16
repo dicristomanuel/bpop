@@ -1,4 +1,5 @@
 <div ng-app="bpopApp" ng-controller="statsController" class="animated fadeIn" id="main-container">
+  <div id="div-carousel" data-carousel="<%= get_stats_for_carousel %>"></div>
 
 <header>
   <div class="layer-one">
@@ -19,26 +20,40 @@
 
   <div class="layer-three">
     <div class="centered-box">
+
+
+
       <div class="carousel-box-left">
         <div class="time-range">
-          <div class="range-container">
-            <p class="range">LAST
-              <select ng-model="timeRange">
-                <option value="WEEK" class="fa fa-caret-down"> WEEK'S</option>
+            <p class="range"><span id='last'>LAST</span>
+              <span><select ng-model="timeRange" id="time-range-select">
+                <option value="WEEK"> WEEK'S</option>
                 <option value="MONTH">MONTH'S</option>
                 <option value="2MONTH">2 MONTHS</option>
                 <option value="3MONTH">3 MONTHS</option>
                 <option value="6MONTH">6 MONTHS</option>
-              </select></p></div>
+              </select></span>
+            </p>
+          </div>
           <p class="provider">facebook</p>
-          <p class="number" ng-if="timeRange === 'WEEK'">   <%= get_likes_1W %> </p>
-          <p class="number" ng-if="timeRange === 'MONTH'">  <%= get_likes_1M %> </p>
-          <p class="number" ng-if="timeRange === '2MONTH'"> <%= get_likes_2M %> </p>
-          <p class="number" ng-if="timeRange === '3MONTH'"> <%= get_likes_3M %> </p>
-          <p class="number" ng-if="timeRange === '6MONTH'"> <%= get_likes_6M %> </p>
+          <p class="number" ng-if="timeRange === 'WEEK'   && subject === 'likes'"> <%= get_likes_1W %> </p>
+          <p class="number" ng-if="timeRange === 'MONTH'  && subject === 'likes'"> <%= get_likes_1M %> </p>
+          <p class="number" ng-if="timeRange === '2MONTH' && subject === 'likes'"> <%= get_likes_2M %> </p>
+          <p class="number" ng-if="timeRange === '3MONTH' && subject === 'likes'"> <%= get_likes_3M %> </p>
+          <p class="number" ng-if="timeRange === '6MONTH' && subject === 'likes'"> <%= get_likes_6M %> </p>
 
-          <p class="subject">likes</p>
-        </div>
+          <p class="number" ng-if="timeRange === 'WEEK'   && subject === 'comments'"> <%= get_comments_1W %> </p>
+          <p class="number" ng-if="timeRange === 'MONTH'  && subject === 'comments'"> <%= get_comments_1M %> </p>
+          <p class="number" ng-if="timeRange === '2MONTH' && subject === 'comments'"> <%= get_comments_2M %> </p>
+          <p class="number" ng-if="timeRange === '3MONTH' && subject === 'comments'"> <%= get_comments_3M %> </p>
+          <p class="number" ng-if="timeRange === '6MONTH' && subject === 'comments'"> <%= get_comments_6M %> </p>
+
+          <p class="subject">
+            <span><select ng-model="subject" id="select-subject">
+              <option value="likes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  likes</option>
+              <option value="comments">comments</option>
+            </select></span>
+          </p>
       </div>
 
       <div class="carousel-box-right" ng-cloak>
@@ -56,7 +71,9 @@
         </div>
         <div class="after-message">
 
-            <span class="strong">from</span> {{elements[counter].author}}
+            <span class="strong" ng-if='elements[counter].author'>from</span> {{elements[counter].author}}
+            <span ng-if='elements[counter].likesAmount'>likes</span> <span class="strong">{{elements[counter].likesAmount}}</span>
+            <span ng-if='elements[counter].commentsAmount'>comments</span> <span class="strong">{{elements[counter].commentsAmount}}</span>
 
         </div>
 

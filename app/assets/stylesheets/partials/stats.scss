@@ -1,6 +1,6 @@
-#main-container {
-  animation-timing-function: linear;
-}
+  #main-container {
+    animation-timing-function: linear;
+  }
 
   .bold        { font-weight: 900 }
   .strong      { font-weight: 700 }
@@ -73,13 +73,13 @@
             }
           }
         }
+
         div.circles-second {
           display: flex;
           flex-direction: column;
-          // margin: -21.3vw 0 0 61vw;
 
-            div {
-              color: darken($dark-grey, 5%);
+          div {
+            color: darken($dark-grey, 5%);
               &.first {
                 font-size: .7vw;
                 align-self: center;
@@ -90,9 +90,9 @@
                 font-size: 1vw;
                 align-self: center;
               }
-            }
-          }
-        }
+             }
+           }
+         }
 
 
   div.layer-three {
@@ -104,34 +104,45 @@
       overflow: hidden;
       display: flex;
       justify-content: space-around;
-      width: 72vw;
+      width: 65vw;
       height: 17.25vw;
       background-color: rgba(83, 28, 28, .4);
       border-top-left-radius: 10px;
       border-top-right-radius: 10px;
       margin: 1vw 0 0 0;
       align-items: center;
-      }
+    }
 
-      div.carousel-box-left {
-        display: flex;
-        flex-direction: column;
-        height: 80%;
-        width: 30vw;
-        border-right: 1px solid #733331;
+    div.carousel-box-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 80%;
+      width: 30vw;
+      border-right: 1px solid #733331;
 
-        div.time-range {
-          text-align: center;
+      div.time-range {
+        align-self: center;
+        width: 50%;
+        margin-left: 1vw;
+        align-items: center;
 
-          div.range-container {
-            p.range {
-              margin: 2vw 0 1vw 2vw;
-              font-weight: 600;
-            }
+        span#last {
+          margin: 0 .25vw 0 .5vw;
+          font-size: 1.4vw;
+        }
+
+          p.range {
+            align-self: center;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-around;
           }
+        }
 
-          p {
-            margin-bottom: .9vw;
+        p {
+          margin-bottom: .9vw;
 
           &.provider {
             font-weight: 900;
@@ -141,14 +152,22 @@
             font-weight: 600;
             font-size: 5vw;
             color: #92c3c0;
-            margin-bottom: .3vw;
+            margin-bottom: .5vw;
           }
           &.subject {
             font-weight: 400;
+            align-self: center;
+            display: flex;
+            justify-content: space-around;
+
+
+          span {
+            width: 100%;
+            align-self: center;
           }
         }
-       }
       }
+    }
 
       div.carousel-box-right {
         display: flex;
@@ -157,11 +176,10 @@
         align-items: center;
         height: 100%;
         width: 70vw;
-
-
+        padding: 1vw;
 
         div.subject {
-          margin: 1vw 0 1.5vw -27vw;
+          margin: 1vw 0 1.5vw -25vw;
           font-size: 1.5vw;
         }
 
@@ -191,11 +209,10 @@
         }
 
         div.after-message {
-          align-self: center;
-          margin: .5vw 0 0 2vw;
+          align-self: flex-end;
+          margin: .5vw 1vw 0 2vw;
           font-size: 1.2vw;
         }
-
       }
     }
   }
