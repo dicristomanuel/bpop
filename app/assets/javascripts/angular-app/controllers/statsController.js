@@ -19,7 +19,8 @@ angular.module('bpopApp').controller("statsController",
       subject: 'comments',
       pic: '',
       message: comment.message,
-      author: comment.user_name
+      author: comment.user_name,
+      url: ''
     });
   });
 
@@ -31,7 +32,8 @@ angular.module('bpopApp').controller("statsController",
       message: post.message,
       author: '',
       commentsAmount: post.comments,
-      likesAmount: post.likes
+      likesAmount: post.likes,
+      url: post.url
     });
   });
 

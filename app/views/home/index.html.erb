@@ -65,9 +65,14 @@
           <p class="light">
             {{'"' + elements[counter].message + '"'| cut:true:80:' ...'}}
           </p>
-          <span ng-if="elements[counter].pic != ''">
+          <span ng-if="elements[counter].pic != '' && elements[counter].url != ''">
+            <a href="{{elements[counter].url}}" target="_blank"><img src="{{elements[counter].pic}}"></a>
+          </span>
+
+          <span ng-if="elements[counter].pic != '' elements[counter].url == ''">
             <img src="{{elements[counter].pic}}" >
           </span>
+
         </div>
         <div class="after-message">
 
