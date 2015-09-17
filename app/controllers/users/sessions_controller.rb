@@ -1,7 +1,7 @@
 # class Users::SessionsController < Devise::SessionsController
 class Users::SessionsController < ApplicationController
 
-  # GET /resource/sign_in
+
   def new
     if current_user
       @fb_connected = current_user.identities.any? {|social| social.provider.include?('facebook')}
@@ -21,14 +21,15 @@ class Users::SessionsController < ApplicationController
       end
   end
 
-  # POST /resource/sign_in
+
   def create
-    @user = User.where(email: params[:user][:email])
-      if @user.empty?
+    are_valid_credentials = User.find_by_email(params[:user][:email]).try(:valid_password?, params[:user][:password])
+      if !are_valid_credentials
         flash[:alert] = "invalid credentials"
         redirect_to :back
       else
-        session[:user_id] = @user.first.bpopToken
+        @user = User.find_by_email(params[:user][:email])
+        session[:user_id] = @user.bpopToken
           if current_user.identities.select {|social| social.provider == 'facebook'}
             session[:facebook] = 'loggedin'
           end
@@ -39,7 +40,7 @@ class Users::SessionsController < ApplicationController
       end
   end
 
-  # DELETE /resource/sign_out
+
   def destroy
     session[:user_id] = nil
     session[:facebook] = nil

@@ -7,6 +7,58 @@ class HomeController < ApplicationController
 
   def index
 
+		@chart_posts = LazyHighCharts::HighChart.new('bar_posts') do |f|
+			f.title(text: '')
+			f.xAxis(tickLength: 0, labels: {enabled: false}, lineColor: 'transparent')
+			f.yAxis(gridLineColor: 'transparent', labels: {enabled: false}, title: {enabled: false}, minRange: 100)
+			f.tooltip(enabled: false)
+			f.series(
+				name: "posts",
+				data: [45],
+				color: '#c4dc4e',
+				showInLegend: false,
+				borderRadius: '7px',
+				states: {hover: {enabled: false}},
+				pointWidth: 65
+			)
+			f.chart(defaultSeriesType: "column")
+
+	end
+
+		# @chart_likes = LazyHighCharts::HighChart.new('bar_likes') do |f|
+		# 	f.title(text: '')
+		#   f.xAxis(tickLength: 0, labels: {enabled: false}, lineColor: 'transparent')
+		# 	f.yAxis(gridLineColor: 'transparent', labels: {enabled: false}, title: {enabled: false}, minRange: 100)
+		# 	f.tooltip(enabled: false)
+		#   f.series(
+		# 		name: "posts",
+		# 		data: [260],
+		# 		color: '#c4dc4e',
+		# 		showInLegend: false,
+		# 		borderRadius: '7px',
+		# 		states: {hover: {enabled: false}},
+		# 		pointWidth: 65
+		# 	)
+		#   f.chart({:defaultSeriesType=>"column"})
+		# end
+		#
+		# @chart_comments = LazyHighCharts::HighChart.new('bar_comments') do |f|
+		# 	f.title(text: '')
+		#   f.xAxis(tickLength: 0, labels: {enabled: false}, lineColor: 'transparent')
+		# 	f.yAxis(gridLineColor: 'transparent', labels: {enabled: false}, title: {enabled: false}, minRange: 100)
+		# 	f.tooltip(enabled: false)
+		#   f.series(
+		# 		name: "posts",
+		# 		data: [90],
+		# 		color: '#c4dc4e',
+		# 		showInLegend: false,
+		# 		borderRadius: '7px',
+		# 		states: {hover: {enabled: false}},
+		# 		pointWidth: 65
+		# 	)
+		#   f.chart({:defaultSeriesType=>"column"})
+		# end
+
   end
 
 

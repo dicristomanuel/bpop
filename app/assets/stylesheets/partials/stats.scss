@@ -205,6 +205,7 @@
             max-width: 40vw;
             flex-wrap: nowrap;
             font-size: 2.5vw;
+            text-align: center;
           }
         }
 
@@ -215,4 +216,21 @@
         }
       }
     }
+  }
+
+
+  div.main-graph {
+    display: flex;
+
+      div#bar_posts {
+        width: 20vw;
+      }
+
+      div#bar_likes {
+        width: 20vw;
+      }
+
+      div#bar_comments {
+        width: 20vw;
+      }
   }
