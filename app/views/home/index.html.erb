@@ -88,11 +88,68 @@
   </div>
 </header>
 
-  <div class="main-graph">
-    <%= high_chart("bar_posts", @chart_posts) %>
+<div class="center-this">
+  <p>YOUR LAST 6 MONTHS</p>
+</div>
+
+<div class="center-this">
+  <div class="column_charts">
+    <div class="six-m-posts">
+      <container-span-number>
+        <number>58</number>
+        <span>POSTS</span>
+      </container-span-number>
+      <div id="bar_posts">
+      </div>
+    </div>
+
+    <div class="six-m-likes">
+      <container-span-number>
+        <number>642</number>
+        <span>LIKES</span>
+      </container-span-number>
+      <div id="bar_likes">
+      </div>
+    </div>
+
+    <div class="six-m-comments">
+      <container-span-number>
+        <number>122</number>
+        <span>COMMENTS</span>
+      </container-span-number>
+      <div id="bar_comments">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="center-this" style="margin: 7vw 0 -5vw 0">
+  <p>GENDER PERCENTAGE</p>
+</div>
+
+  <blue-box>
+    <male-percentage>
+      <div id="colum-male-gender-percentage">
+      </div>
+      <span>male</span>
+      <number>47%</number>
+    </male-percentage>
+  </blue-box>
+
+  <div class="right-this">
+    <female-percentage>
+      <div id="colum-female-gender-percentage">
+      </div>
+      <span>female</span>
+      <number>53%</number>
+    </female-percentage>
   </div>
 
+  <div class="center-this" style="margin: 5vw 0 -5vw 0">
+    <p>FANS</p>
+  </div>
 
-
+  <green-box>
+  </green-box>
 
 </div>

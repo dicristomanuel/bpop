@@ -152,7 +152,6 @@ GEM
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     guess (0.1.0)
-    hash-deep-merge (0.1.1)
     hashie (3.4.2)
     hike (1.2.3)
     hitimes (1.2.3)
@@ -170,9 +169,6 @@ GEM
       addressable
       faraday
       multi_json
-    lazy_high_charts (1.5.4)
-      bundler (>= 1.0)
-      hash-deep-merge
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
@@ -329,7 +325,6 @@ DEPENDENCIES
   jquery-rails
   json
   koala (~> 2.0)
-  lazy_high_charts
   nokogiri
   omniauth
   omniauth-facebook

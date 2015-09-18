@@ -65,7 +65,6 @@ gem 'thin'
 gem 'angularjs-rails'
 gem 'angular-rails-templates'
 gem 'bower-rails'
-gem 'lazy_high_charts'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

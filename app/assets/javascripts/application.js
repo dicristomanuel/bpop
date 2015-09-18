@@ -7,10 +7,6 @@
 //= require angular-animate
 //= require_tree ../stylesheets/materialize/js
 
-//= require highcharts/highcharts
-//= require highcharts/highcharts-more
-//= require highcharts/highstock
-
 
 //= require angular-app/app
 //= require_tree ./templates

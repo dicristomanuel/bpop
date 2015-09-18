@@ -2,6 +2,18 @@
     animation-timing-function: linear;
   }
 
+  .center-this {
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+  }
+
+  .right-this {
+    display: flex;
+    justify-content: flex-end;
+    width: 100vw;
+  }
+
   .bold        { font-weight: 900 }
   .strong      { font-weight: 700 }
   .medium      { font-weight: 500 }
@@ -218,19 +230,236 @@
     }
   }
 
-
-  div.main-graph {
-    display: flex;
-
-      div#bar_posts {
-        width: 20vw;
-      }
-
-      div#bar_likes {
-        width: 20vw;
-      }
-
-      div#bar_comments {
-        width: 20vw;
-      }
+  p {
+    align-self: center;
+    font-size: 1vw;
+    font-weight: 400;
   }
+
+  div.column_charts {
+    display: flex;
+    justify-content: space-around;
+    width: 90vw;
+    height: 20vw;
+
+    div.six-m-posts {
+      display: flex;
+      width: 25vw;
+      margin-right: 2vw;
+      margin-left: 4vw;
+      height: 20vw;
+      align-items: flex-end;
+      border-bottom: 1px solid gray;
+      justify-content: center;
+        container-span-number {
+          display: flex;
+          flex-flow: wrap;
+          flex-direction: column;
+          span {
+            font-size: 2vw;
+            font-weight: 600;
+            align-self: flex-end;
+            margin: -1.5vw .5vw 0 0;
+          }
+          number {
+            font-size: 9vw;
+            margin-right: .5vw;
+            color: $dark-grey;
+            font-weight: 700;
+            margin-bottom: 2vw;
+          }
+        }
+        div#bar_posts {
+          @include posts-grow-animation(5vw);
+          width: 5vw;
+          background: #8edacf;
+          border-radius: 8%;
+          animation-name: grow-posts;
+          animation-duration: 2s;
+          animation-fill-mode: forwards;
+          animation-direction: normal;
+        }
+    }
+
+    div.six-m-likes {
+      display: flex;
+      width: 25vw;
+      margin-right: 2vw;
+      height: 20vw;
+      align-items: flex-end;
+      border-bottom: 1px solid gray;
+      justify-content: center;
+        container-span-number {
+          display: flex;
+          flex-flow: wrap;
+          flex-direction: column;
+          span {
+            font-size: 2vw;
+            font-weight: 600;
+            align-self: flex-end;
+            margin: -1.5vw .5vw 0 0;
+          }
+          number {
+            font-size: 9vw;
+            margin-right: .5vw;
+            color: $dark-grey;
+            font-weight: 700;
+            margin-bottom: 2vw;
+          }
+        }
+        div#bar_likes {
+          @include likes-grow-animation(15vw);
+          width: 5vw;
+          background: #8edacf;
+          border-radius: 8%;
+          animation-name: grow-likes;
+          animation-duration: 2s;
+          animation-fill-mode: forwards;
+          animation-direction: normal;
+        }
+    }
+
+    div.six-m-comments {
+      display: flex;
+      width: 25vw;
+      margin-right: 2vw;
+      height: 20vw;
+      align-items: flex-end;
+      border-bottom: 1px solid gray;
+      justify-content: center;
+        container-span-number {
+          display: flex;
+          flex-flow: wrap;
+          flex-direction: column;
+          span {
+            font-size: 2vw;
+            font-weight: 600;
+            align-self: flex-end;
+            margin: -1.5vw .5vw 0 0;
+          }
+          number {
+            font-size: 9vw;
+            margin-right: .5vw;
+            color: $dark-grey;
+            font-weight: 700;
+            margin-bottom: 2vw;
+          }
+        }
+        div#bar_comments {
+          @include comments-grow-animation(7vw);
+          width: 5vw;
+          background: #8edacf;
+          border-radius: 8%;
+          animation-name: grow-comments;
+          animation-duration: 2s;
+          animation-fill-mode: forwards;
+          animation-direction: normal;
+        }
+    }
+  }
+
+  blue-box {
+    display: flex;
+    // min-height: 2vw;
+    margin-top: 7vw;
+    box-shadow: $box-shadow-simple;
+
+    background: {
+      image: url('pattern-box-blue.jpg');
+      repeat: repeat;
+      size: contain;
+    }
+
+    male-percentage {
+      display: flex;
+      flex-flow: wrap;
+      min-width: 50vw;
+      height: 25vw;
+      margin: 2.5vw 0 0 4vw;
+      align-items: flex-end;
+
+      background: {
+        image: url('male-head.png');
+        repeat: no-repeat;
+        size: contain;
+      }
+
+      div#colum-male-gender-percentage {
+        @include male-percentage-grow-animation(17vw);
+        width: 5vw;
+        margin: 0 0 2.90vw 18vw;
+        background: #f1e775;
+        border-radius: 10%;
+        animation-name: grow-male-percentage;
+        animation-duration: 2s;
+        animation-fill-mode: forwards;
+        animation-direction: normal;
+      }
+
+      span {
+        font-size: 2vw;
+        margin: 0 0 2.58vw -4.72vw;
+      }
+
+      number {
+        font-size: 7vw;
+        font-weight: 700;
+        margin: 0 0 4vw 2vw;
+        color: $dark-grey;
+      }
+    }
+  }
+
+
+  female-percentage {
+    display: flex;
+    flex-flow: wrap;
+    align-items: flex-end;
+    min-width: 50vw;
+    min-height: 30vw;
+    margin: -25vw 4vw 0 0;
+
+    background: {
+      image: url('female-head.png');
+      repeat: no-repeat;
+      size: contain;
+    }
+
+    div#colum-female-gender-percentage {
+      @include female-percentage-grow-animation(10vw);
+      width: 5vw;
+      margin: 0 0 7.90vw 28vw;
+      background: #ed88a7;
+      border-radius: 10%;
+      animation-name: grow-female-percentage;
+      animation-duration: 2s;
+      animation-fill-mode: forwards;
+      animation-direction: normal;
+    }
+
+    span {
+      font-size: 1.4vw;
+      margin: 0 0 7.8vw -4.8vw;
+    }
+
+    number {
+      font-size: 7vw;
+      font-weight: 700;
+      margin: 4vw 0 0 -20vw;
+      align-self: flex-start;
+      color: $dark-grey;
+    }
+}
+
+green-box {
+  display: flex;
+  min-height: 2vw;
+  margin-top: 5vw;
+  box-shadow: $box-shadow-simple;
+
+  background: {
+    image: url('pattern-box-green.jpg');
+    repeat: repeat;
+    size: contain;
+  }
+}
