@@ -9,7 +9,6 @@
 	 * compiled file so the styles you add here take precedence over styles defined in any styles
 	 * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
 	 * file per style scope.
-	 *
 	 *= require_self
 	 */
 
@@ -23,6 +22,7 @@
 	@import '_mixins.scss';
 	@import 'partials/auth.scss';
 	@import 'partials/stats.scss';
+
 
 
 

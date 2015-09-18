@@ -96,7 +96,7 @@
   <div class="column_charts">
     <div class="six-m-posts">
       <container-span-number>
-        <number>58</number>
+        <number id="6-m-posts"><%= get_posts_6M %></number>
         <span>POSTS</span>
       </container-span-number>
       <div id="bar_posts">
@@ -105,7 +105,7 @@
 
     <div class="six-m-likes">
       <container-span-number>
-        <number>642</number>
+        <number id="6-m-likes"><%= get_likes_6M %></number>
         <span>LIKES</span>
       </container-span-number>
       <div id="bar_likes">
@@ -114,7 +114,7 @@
 
     <div class="six-m-comments">
       <container-span-number>
-        <number>122</number>
+        <number id="6-m-comments"><%= get_comments_6M %></number>
         <span>COMMENTS</span>
       </container-span-number>
       <div id="bar_comments">
@@ -132,7 +132,7 @@
       <div id="colum-male-gender-percentage">
       </div>
       <span>male</span>
-      <number>47%</number>
+      <number id="gender-percentage-male"><%= get_gender_percentage[0] %></number><symbol>%</symbol>
     </male-percentage>
   </blue-box>
 
@@ -141,15 +141,25 @@
       <div id="colum-female-gender-percentage">
       </div>
       <span>female</span>
-      <number>53%</number>
+      <number id="gender-percentage-female"><%= get_gender_percentage[1] %></number><symbol>%</symbol>
     </female-percentage>
   </div>
 
-  <div class="center-this" style="margin: 5vw 0 -5vw 0">
+  <div class="center-this" style="margin: 2vw 0 1vw 0">
     <p>FANS</p>
   </div>
 
+  <fans-box>
+    <title-fan>YOUR <span>TOP</span> FAN</title-fan>
+    <top-fan class="animated pulse">
+      <%= link_to image_tag(@top_fan_pic), @top_fan_link, :target => '_blank' %>
+      <!-- <%= image_tag @top_fan_pic %> -->
+    </top-fan>
+    <name><%= @top_fan[0] %></name>
+  </fans-box>
+
   <green-box>
   </green-box>
+
 
 </div>

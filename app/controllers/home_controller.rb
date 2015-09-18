@@ -1,11 +1,25 @@
 class HomeController < ApplicationController
 
 	before_action :user_signed_in?
-	helper_method :get_likes_1W, :get_likes_1M, :get_likes_2M, :get_likes_3M, :get_likes_6M,
+	helper_method :get_posts_1W, :get_posts_1M, :get_posts_2M, :get_posts_3M, :get_posts_6M,
+								:get_likes_1W, :get_likes_1M, :get_likes_2M, :get_likes_3M, :get_likes_6M,
 								:get_comments_1W, :get_comments_1M, :get_comments_2M, :get_comments_3M, :get_comments_6M,
-								:get_stats_for_carousel
+								:get_stats_for_carousel, :get_gender_percentage
 
   def index
+
+		fans = Typhoeus.get(
+			"http://localhost:4000/stats/topfan/" + current_user.bpopToken
+		)
+
+		@top_fan = JSON.parse(fans.response_body)[1].first
+
+		fan_id = Typhoeus.get(
+			"http://localhost:4000/stats/get-fan-id/" + current_user.bpopToken + "?userFanName=" + URI.escape(@top_fan[0])
+		).response_body
+
+		@top_fan_pic = 'http://graph.facebook.com/' + fan_id + '/picture?width=300'
+		@top_fan_link = 'http://www.facebook.com/' + fan_id
 
 
   end
@@ -223,6 +237,13 @@ class HomeController < ApplicationController
 	def get_stats_for_carousel
 		{'comments' => get_comments_1M(10), 'posts' => get_posts_1M(10)}
 	end
+
+	def get_gender_percentage
+		gender_percentage =	Typhoeus.get(
+			"http://localhost:4000/get-gender-percentage/" + current_user.bpopToken
+		)
+		[JSON.parse(gender_percentage.response_body)['total']['male'].round, JSON.parse(gender_percentage.response_body)['total']['female'].round]
+ 	end
 
 
 end
