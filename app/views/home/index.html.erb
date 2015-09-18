@@ -153,10 +153,14 @@
     <title-fan>YOUR <span>TOP</span> FAN</title-fan>
     <top-fan class="animated pulse">
       <%= link_to image_tag(@top_fan_pic), @top_fan_link, :target => '_blank' %>
-      <!-- <%= image_tag @top_fan_pic %> -->
     </top-fan>
     <name><%= @top_fan[0] %></name>
   </fans-box>
+
+<div> <%= @fans_data %>
+
+</div>
+
 
   <green-box>
   </green-box>

@@ -145,6 +145,13 @@
             font-size: 1.4vw;
           }
 
+          #time-range-select {
+            transition: all .2s ease-in-out;
+            &:hover {
+              transform: scale(1.1);
+            }
+          }
+
             p.range {
               align-self: center;
               font-weight: 600;
@@ -171,6 +178,13 @@
               align-self: center;
               display: flex;
               justify-content: space-around;
+
+              #select-subject {
+                transition: all .2s ease-in-out;
+                &:hover {
+                  transform: scale(1.1);
+                }
+              }
 
 
             span {
@@ -433,7 +447,7 @@
       }
 
       div#colum-female-gender-percentage {
-        @include female-percentage-grow-animation(10vw);
+        @include female-percentage-grow-animation(20vw);
         width: 5vw;
         margin: 0 0 7.90vw 28vw;
         background: #ed88a7;
@@ -498,6 +512,10 @@
         margin-top: 1vw;
         width: 9vw;
         height: 9vw;
+        transition: all .2s ease-in-out;
+        &:hover {
+          transform: scale(1.1);
+        }
       }
       name {
         padding-top: 2vw;
