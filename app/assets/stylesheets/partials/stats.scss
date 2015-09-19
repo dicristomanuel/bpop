@@ -481,7 +481,7 @@
 
   green-box {
     display: flex;
-    min-height: 2vw;
+    min-height: 3vw;
     margin-top: 5vw;
     box-shadow: $box-shadow-simple;
 
@@ -510,8 +510,8 @@
       img{
         @include profile-thumb-pic;
         margin-top: 1vw;
-        width: 9vw;
-        height: 9vw;
+        width: 11vw;
+        height: 11vw;
         transition: all .2s ease-in-out;
         &:hover {
           transform: scale(1.1);
@@ -521,4 +521,104 @@
         padding-top: 2vw;
       }
     }
+
+    top-5 {
+      display: flex;
+      width: 80vw;
+      justify-content: space-around;
+      align-items: center;
+      margin-top: 4vw;
+
+      container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        profile-pic {
+          img {
+            @include profile-thumb-pic;
+            margin-top: 1vw;
+            width: 9vw;
+            height: 9vw;
+            transition: all .2s ease-in-out;
+            &:hover {
+              transform: scale(1.1);
+            }
+          }
+        }
+        p {
+          margin-top: .5vw;
+        }
+      }
+    }
+    p#description {
+      margin-top: .3vw;
+      width: 30vw;
+      font-weight: 100;
+      text-align: center;
+    }
+
+    fans-container {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 5vw;
+      width: 100vw;
+
+      fans-super-list {
+        width: 35vw;
+        height: 40vw;
+        overflow: scroll;
+
+        profile-pic {
+          img {
+            @include profile-thumb-pic;
+            margin: 0;
+            width: 3.5vw;
+            height: 3.5vw;
+            transition: all .2s ease-in-out;
+            &:hover {
+              transform: scale(1.1);
+            }
+          }
+        }
+      }
+
+      arrow.fa {
+        font-size: 4vw;
+        margin: 0 -2vw;
+        color: $dark-grey;
+      }
+
+      group-circle {
+        @include profile-thumb-pic;
+        display: flex;
+        justify-content: space-around;
+        background: $dark-grey;
+        width: 30vw;
+        height: 30vw;
+
+        p.fa-user {
+          font-size: 8vw;
+          color: $light-grey;
+        }
+
+        p.fa-plus {
+          font-size: 4vw;
+          color: $ultra-dark-grey;
+        }
+
+        p#circle-one {
+          margin-top: -6vw;
+          margin-left: 2vw;
+        }
+
+        p#circle-two {
+          margin-top: 6vw;
+          margin-right: 2vw;
+        }
+      }
+    }
+
+
   }

@@ -145,7 +145,7 @@
     </female-percentage>
   </div>
 
-  <div class="center-this" style="margin: 2vw 0 1vw 0">
+  <div class="center-this" style="margin: 1vw 0 1vw 0">
     <p>FANS</p>
   </div>
 
@@ -155,15 +155,62 @@
       <%= link_to image_tag(@top_fan_pic), @top_fan_link, :target => '_blank' %>
     </top-fan>
     <name><%= @top_fan[0] %></name>
+    <interactions><%= @top_fan[1] %> <span style="font-size:1vw">interactions</span></interactions>
+
+
+    <top-5>
+      <% @fans_data.first(5).each do |fan| %>
+        <% unless fan[:fan_name] == @top_fan[0] %>
+          <container class="animated fadeIn">
+            <profile-pic>
+              <%= link_to image_tag(fan[:fan_pic]), fan[:fan_link], :target => '_blank' %>
+            </profile-pic>
+            <p> <%= fan[:fan_name] %> </p>
+            <interactions><%= fan[:fan_interactions] %></interactions>
+          </container>
+          <% end %>
+        <% end %>
+    </top-5>
+
   </fans-box>
-
-<div> <%= @fans_data %>
-
-</div>
-
 
   <green-box>
   </green-box>
+
+  <fans-box style="margin-top:2vw">
+
+    <title-fan><span>FANS</span> GROUP</title-fan>
+    <p id="description">put together a group of fans and see the posts that they commonly liked or commented on your facebook page</p>
+    <fans-container>
+      <group-circle>
+        <p class="fa fa-user" id="circle-one"></p>
+        <p class="fa fa-plus"></p>
+        <p class="fa fa-user" id="circle-two"></p>
+      </group-circle>
+
+
+      <arrow class="fa fa-arrow-left"></arrow>
+
+      <div ng-model="showThisName">
+
+      </div>
+
+      <fans-super-list class="animated fadeIn">
+        <% @fans_data.each do |fan| %>
+        <div type="hidden" id="show-fan-name" style="display: none"><%= fan[:fan_name] %></div>
+              <profile-pic ng-mouseover="counterForName = grabName()">
+                <!-- {{counterForName}} -->
+                <%= link_to image_tag(fan[:fan_pic]), fan[:fan_link], :target => '_blank' %>
+              </profile-pic>
+
+          <% end %>
+      </fans-super-list>
+
+    </fans-container>
+</fans-box>
+
+</div>
+
 
 
 </div>

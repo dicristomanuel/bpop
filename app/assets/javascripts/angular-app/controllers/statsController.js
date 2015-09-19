@@ -6,6 +6,13 @@ angular.module('bpopApp').controller("statsController",
   $scope.timeRange = "WEEK";
   $scope.subject = 'likes';
   $scope.things = [];
+  $scope.showName = false;
+  $scope.counterForName  = '';
+  $scope.grabName = function() {
+    return $('#show-fan-name').text();
+
+              };
+
 
   var div = document.getElementById('div-carousel');
   var dataToParse = div.getAttribute("data-carousel").replace(/=>/g, ':');

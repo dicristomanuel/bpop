@@ -24,7 +24,7 @@ class HomeController < ApplicationController
 		@top_fan_pic = 'http://graph.facebook.com/' + fan_id + '/picture?width=300'
 		@top_fan_link = 'http://www.facebook.com/' + fan_id
 
-		JSON.parse(fans)[1].each_key do |key|
+		JSON.parse(fans)[1].each do |key, value|
 			this_fan_id = Typhoeus.get(
 				"http://localhost:4000/stats/get-fan-id/" + current_user.bpopToken + "?userFanName=" + URI.escape(key)
 			).response_body
@@ -32,8 +32,10 @@ class HomeController < ApplicationController
 			@fans_data << { fan_id: JSON.parse(this_fan_id)[0],
 				fan_name: JSON.parse(this_fan_id)[1],
 				fan_pic: 'http://graph.facebook.com/' + JSON.parse(this_fan_id)[0] + '/picture?width=300',
-				fan_link: 'http://www.facebook.com/' + JSON.parse(this_fan_id)[0]
-			} << '*******************************************************************'
+				fan_link: 'http://www.facebook.com/' + JSON.parse(this_fan_id)[0],
+				fan_interactions: value
+			}
+
 		end
 
 

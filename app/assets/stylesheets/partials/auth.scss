@@ -370,6 +370,7 @@
 
                 profile-thumb-pic {
                   @include profile-thumb-pic;
+                  background: $light-grey;
                   margin-top: -3vw;
                   margin-left: 3.7vw;
                   padding-top: 3.5vw;
