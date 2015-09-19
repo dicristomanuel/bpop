@@ -562,10 +562,10 @@
       display: flex;
       justify-content: space-around;
       align-items: center;
-      padding: 5vw;
-      width: 100vw;
+      width: 90vw;
 
       fans-super-list {
+        margin: 3vw 0;
         width: 35vw;
         height: 40vw;
         overflow: scroll;
@@ -586,7 +586,7 @@
 
       arrow.fa {
         font-size: 4vw;
-        margin: 0 -2vw;
+        margin-left: 3vw;
         color: $dark-grey;
       }
 
@@ -620,5 +620,9 @@
       }
     }
 
+   p#active-users {
+     align-self: flex-end;
+     margin: -2vw 18vw 2vw 0;
+   }
 
   }
