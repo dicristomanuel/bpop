@@ -8,8 +8,7 @@ class HomeController < ApplicationController
 
   def index
 
-		@counter = 0;
-		
+		@counter = 0
 		@fans_data = []
 
 		fans = Typhoeus.get(
@@ -38,12 +37,7 @@ class HomeController < ApplicationController
 				fan_link: 'http://www.facebook.com/' + JSON.parse(this_fan_id)[0],
 				fan_interactions: value
 			}
-
-
-
 		end
-
-
   end
 
 

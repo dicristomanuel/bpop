@@ -7,7 +7,6 @@ angular.module('bpopApp').controller("statsController",
   $scope.subject = 'likes';
   $scope.things = [];
 
-
  // TODO change to jquery
   var div = document.getElementById('div-carousel');
   var dataToParse = div.getAttribute("data-carousel").replace(/=>/g, ':');

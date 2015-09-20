@@ -1,6 +1,11 @@
 $( document ).ready(function() {
 
-  var fanTransferred = '';
+  var fanTransferred = '',
+      isDropped = false,
+      notDropped = '';
+
+      $('.circle-step-one').show();
+      $('.circle-step-two').hide();
 
 $('#6-m-posts').animateNumber({ number: $('#6-m-posts').text() }, 1500);
 $('#6-m-likes').animateNumber({ number: $('#6-m-likes').text() }, 1500);
@@ -15,22 +20,26 @@ $('#gender-percentage-female').animateNumber({ number: $('#gender-percentage-fem
   });
 
 
-
   function handleDragStart(e) {
+    isDropped = false;
     fanTransferred = this.childNodes['1'].innerHTML;
+    notDropped = this.childNodes['1'].childNodes;
     var image = this.childNodes['1'].childNodes;
     $(image).css({opacity: 0.4});
   }
 
+
   function handleDragEnd(e) {
-    $(this).css({display: 'none'});
+    if (isDropped === false) {
+      $(notDropped).css({opacity: 1});
+    }
   }
 
   var pics = $('profile-pic.small');
 
   [].forEach.call(pics, function(pic) {
     pic.addEventListener('dragstart', handleDragStart, false);
-    // pic.addEventListener('dragend', handleDragEnd, false);
+    pic.addEventListener('dragend', handleDragEnd, false);
   });
 
   $('group-circle').on('dragover', function() {
@@ -47,7 +56,9 @@ $('#gender-percentage-female').animateNumber({ number: $('#gender-percentage-fem
     $(this).css({opacity:'1'});
     $(this).removeClass('scaleUp');
     $('container-group-fans').append('<profile-pic class="small inside-group">' + fanTransferred + '</profile-pic>');
-
+    isDropped = true;
+      $('.circle-step-one').hide();
+      $('.circle-step-two').fadeIn();
     // api call to display the posts
   });
 
@@ -56,6 +67,13 @@ $('#gender-percentage-female').animateNumber({ number: $('#gender-percentage-fem
     image = 'img#' + id;
     $(image).css({opacity: 1});
     this.remove();
+    if ($('#main-circle-fans')['0'].childElementCount > 0) {
+      $('.circle-step-one').hide();
+      $('.circle-step-two').fadeIn();
+    } else {
+      $('.circle-step-two').hide();
+      $('.circle-step-one').fadeIn();
+    }
   });
 
 
