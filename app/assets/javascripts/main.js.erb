@@ -6,4 +6,51 @@ $('#6-m-comments').animateNumber({ number: $('#6-m-comments').text() }, 1500);
 $('#gender-percentage-male').animateNumber({ number: $('#gender-percentage-male').text() }, 1500);
 $('#gender-percentage-female').animateNumber({ number: $('#gender-percentage-female').text() }, 1500);
 
+
+  $('profile-pic.small').hover(function() {
+    thisName = $(this).text()
+      $('fan-name').text(thisName);
+  });
+
+
+
+  function handleDragStart(e) {
+    $(this).css({opacity: 0.4});
+    var code = 'this is a test'
+    e.dataTransfer.setData('text', code);
+  }
+
+  function handleDragEnd(e) {
+    $(this).css({display: 'none'});
+  }
+
+  var pics = $('profile-pic.small');
+  [].forEach.call(pics, function(pic) {
+    pic.addEventListener('dragstart', handleDragStart, false);
+    pic.addEventListener('dragend', handleDragEnd, false);
+  });
+
+  $('group-circle').on('dragover', function() {
+    $(this).css({opacity:'0.6'});
+    $(this).addClass('scaleUp');
+  });
+
+  $('group-circle').on('dragover', function(e) {
+    e.preventDefault();
+  });
+
+  $('group-circle').on('drop', function(e) {
+    e.preventDefault();
+    $(this).css({opacity:'1'});
+    $(this).removeClass('scaleUp');
+    var test = e.dataTransfer.getData('text');
+    console.log(test);
+
+    // api call to display the posts
+  });
+
+
+
+
+
 });

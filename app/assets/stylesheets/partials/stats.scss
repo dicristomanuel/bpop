@@ -2,6 +2,12 @@
       animation-timing-function: linear;
     }
 
+    .scaleUp {
+      -ms-transform: scale(1.03, 1.03);
+      -webkit-transform: scale(1.03, 1.03);
+      transform: scale(1.03, 1.03);
+    }
+
     .center-this {
       display: flex;
       justify-content: center;
@@ -498,6 +504,20 @@
     width: 100vw;
     align-items: center;
 
+    fan-name {
+      margin: 2vw 7.35vw -2.5vw 0;
+      align-self: flex-end;
+      font-size: 1vw;
+      font-weight: 300;
+      width: 35vw;
+      text-align: center;
+
+      -webkit-transition: opacity 2.0s ease-in;
+   -moz-transition: opacity 2.0s ease-in;
+     -o-transition: opacity 2.0s ease-in;
+                              opacity: 1;
+    }
+
     title-fan {
       font-size: 2vw;
 
@@ -565,9 +585,10 @@
       width: 90vw;
 
       fans-super-list {
-        margin: 3vw 0;
+        margin: 3vw 0 3vw 3vw;
         width: 35vw;
         height: 40vw;
+        padding: 1vw;
         overflow: scroll;
 
         profile-pic {
@@ -577,6 +598,7 @@
             width: 3.5vw;
             height: 3.5vw;
             transition: all .2s ease-in-out;
+
             &:hover {
               transform: scale(1.1);
             }
@@ -586,17 +608,50 @@
 
       arrow.fa {
         font-size: 4vw;
-        margin-left: 3vw;
+        margin-left: 8vw;
         color: $dark-grey;
       }
 
       group-circle {
         @include profile-thumb-pic;
-        display: flex;
-        justify-content: space-around;
         background: $dark-grey;
-        width: 30vw;
-        height: 30vw;
+        width: 33vw;
+        height: 33vw;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+
+
+      container-group-fans {
+        border-radius: 100%;
+        height: 32vw;
+        width: 32vw;
+        align-self: center;
+        display: flex;
+        justify-content: center;
+
+        fan-group-pic {
+          display: flex;
+          justify-content: center;
+
+          a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          img {
+            @include profile-thumb-pic;
+            width: 70%;
+            height: 70%;
+            transition: all .2s ease-in-out;
+          }
+        }
+      }
+    }
+
+    empty-group-fan-container {
+      display: flex;
+      justify-content: space-around;
+      margin: 9vw 0 0 1.1vw;
 
         p.fa-user {
           font-size: 8vw;
@@ -618,11 +673,44 @@
           margin-right: 2vw;
         }
       }
+
+      div.fa-circle#one {
+        text-align: center;
+        font-size: 3vw;
+        opacity: .2;
+        color: white;
+
+      }
+
+      div.fa-circle#two {
+        text-align: center;
+        font-size: 2vw;
+        opacity: .2;
+        color: white;
+
+      }
+      div.fa-circle#three {
+        text-align: center;
+        font-size: 1vw;
+        opacity: .2;
+        color: white;
+        margin-bottom: .5vw;
+      }
+
+      div.fa-circle#three-b {
+        text-align: center;
+        font-size: 1vw;
+        opacity: .2;
+        color: white;
+        margin-top: .5vw;
+
+      }
     }
+  }
 
    p#active-users {
      align-self: flex-end;
-     margin: -2vw 18vw 2vw 0;
+     margin: -2vw 17.6vw 2vw 0;
    }
 
   }
