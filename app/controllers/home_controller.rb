@@ -7,6 +7,9 @@ class HomeController < ApplicationController
 								:get_stats_for_carousel, :get_gender_percentage
 
   def index
+
+		@counter = 0;
+		
 		@fans_data = []
 
 		fans = Typhoeus.get(
@@ -31,10 +34,12 @@ class HomeController < ApplicationController
 
 			@fans_data << { fan_id: JSON.parse(this_fan_id)[0],
 				fan_name: JSON.parse(this_fan_id)[1],
-				fan_pic: 'http://graph.facebook.com/' + JSON.parse(this_fan_id)[0] + '/picture?width=300',
+				fan_pic: 'http://graph.facebook.com/' + JSON.parse(this_fan_id)[0] + '/picture?width=300&height=300',
 				fan_link: 'http://www.facebook.com/' + JSON.parse(this_fan_id)[0],
 				fan_interactions: value
 			}
+
+
 
 		end
 

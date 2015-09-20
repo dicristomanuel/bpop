@@ -185,44 +185,24 @@
     <fans-container>
       <group-circle>
 
-        <empty-group-fan-container>
+        <!-- <empty-group-fan-container>
           <p class="fa fa-user" id="circle-one"></p>
           <p class="fa fa-plus"></p>
           <p class="fa fa-user" id="circle-two"></p>
-      </empty-group-fan-container>
+      </empty-group-fan-container> -->
 
-      <!-- <div class="fa fa-circle" id="three-b"></div>
+      <div class="fa fa-circle" id="three-b"></div>
       <div class="fa fa-circle" id="two"></div>
       <div class="fa fa-circle" id="one"></div>
 
     <container-group-fans>
 
-      <fan-group-pic class="small" draggable="true">
-            <grabname style="display:none"> Adam Troy Andrews </grabname>
-          <a target="_blank" href="http://www.facebook.com/10155756333065311"><img src="http://graph.facebook.com/10155756333065311/picture?width=300" alt="Picture?width=300"></a>
-      </fan-group-pic>
 
-      <fan-group-pic class="small" draggable="true">
-            <grabname style="display:none"> Adam Troy Andrews </grabname>
-          <a target="_blank" href="http://www.facebook.com/10155756333065311"><img src="http://graph.facebook.com/10155756333065311/picture?width=300" alt="Picture?width=300"></a>
-      </fan-group-pic>
+    </container-group-fans>
 
-      <fan-group-pic class="small" draggable="true">
-            <grabname style="display:none"> Adam Troy Andrews </grabname>
-          <a target="_blank" href="http://www.facebook.com/10155756333065311"><img src="http://graph.facebook.com/10155756333065311/picture?width=300" alt="Picture?width=300"></a>
-      </fan-group-pic>
-
-
-      <fan-group-pic class="small" draggable="true">
-            <grabname style="display:none"> Adam Troy Andrews </grabname>
-          <a target="_blank" href="http://www.facebook.com/10155756333065311"><img src="http://graph.facebook.com/10155756333065311/picture?width=300" alt="Picture?width=300"></a>
-      </fan-group-pic>
-
-    </container-group-fans> -->
-<!-- 
 <div class="fa fa-circle" id="one"></div>
 <div class="fa fa-circle" id="two"></div>
-<div class="fa fa-circle" id="three"></div> -->
+<div class="fa fa-circle" id="three"></div>
       </group-circle>
 
       <arrow class="fa fa-arrow-left"></arrow>
@@ -230,10 +210,10 @@
       <fans-super-list class="animated fadeIn">
         <% @fans_data.each do |fan| %>
               <profile-pic class="small" draggable="true">
+                <%= link_to image_tag(fan[:fan_pic], :id => '_' + @counter.to_s), fan[:fan_link], :target => '_blank' %>
                 <grabName style="display:none"> <%= fan[:fan_name] %> </grabName>
-                <%= link_to image_tag(fan[:fan_pic]), fan[:fan_link], :target => '_blank' %>
               </profile-pic>
-
+            <span style="display:none"><%= @counter += 1 %></span>
           <% end %>
       </fans-super-list>
     </fans-container>

@@ -487,8 +487,9 @@
 
   green-box {
     display: flex;
-    min-height: 3vw;
+    min-height: 4vw;
     margin-top: 5vw;
+    opacity: .6;
     box-shadow: $box-shadow-simple;
 
     background: {
@@ -630,11 +631,9 @@
         display: flex;
         justify-content: center;
 
-        fan-group-pic {
+        profile-pic {
           display: flex;
           justify-content: center;
-
-          a {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -644,7 +643,6 @@
             height: 70%;
             transition: all .2s ease-in-out;
           }
-        }
       }
     }
 
