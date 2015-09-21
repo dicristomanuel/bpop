@@ -4,7 +4,7 @@ class HomeController < ApplicationController
 	helper_method :get_posts_1W, :get_posts_1M, :get_posts_2M, :get_posts_3M, :get_posts_6M,
 								:get_likes_1W, :get_likes_1M, :get_likes_2M, :get_likes_3M, :get_likes_6M,
 								:get_comments_1W, :get_comments_1M, :get_comments_2M, :get_comments_3M, :get_comments_6M,
-								:get_stats_for_carousel, :get_gender_percentage
+								:get_stats_for_carousel, :get_gender_percentage, :get_posts_for_group
 
   def index
 
@@ -40,6 +40,30 @@ class HomeController < ApplicationController
 		end
   end
 
+	def group_posts
+		names = ''
+		params[:names].each {|name| names += (URI.escape(name) + ',')}
+
+		request_posts_for_group =	Typhoeus.get(
+			'http://localhost:4000/stats/searchgroup/' + current_user.bpopToken + '?users_fans=' + names
+		)
+
+		@posts = request_posts_for_group.response_body
+
+		render json: @posts
+	end
+
+	def single_fan
+		name = URI.escape(params[:names])
+
+		request_posts_for_group =	Typhoeus.get(
+			'http://localhost:4000/stats/searchfan/' + current_user.bpopToken + '?userfan=' + name
+		)
+
+		@posts = request_posts_for_group.response_body
+
+		render json: @posts
+	end
 
 	private
 
@@ -247,6 +271,7 @@ class HomeController < ApplicationController
 		JSON.parse(request_monthly_comments.response_body)['count']
 		end
 	end
+
 
 	# ======================
 

@@ -2,7 +2,9 @@ $( document ).ready(function() {
 
   var fanTransferred = '',
       isDropped = false,
-      notDropped = '';
+      notDropped = '',
+      groupFansName = [],
+      groupPosts = '';
 
       $('.circle-step-one').show();
       $('.circle-step-two').hide();
@@ -15,7 +17,7 @@ $('#gender-percentage-female').animateNumber({ number: $('#gender-percentage-fem
 
 
   $('profile-pic.small').hover(function() {
-    thisName = $(this).text()
+    thisName = $(this).text();
       $('fan-name').text(thisName);
   });
 
@@ -23,6 +25,7 @@ $('#gender-percentage-female').animateNumber({ number: $('#gender-percentage-fem
   function handleDragStart(e) {
     isDropped = false;
     fanTransferred = this.childNodes['1'].innerHTML;
+    forApiCall = this.childNodes['1'].parentElement.childNodes['3'].innerHTML.slice(1, -1);
     notDropped = this.childNodes['1'].childNodes;
     var image = this.childNodes['1'].childNodes;
     $(image).css({opacity: 0.4});
@@ -53,14 +56,37 @@ $('#gender-percentage-female').animateNumber({ number: $('#gender-percentage-fem
 
   $('group-circle').on('drop', function(e) {
     e.preventDefault();
-    $(this).css({opacity:'1'});
-    $(this).removeClass('scaleUp');
-    $('container-group-fans').append('<profile-pic class="small inside-group">' + fanTransferred + '</profile-pic>');
-    isDropped = true;
-      $('.circle-step-one').hide();
-      $('.circle-step-two').fadeIn();
-    // api call to display the posts
+      $(this).css({opacity:'1'});
+      $(this).removeClass('scaleUp');
+      $('container-group-fans').append('<profile-pic class="small inside-group">' + fanTransferred + '</profile-pic>');
+      isDropped = true;
+        $('.circle-step-one').hide();
+        $('.circle-step-two').fadeIn();
   });
+
+  $('group-circle').on('drop', function(e) {
+    groupFansName.push(forApiCall);
+
+    if (groupFansName.length === 1 ) {
+        $.get(
+           "http://localhost:3000/get-single_fan_posts",
+           { names: groupFansName[0] },
+           function(data) {
+             console.log(data);
+           }
+        );
+
+    } else {
+      $.get(
+         "http://localhost:3000/get-group-posts",
+         { names: groupFansName },
+         function(data) {
+           console.log(data);
+         }
+      );
+    }
+  });
+
 
   $('container-group-fans').on('click', '.inside-group', function () {
     var id = this.firstChild.attributes['0'].nodeValue;
@@ -74,10 +100,31 @@ $('#gender-percentage-female').animateNumber({ number: $('#gender-percentage-fem
       $('.circle-step-two').hide();
       $('.circle-step-one').fadeIn();
     }
+
+    name = $(image)['0'].parentElement.parentElement.children['1'].innerHTML.slice(1, -1);
+    indexToRemove = groupFansName.indexOf(name);
+    groupFansName.splice(indexToRemove, 1);
+
+    console.log(groupFansName);
+
+    if (groupFansName.length === 1 ) {
+        $.get(
+           "http://localhost:3000/get-single_fan_posts",
+           { names: groupFansName[0] },
+           function(data) {
+             console.log(data);
+           }
+        );
+
+    } else {
+      $.get(
+         "http://localhost:3000/get-group-posts",
+         { names: groupFansName },
+         function(data) {
+           console.log(data);
+         }
+      );
+    }
+
   });
-
-
-
-
-
 });

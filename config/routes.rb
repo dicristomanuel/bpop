@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
  root 'home#index'
  get '/search-fan', to: 'home#search_byfan'
+ get '/get-group-posts', to: 'home#group_posts'
+ get '/get-single_fan_posts', to: 'home#single_fan'
 
  devise_for :users, :controllers => {
    sessions: 'users/sessions',
