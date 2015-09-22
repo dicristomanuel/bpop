@@ -9,12 +9,25 @@ $( document ).ready(function() {
       $('.circle-step-one').show();
       $('.circle-step-two').hide();
 
-$('#6-m-posts').animateNumber({ number: $('#6-m-posts').text() }, 1500);
-$('#6-m-likes').animateNumber({ number: $('#6-m-likes').text() }, 1500);
-$('#6-m-comments').animateNumber({ number: $('#6-m-comments').text() }, 1500);
-$('#gender-percentage-male').animateNumber({ number: $('#gender-percentage-male').text() }, 1500);
-$('#gender-percentage-female').animateNumber({ number: $('#gender-percentage-female').text() }, 1500);
+  $('#6-m-posts').animateNumber({ number: $('#6-m-posts').text() }, 1500);
+  $('#6-m-likes').animateNumber({ number: $('#6-m-likes').text() }, 1500);
+  $('#6-m-comments').animateNumber({ number: $('#6-m-comments').text() }, 1500);
+  $('#gender-percentage-male').animateNumber({ number: $('#gender-percentage-male').text() }, 1500);
+  $('#gender-percentage-female').animateNumber({ number: $('#gender-percentage-female').text() }, 1500);
 
+  window.setInterval(function(){
+    $('#time-range-select').addClass( "animated pulse" );
+    window.setInterval(function(){
+      $('#time-range-select').removeClass( "animated pulse" );
+    }, 900);
+  }, 5000);
+
+  window.setInterval(function(){
+    $('#subject').addClass( "animated pulse" );
+    window.setInterval(function(){
+      $('.subject').removeClass( "animated pulse" );
+    }, 900);
+  }, 5300);
 
   $('profile-pic.small').hover(function() {
     thisName = $(this).text();
@@ -72,19 +85,65 @@ $('#gender-percentage-female').animateNumber({ number: $('#gender-percentage-fem
            "http://localhost:3000/get-single_fan_posts",
            { names: groupFansName[0] },
            function(data) {
-             console.log(data);
-           }
-        );
+             $('div#total-posts').text(data.length);
+            $('display-posts').html("");
+              data.forEach(function(post) {
+
+                if (post.picture === "") {
+                  post.picture = '/assets/nopic-76567df4447eb811f7fe1ccdf27f87dd.png';
+                }
+                $('display-posts').append(
+                  '<post class="animated fadeIn"> \
+                  <story>"' + post.story + '"</story> \
+                    <message>"' + post.message + '"</message> \
+                    <picture><img src="' + post.picture + '"></picture> \
+                      <gender> \
+                        <likes> \
+                          <span class="strong">Likes: ' + post.likes + '</span> \
+                        </likes> \
+                        <comments> \
+                          <span class="strong">Comments: ' + post.comments + '</span> \
+                        </comments> \
+                      </gender> \
+                    </post>');
+                });
+              }
+            );
 
     } else {
       $.get(
          "http://localhost:3000/get-group-posts",
          { names: groupFansName },
          function(data) {
-           console.log(data);
-         }
-      );
-    }
+           if (data.length === 0) {
+             $('display-posts').html('<no-post> - No post to show - </no-post>');
+             $('div#total-posts').text('0');
+           } else {
+           $('div#total-posts').text(data.length);
+          $('display-posts').html("");
+            data.forEach(function(post) {
+              if (post.picture === "") {
+                post.picture = '/assets/nopic-76567df4447eb811f7fe1ccdf27f87dd.png';
+              }
+              $('display-posts').append(
+                '<post class="animated fadeIn"> \
+                <story>"' + post.story + '"</story> \
+                  <message>"' + post.message + '"</message> \
+                    <picture><img src="' + post.picture + '"></picture> \
+                    <gender> \
+                      <likes> \
+                        <span class="strong">Likes: 21</span> \
+                      </likes> \
+                      <comments> \
+                        <span class="strong">Comments: 21</span> \
+                      </comments> \
+                    </gender> \
+                  </post>');
+              });
+            }
+          }
+        );
+      }
   });
 
 
@@ -105,26 +164,76 @@ $('#gender-percentage-female').animateNumber({ number: $('#gender-percentage-fem
     indexToRemove = groupFansName.indexOf(name);
     groupFansName.splice(indexToRemove, 1);
 
-    console.log(groupFansName);
-
-    if (groupFansName.length === 1 ) {
-        $.get(
-           "http://localhost:3000/get-single_fan_posts",
-           { names: groupFansName[0] },
-           function(data) {
-             console.log(data);
-           }
-        );
-
+    if (groupFansName.length === 0 ) {
+            $('display-posts').html("");
+            $('div#total-posts').text('0');
     } else {
-      $.get(
-         "http://localhost:3000/get-group-posts",
-         { names: groupFansName },
-         function(data) {
-           console.log(data);
-         }
-      );
-    }
+      if (groupFansName.length === 1 ) {
+          $.get(
+             "http://localhost:3000/get-single_fan_posts",
+             { names: groupFansName[0] },
+             function(data) {
+               $('div#total-posts').text(data.length);
+              $('display-posts').html("");
+                data.forEach(function(post) {
 
+                  if (post.picture === "") {
+                    post.picture = '/assets/nopic-76567df4447eb811f7fe1ccdf27f87dd.png';
+                  }
+                  $('display-posts').append(
+                    '<post class="animated fadeIn"> \
+                    <story>"' + post.story + '"</story> \
+                      <message>"' + post.message + '"</message> \
+                        <picture><img src="' + post.picture + '"></picture> \
+                        <gender> \
+                          <likes> \
+                            <span class="strong">Likes: ' + post.likes + '</span> \
+                          </likes> \
+                          <comments> \
+                            <span class="strong">Comments: ' + post.comments + '</span> \
+                          </comments> \
+                        </gender> \
+                      </post>');
+                  });
+                }
+              );
+
+      } else {
+        $.get(
+           "http://localhost:3000/get-group-posts",
+           { names: groupFansName },
+           function(data) {
+             if (data.length === 0) {
+               $('display-posts').html('<no-post> - No post to show - </no-post>');
+               $('div#total-posts').text('0');
+             } else {
+             $('div#total-posts').text(data.length);
+            $('display-posts').html("");
+              data.forEach(function(post) {
+                if (post.picture === "") {
+                  post.picture = '/assets/nopic-76567df4447eb811f7fe1ccdf27f87dd.png';
+                }
+                $('display-posts').append(
+                  '<post class="animated fadeIn"> \
+                  <story>"' + post.story + '"</story> \
+                    <message>"' + post.message + '"</message> \
+                      <picture><img src="' + post.picture + '"></picture> \
+                      <gender> \
+                        <likes> \
+                          <span class="strong">Likes: 21</span> \
+                        </likes> \
+                        <comments> \
+                          <span class="strong">Comments: 21</span> \
+                        </comments> \
+                      </gender> \
+                    </post>');
+                });
+              }
+            }
+          );
+        }
+      }
   });
+
+
 });

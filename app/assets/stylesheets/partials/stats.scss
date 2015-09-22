@@ -514,8 +514,8 @@
       text-align: center;
 
       -webkit-transition: opacity 2.0s ease-in;
-   -moz-transition: opacity 2.0s ease-in;
-     -o-transition: opacity 2.0s ease-in;
+      -moz-transition: opacity 2.0s ease-in;
+      -o-transition: opacity 2.0s ease-in;
                               opacity: 1;
     }
 
@@ -639,8 +639,8 @@
             align-items: center;
           img {
             @include profile-thumb-pic;
-            width: 70%;
-            height: 70%;
+            width: 65%;
+            height: 65%;
             transition: all .2s ease-in-out;
           }
       }
@@ -710,5 +710,124 @@
      align-self: flex-end;
      margin: -2vw 17.6vw 2vw 0;
    }
+  }
 
+  head-fan-posts {
+    display: flex;
+    width: 100vw;
+    justify-content: center;
+    margin-bottom: 3vw;
+    margin-top: 4vw;
+    div#total-posts {
+      font-size: 1vw;
+    }
+  }
+
+  center-posts {
+
+    display-posts {
+      display: flex;
+      justify-content: space-around;
+      flex-flow: wrap;
+      width: 90vw;
+
+      no-post {
+        width: 100vw;
+        font-size: 3vw;
+        opacity: .5;
+        margin: 2vw 0 4vw 0;
+        text-align: center;
+        font-weight: 600;
+      }
+
+
+      post {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        width: 25vw;
+        height: 18vw;
+        margin-bottom: 3vw;
+        padding: 2vw;
+        border-radius: 5%;
+        box-shadow: $box-shadow;
+        transition: all .2s ease-in-out;
+        position: relative;
+        overflow: hidden;
+
+        background-post {
+          z-index: -1;
+          background-size: cover;
+          background-repeat: no-repeat;
+          min-width: 100%;
+          min-height: 30%;
+          position: absolute;
+          top: 0;
+          left: 0;
+          opacity: .7;
+        }
+
+
+
+
+        &:hover {
+          -ms-transform: scale(1.02, 1.02);
+          -webkit-transform: scale(1.02, 1.02);
+          transform: scale(1.02, 1.02);
+        }
+
+
+      story {
+        font-size: 1.5vw;
+        font-weight: 600;
+        color: darken($light-grey, 20%);
+      }
+
+      message {
+        align-self: flex-end;
+        font-size: 1.2vw;
+        font-weight: 400;
+      }
+
+      gender {
+        display: flex;
+        justify-content: space-between;
+        font-size: 1vw;
+      }
+
+        picture {
+          align-self: center;
+          width: 6vw;
+          overflow: hidden;
+          border-radius: 3%;
+
+          img {
+           box-shadow: $box-shadow;
+           overflow: hidden;
+           width:100%;
+
+         }
+        }
+      }
+
+    }
+  }
+
+  footer {
+    width: 100vw;
+    background: $dark-grey;
+    height: 7vw;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+
+    footer-logo {
+      padding: 5vw;
+      align-content: center;
+        background: {
+          image: url('logo-b&w.png');
+          repeat: no-repeat;
+          size: contain;
+        }
+    }
   }

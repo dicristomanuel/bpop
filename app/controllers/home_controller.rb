@@ -6,8 +6,12 @@ class HomeController < ApplicationController
 								:get_comments_1W, :get_comments_1M, :get_comments_2M, :get_comments_3M, :get_comments_6M,
 								:get_stats_for_carousel, :get_gender_percentage, :get_posts_for_group
 
-  def index
 
+	def test
+
+	end
+
+  def index
 		@counter = 0
 		@fans_data = []
 
@@ -288,3 +292,4 @@ class HomeController < ApplicationController
 
 
 end
+ 

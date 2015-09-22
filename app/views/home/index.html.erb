@@ -1,228 +1,242 @@
 <div ng-app="bpopApp" ng-controller="statsController" class="animated fadeIn" id="main-container">
   <div id="div-carousel" data-carousel="<%= get_stats_for_carousel %>"></div>
-<header>
-  <div class="layer-one">
-    <div class="logo"></div>
-    <div class="email"> <%= current_user.email %></div>
-  </div>
-
-  <div class="layer-two">
-    <div class="circles-first">
-        <div class="fa fa-circle first"></div>
-        <div class="fa fa-circle second"></div>
+  <header>
+    <div class="layer-one">
+      <div class="logo"></div>
+      <div class="email"> <%= current_user.email %></div>
     </div>
-    <div class="circles-second">
-        <div class="fa fa-circle first"></div>
-        <div class="fa fa-circle second"></div>
+
+    <div class="layer-two">
+      <div class="circles-first">
+          <div class="fa fa-circle first"></div>
+          <div class="fa fa-circle second"></div>
+      </div>
+      <div class="circles-second">
+          <div class="fa fa-circle first"></div>
+          <div class="fa fa-circle second"></div>
+      </div>
     </div>
-  </div>
 
-  <div class="layer-three">
-    <div class="centered-box">
+    <div class="layer-three">
+      <div class="centered-box" id="trigger1">
+        <div class="carousel-box-left">
+          <div class="time-range animated">
+              <p class="range"><span id='last'>LAST</span>
+                <span><select ng-model="timeRange" id="time-range-select">
+                  <option value="WEEK"> WEEK'S</option>
+                  <option value="MONTH">MONTH'S</option>
+                  <option value="2MONTH">2 MONTHS</option>
+                  <option value="3MONTH">3 MONTHS</option>
+                  <option value="6MONTH">6 MONTHS</option>
+                </select></span>
+              </p>
+            </div>
+            <p class="provider">facebook</p>
+            <p class="number" ng-if="timeRange === 'WEEK'   && subject === 'likes'"> <%= get_likes_1W %> </p>
+            <p class="number" ng-if="timeRange === 'MONTH'  && subject === 'likes'"> <%= get_likes_1M %> </p>
+            <p class="number" ng-if="timeRange === '2MONTH' && subject === 'likes'"> <%= get_likes_2M %> </p>
+            <p class="number" ng-if="timeRange === '3MONTH' && subject === 'likes'"> <%= get_likes_3M %> </p>
+            <p class="number" ng-if="timeRange === '6MONTH' && subject === 'likes'"> <%= get_likes_6M %> </p>
 
+            <p class="number" ng-if="timeRange === 'WEEK'   && subject === 'comments'"> <%= get_comments_1W %> </p>
+            <p class="number" ng-if="timeRange === 'MONTH'  && subject === 'comments'"> <%= get_comments_1M %> </p>
+            <p class="number" ng-if="timeRange === '2MONTH' && subject === 'comments'"> <%= get_comments_2M %> </p>
+            <p class="number" ng-if="timeRange === '3MONTH' && subject === 'comments'"> <%= get_comments_3M %> </p>
+            <p class="number" ng-if="timeRange === '6MONTH' && subject === 'comments'"> <%= get_comments_6M %> </p>
 
-
-      <div class="carousel-box-left">
-        <div class="time-range">
-            <p class="range"><span id='last'>LAST</span>
-              <span><select ng-model="timeRange" id="time-range-select">
-                <option value="WEEK"> WEEK'S</option>
-                <option value="MONTH">MONTH'S</option>
-                <option value="2MONTH">2 MONTHS</option>
-                <option value="3MONTH">3 MONTHS</option>
-                <option value="6MONTH">6 MONTHS</option>
+            <p class="subject" id="subject">
+              <span><select ng-model="subject" id="select-subject">
+                <option value="likes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  likes</option>
+                <option value="comments">comments</option>
               </select></span>
             </p>
+        </div>
+
+        <div class="carousel-box-right" ng-cloak>
+
+          <div class="subject">
+            <span class="medium">latest </span><span class="bold">{{elements[counter].provider}}</span> {{elements[counter].subject}}
           </div>
-          <p class="provider">facebook</p>
-          <p class="number" ng-if="timeRange === 'WEEK'   && subject === 'likes'"> <%= get_likes_1W %> </p>
-          <p class="number" ng-if="timeRange === 'MONTH'  && subject === 'likes'"> <%= get_likes_1M %> </p>
-          <p class="number" ng-if="timeRange === '2MONTH' && subject === 'likes'"> <%= get_likes_2M %> </p>
-          <p class="number" ng-if="timeRange === '3MONTH' && subject === 'likes'"> <%= get_likes_3M %> </p>
-          <p class="number" ng-if="timeRange === '6MONTH' && subject === 'likes'"> <%= get_likes_6M %> </p>
+          <div class="message light">
+            <p class="light">
+              {{'"' + elements[counter].message + '"'| cut:true:80:' ...'}}
+            </p>
+            <span ng-if="elements[counter].pic != '' && elements[counter].url != ''">
+              <a href="{{elements[counter].url}}" target="_blank"><img src="{{elements[counter].pic}}"></a>
+            </span>
 
-          <p class="number" ng-if="timeRange === 'WEEK'   && subject === 'comments'"> <%= get_comments_1W %> </p>
-          <p class="number" ng-if="timeRange === 'MONTH'  && subject === 'comments'"> <%= get_comments_1M %> </p>
-          <p class="number" ng-if="timeRange === '2MONTH' && subject === 'comments'"> <%= get_comments_2M %> </p>
-          <p class="number" ng-if="timeRange === '3MONTH' && subject === 'comments'"> <%= get_comments_3M %> </p>
-          <p class="number" ng-if="timeRange === '6MONTH' && subject === 'comments'"> <%= get_comments_6M %> </p>
+            <span ng-if="elements[counter].pic != '' elements[counter].url == ''">
+              <img src="{{elements[counter].pic}}" >
+            </span>
 
-          <p class="subject">
-            <span><select ng-model="subject" id="select-subject">
-              <option value="likes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  likes</option>
-              <option value="comments">comments</option>
-            </select></span>
-          </p>
-      </div>
+          </div>
+          <div class="after-message">
 
-      <div class="carousel-box-right" ng-cloak>
+              <span class="strong" ng-if='elements[counter].author'>from</span> {{elements[counter].author}}
+              <span ng-if='elements[counter].likesAmount'>likes</span> <span class="strong">{{elements[counter].likesAmount}}</span>
+              <span ng-if='elements[counter].commentsAmount'>comments</span> <span class="strong">{{elements[counter].commentsAmount}}</span>
 
-        <div class="subject">
-          <span class="medium">latest </span><span class="bold">{{elements[counter].provider}}</span> {{elements[counter].subject}}
-        </div>
-        <div class="message light">
-          <p class="light">
-            {{'"' + elements[counter].message + '"'| cut:true:80:' ...'}}
-          </p>
-          <span ng-if="elements[counter].pic != '' && elements[counter].url != ''">
-            <a href="{{elements[counter].url}}" target="_blank"><img src="{{elements[counter].pic}}"></a>
-          </span>
-
-          <span ng-if="elements[counter].pic != '' elements[counter].url == ''">
-            <img src="{{elements[counter].pic}}" >
-          </span>
-
-        </div>
-        <div class="after-message">
-
-            <span class="strong" ng-if='elements[counter].author'>from</span> {{elements[counter].author}}
-            <span ng-if='elements[counter].likesAmount'>likes</span> <span class="strong">{{elements[counter].likesAmount}}</span>
-            <span ng-if='elements[counter].commentsAmount'>comments</span> <span class="strong">{{elements[counter].commentsAmount}}</span>
+          </div>
 
         </div>
 
       </div>
-
     </div>
-  </div>
-</header>
+  </header>
 
-<div class="center-this">
-  <p>YOUR LAST 6 MONTHS</p>
-</div>
-
-<div class="center-this">
-  <div class="column_charts">
-    <div class="six-m-posts">
-      <container-span-number>
-        <number id="6-m-posts"><%= get_posts_6M %></number>
-        <span>POSTS</span>
-      </container-span-number>
-      <div id="bar_posts">
-      </div>
-    </div>
-
-    <div class="six-m-likes">
-      <container-span-number>
-        <number id="6-m-likes"><%= get_likes_6M %></number>
-        <span>LIKES</span>
-      </container-span-number>
-      <div id="bar_likes">
-      </div>
-    </div>
-
-    <div class="six-m-comments">
-      <container-span-number>
-        <number id="6-m-comments"><%= get_comments_6M %></number>
-        <span>COMMENTS</span>
-      </container-span-number>
-      <div id="bar_comments">
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="center-this" style="margin: 7vw 0 -5vw 0">
-  <p>GENDER PERCENTAGE</p>
-</div>
-
-  <blue-box>
-    <male-percentage>
-      <div id="colum-male-gender-percentage">
-      </div>
-      <span>male</span>
-      <number id="gender-percentage-male"><%= get_gender_percentage[0] %></number><symbol>%</symbol>
-    </male-percentage>
-  </blue-box>
-
-  <div class="right-this">
-    <female-percentage>
-      <div id="colum-female-gender-percentage">
-      </div>
-      <span>female</span>
-      <number id="gender-percentage-female"><%= get_gender_percentage[1] %></number><symbol>%</symbol>
-    </female-percentage>
+  <div class="center-this">
+    <p>YOUR LAST 6 MONTHS</p>
   </div>
 
-  <div class="center-this" style="margin: 1vw 0 1vw 0">
-    <p>FANS</p>
+  <div class="center-this">
+    <div class="column_charts">
+      <div class="six-m-posts">
+        <container-span-number>
+          <number id="6-m-posts"><%= get_posts_6M %></number>
+          <span>POSTS</span>
+        </container-span-number>
+        <div id="bar_posts">
+        </div>
+      </div>
+
+      <div class="six-m-likes">
+        <container-span-number>
+          <number id="6-m-likes"><%= get_likes_6M %></number>
+          <span>LIKES</span>
+        </container-span-number>
+        <div id="bar_likes">
+        </div>
+      </div>
+
+      <div class="six-m-comments">
+        <container-span-number>
+          <number id="6-m-comments"><%= get_comments_6M %></number>
+          <span>COMMENTS</span>
+        </container-span-number>
+        <div id="bar_comments">
+        </div>
+      </div>
+    </div>
   </div>
 
-  <fans-box>
-    <title-fan>YOUR <span>TOP</span> FAN</title-fan>
-    <top-fan class="animated pulse">
-      <%= link_to image_tag(@top_fan_pic), @top_fan_link, :target => '_blank' %>
-    </top-fan>
-    <name><%= @top_fan[0] %></name>
-    <interactions><%= @top_fan[1] %> <span style="font-size:1vw">interactions</span></interactions>
+  <div class="center-this" style="margin: 7vw 0 -5vw 0">
+    <p>GENDER PERCENTAGE</p>
+  </div>
+
+    <blue-box>
+      <male-percentage>
+        <div id="colum-male-gender-percentage">
+        </div>
+        <span>male</span>
+        <number id="gender-percentage-male"><%= get_gender_percentage[0] %></number><symbol>%</symbol>
+      </male-percentage>
+    </blue-box>
+
+    <div class="right-this">
+      <female-percentage>
+        <div id="colum-female-gender-percentage">
+        </div>
+        <span>female</span>
+        <number id="gender-percentage-female"><%= get_gender_percentage[1] %></number><symbol>%</symbol>
+      </female-percentage>
+    </div>
+
+    <div class="center-this" style="margin: 1vw 0 1vw 0">
+      <p>FANS</p>
+    </div>
+
+    <fans-box>
+      <title-fan>YOUR <span>TOP</span> FAN</title-fan>
+      <top-fan class="animated pulse">
+        <%= link_to image_tag(@top_fan_pic), @top_fan_link, :target => '_blank' %>
+      </top-fan>
+      <name><%= @top_fan[0] %></name>
+      <interactions><%= @top_fan[1] %> <span style="font-size:1vw">interactions</span></interactions>
 
 
-    <top-5>
-      <% @fans_data.first(5).each do |fan| %>
-        <% unless fan[:fan_name] == @top_fan[0] %>
-          <container class="animated fadeIn">
-            <profile-pic>
-              <%= link_to image_tag(fan[:fan_pic]), fan[:fan_link], :target => '_blank' %>
-            </profile-pic>
-            <p> <%= fan[:fan_name] %> </p>
-            <interactions><%= fan[:fan_interactions] %></interactions>
-          </container>
+      <top-5>
+        <% @fans_data.first(5).each do |fan| %>
+          <% unless fan[:fan_name] == @top_fan[0] %>
+            <container class="animated fadeIn">
+              <profile-pic>
+                <%= link_to image_tag(fan[:fan_pic]), fan[:fan_link], :target => '_blank' %>
+              </profile-pic>
+              <p> <%= fan[:fan_name] %> </p>
+              <interactions><%= fan[:fan_interactions] %></interactions>
+            </container>
+            <% end %>
           <% end %>
-        <% end %>
-    </top-5>
+      </top-5>
+
+    </fans-box>
+
+    <green-box>
+    </green-box>
+
+    <fans-box style="margin-top:2vw">
+
+      <title-fan draggable="true"><span>FANS</span> GROUP</title-fan>
+      <p id="description">put together a group of fans and see the posts that they commonly liked or commented on your facebook page</p>
+      <fan-name>...</fan-name>
+      <fans-container>
+        <group-circle>
+
+          <empty-group-fan-container class="circle-step-one">
+            <p class="fa fa-user" id="circle-one"></p>
+            <p class="fa fa-plus"></p>
+            <p class="fa fa-user" id="circle-two"></p>
+          </empty-group-fan-container>
+
+        <div class="fa fa-circle circle-step-two" id="three-b"></div>
+        <div class="fa fa-circle circle-step-two" id="two"></div>
+        <div class="fa fa-circle circle-step-two" id="one"></div>
+
+          <container-group-fans id="main-circle-fans" class="circle-step-two">
+
+          </container-group-fans>
+
+        <div class="fa fa-circle circle-step-two" id="one"></div>
+        <div class="fa fa-circle circle-step-two" id="two"></div>
+        <div class="fa fa-circle circle-step-two" id="three"></div>
+      </group-circle>
+
+        <arrow class="fa fa-arrow-left"></arrow>
+
+        <fans-super-list class="animated fadeIn">
+          <% @fans_data.each do |fan| %>
+                <profile-pic class="small" draggable="true">
+                  <%= link_to image_tag(fan[:fan_pic], :id => '_' + @counter.to_s), fan[:fan_link], :target => '_blank' %>
+                  <grabName style="display:none"> <%= fan[:fan_name] %> </grabName>
+                </profile-pic>
+              <span style="display:none"><%= @counter += 1 %></span>
+            <% end %>
+        </fans-super-list>
+      </fans-container>
+      <p id="active-users"><span class="strong"><%= @fans_data.length %></span> active users on your profile</p>
 
   </fans-box>
 
-  <green-box>
-  </green-box>
 
-  <fans-box style="margin-top:2vw">
+  <head-fan-posts>
+    <p>
+      total posts: <div class="strong" id="total-posts"> 0 </div>
+    </p>
+  </head-fan-posts>
+  <center-posts class="center-this">
 
-    <title-fan draggable="true"><span>FANS</span> GROUP</title-fan>
-    <p id="description">put together a group of fans and see the posts that they commonly liked or commented on your facebook page</p>
-    <fan-name>...</fan-name>
-    <fans-container>
-      <group-circle>
+    <display-posts>
 
-        <empty-group-fan-container class="circle-step-one">
-          <p class="fa fa-user" id="circle-one"></p>
-          <p class="fa fa-plus"></p>
-          <p class="fa fa-user" id="circle-two"></p>
-        </empty-group-fan-container>
 
-      <div class="fa fa-circle circle-step-two" id="three-b"></div>
-      <div class="fa fa-circle circle-step-two" id="two"></div>
-      <div class="fa fa-circle circle-step-two" id="one"></div>
 
-        <container-group-fans id="main-circle-fans" class="circle-step-two">
+    </display-posts>
+  </center-posts>
 
-        </container-group-fans>
+<footer>
+  <footer-logo>
 
-      <div class="fa fa-circle circle-step-two" id="one"></div>
-      <div class="fa fa-circle circle-step-two" id="two"></div>
-      <div class="fa fa-circle circle-step-two" id="three"></div>
-    </group-circle>
+  </footer-logo>
 
-      <arrow class="fa fa-arrow-left"></arrow>
 
-      <fans-super-list class="animated fadeIn">
-        <% @fans_data.each do |fan| %>
-              <profile-pic class="small" draggable="true">
-                <%= link_to image_tag(fan[:fan_pic], :id => '_' + @counter.to_s), fan[:fan_link], :target => '_blank' %>
-                <grabName style="display:none"> <%= fan[:fan_name] %> </grabName>
-              </profile-pic>
-            <span style="display:none"><%= @counter += 1 %></span>
-          <% end %>
-      </fans-super-list>
-    </fans-container>
-    <p id="active-users"><span class="strong"><%= @fans_data.length %></span> active users on your profile</p>
-
-</fans-box>
+</footer>
 
 </div>
-
-
-
-</div>
-
-<div class="get-common-posts" style="display: none"></div>
