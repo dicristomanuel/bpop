@@ -54,7 +54,7 @@
   #to handle dates
   gem 'guess'
   #guess the gender for a given name
-  gem 'thin'
+  gem 'puma'
   # Use ActiveModel has_secure_password
   # gem 'bcrypt', '~> 3.1.7'
   # Use Unicorn as the app server
