@@ -12,8 +12,10 @@ class CallbacksController < Devise::OmniauthCallbacksController
         for_user = identity.fb_authorize(fb_token)
         #get the last six month's fbposts
         posts = get_posts(for_user)
-        #API call post request to bPop_api for fbposts / passing posts, tokens and owner's name
-        fbposts_to_bPop_api(posts, fb_token, current_user.bpopToken, fb_response['info']['name'])
+
+        PostsFacebook.perform_async(posts, fb_token, current_user.bpopToken, fb_response['info']['name'], session[:facebook])
+        session[:facebook] = 'loggedin'
+
 
   			redirect_to :back
   end
@@ -68,69 +70,5 @@ class CallbacksController < Devise::OmniauthCallbacksController
       access_token: auth.extra.access_token.consumer.key,
       secret_token: auth.extra.access_token.consumer.secret
     }
-  end
-
-
-  def fbposts_to_bPop_api(posts, fb_token, bpopToken, owner)
-    #create likes / likes_data variables
-    posts.each do |post|
-      if post['likes']
-        likes = post['likes']['data'].length
-        likes_data = post['likes']['data'].to_json
-      else
-        likes = 0
-        likes_data = "0"
-      end
-
-      if post['comments']
-        comments = post['comments']['data'].length
-        comments_data = post['comments']['data'].to_json
-      else
-        comments = 0
-        comments_data = "0"
-      end
-
-      if post == posts.last
-        is_last = 'true'
-      else
-        is_last = 'false'
-      end
-      #define params post request
-      params = {
-        fbpost: {
-          owner: owner,
-          story: post['story'],
-          message: post['message'],
-          picture: post['picture'],
-          likes: likes,
-          comments: comments,
-          likes_data: likes_data,
-          comments_data: comments_data,
-          url: post['link'],
-          date: post['created_time'][0..9],
-          bpopToken: bpopToken,
-          fb_user_token: fb_token,
-          fb_post_id: post['id'],
-          is_last: is_last
-        }
-      }
-      #check if the user already connected facebook account
-      if session[:facebook]
-        #send put request to bPop_api to update posts
-        response = Typhoeus::Request.new(
-          "http://localhost:4000/fbposts/" + post['id'],
-          method: :put,
-          params: params
-        ).run
-      else
-        #send post request to bPop_api to create posts (occurs first time only)
-        response = Typhoeus::Request.new(
-          "http://localhost:4000/fbposts",
-          method: :post,
-          params: params
-        ).run
-      end
-    end
-    session[:facebook] = 'loggedin'
   end
 end
