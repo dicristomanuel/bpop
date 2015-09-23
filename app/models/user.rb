@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
 	before_create :generate_bpopToken
 
+	serialize :fans_data, JSON
+
 	validates_uniqueness_of :email
 	validates_presence_of :password, :password_confirmation
 

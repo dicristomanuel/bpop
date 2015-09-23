@@ -148,24 +148,14 @@
     <fans-box>
       <title-fan>YOUR <span>TOP</span> FAN</title-fan>
       <top-fan class="animated pulse">
-        <%= link_to image_tag(@top_fan_pic), @top_fan_link, :target => '_blank' %>
+        first
       </top-fan>
-      <name><%= @top_fan[0] %></name>
-      <interactions><%= @top_fan[1] %> <span style="font-size:1vw">interactions</span></interactions>
+        second
+        third
 
 
       <top-5>
-        <% @fans_data.first(5).each do |fan| %>
-          <% unless fan[:fan_name] == @top_fan[0] %>
-            <container class="animated fadeIn">
-              <profile-pic>
-                <%= link_to image_tag(fan[:fan_pic]), fan[:fan_link], :target => '_blank' %>
-              </profile-pic>
-              <p> <%= fan[:fan_name] %> </p>
-              <interactions><%= fan[:fan_interactions] %></interactions>
-            </container>
-            <% end %>
-          <% end %>
+        fourth
       </top-5>
 
     </fans-box>
@@ -203,16 +193,10 @@
         <arrow class="fa fa-arrow-left"></arrow>
 
         <fans-super-list class="animated fadeIn">
-          <% @fans_data.each do |fan| %>
-                <profile-pic class="small" draggable="true">
-                  <%= link_to image_tag(fan[:fan_pic], :id => '_' + @counter.to_s), fan[:fan_link], :target => '_blank' %>
-                  <grabName style="display:none"> <%= fan[:fan_name] %> </grabName>
-                </profile-pic>
-              <span style="display:none"><%= @counter += 1 %></span>
-            <% end %>
+          fifth
         </fans-super-list>
       </fans-container>
-      <p id="active-users"><span class="strong"><%= @fans_data.length %></span> active users on your profile</p>
+      sixth
 
   </fans-box>
 
