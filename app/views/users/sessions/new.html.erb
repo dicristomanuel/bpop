@@ -15,7 +15,7 @@
             <!-- login/signup form or confirmation page -->
             <div ng-view class="animated fadeIn" ng-show="<%= session[:user_id].nil? %>"></div>
 
-            <about-box ng-hide="<%= session[:user_id].nil? %>">
+            <about-box ng-hide="<%= session[:user_id].nil? %>" ng-cloak>
               <circles>
                 <span>
                   <% if current_user %>

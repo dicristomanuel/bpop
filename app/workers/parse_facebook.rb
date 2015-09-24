@@ -21,9 +21,9 @@ class ParseFacebook
         fan_link: 'http://www.facebook.com/' + JSON.parse(this_fan_id)[0],
         fan_interactions: value
       }
-      
-    end
 
+    end
+    #  CHECK THE LENGTH OF FANS_DATA
     User.where(bpopToken: bpopToken).update_all(fans_data: fans_data)
   end
 end

@@ -70,13 +70,14 @@
       a#logout-main-page {
         @include button;
         width: 5vw;
-        height: 2vw;
-        margin-top: 3.9vw;
+        height: 1.5vw;
         padding-top: .5vw;
+        margin-top: 3.9vw;
         align-self: center;
         text-align: center;
         color: white;
         font-size: .8vw;
+        align-items: center;
       }
 
         circles {

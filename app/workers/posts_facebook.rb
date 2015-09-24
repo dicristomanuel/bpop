@@ -49,22 +49,22 @@ class PostsFacebook
           is_last: is_last
         }
       }
-      #check if the user already connected facebook account
-      if session == 'loggedin'
-        #send put request to bPop_api to update posts
-        response = Typhoeus::Request.new(
-          "http://localhost:4000/fbposts/" + post['id'],
-          method: :put,
-          params: params
-        ).run
-      else
+      # #check if the user already connected facebook account
+      # if session == 'loggedin'
+      #   #send put request to bPop_api to update posts
+      #   response = Typhoeus::Request.new(
+      #     "http://localhost:4000/fbposts/" + post['id'],
+      #     method: :put,
+      #     params: params
+      #   ).run
+      # else
         #send post request to bPop_api to create posts (occurs first time only)
         response = Typhoeus::Request.new(
           "http://localhost:4000/fbposts",
           method: :post,
           params: params
         ).run
-      end
+      # end
     end
   end
 

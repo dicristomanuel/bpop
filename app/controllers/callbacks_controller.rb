@@ -13,6 +13,10 @@ class CallbacksController < Devise::OmniauthCallbacksController
         #get the last six month's fbposts
         posts = get_posts(for_user)
 
+        call = Typhoeus::Request.new(
+          "http://localhost:4000/is-complete-to-false/" + current_user.bpopToken
+        ).run
+
         PostsFacebook.perform_async(posts, fb_token, current_user.bpopToken, fb_response['info']['name'], session[:facebook])
         session[:facebook] = 'loggedin'
 
