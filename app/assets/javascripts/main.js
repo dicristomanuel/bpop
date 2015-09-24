@@ -1,10 +1,39 @@
 $( document ).ready(function() {
 
+// ===========================
+// RETRIEVING DATA
+// ===========================
+
+  var counter = 1;
+
+  var getFansData = function() {
+    var source;
+    source = new EventSource('/check');
+    source.addEventListener("refresh", function(e) {
+      fans_data = JSON.parse(e.data).fans_data;
+      if(fans_data !== "") {
+        $('fans-super-list').html("");
+        fans_data.forEach(function(fan) {
+          $('fans-super-list').append(
+            '<profile-pic class="small" draggable="true"> \
+            <a href="' + fan.fan_link + '" target="_blank"><img src="' + fan.fan_pic + '" id="_' + counter + '"></a> \
+            <grabName style="display:none"> ' + fan.fan_name + ' </grabName> \
+            </profile-pic>'
+          );
+          counter += 1;
+        });
+        source.close();
+      }
+    });
+  }();
+
+
   var fanTransferred = '',
       isDropped = false,
       notDropped = '',
       groupFansName = [],
-      groupPosts = '';
+      groupPosts = '',
+      forApiCall = '';
 
       $('.circle-step-one').show();
       $('.circle-step-two').hide();
@@ -51,12 +80,11 @@ $( document ).ready(function() {
     }
   }
 
-  var pics = $('profile-pic.small');
+  var pics = $('fans-super-list');
 
-  [].forEach.call(pics, function(pic) {
-    pic.addEventListener('dragstart', handleDragStart, false);
-    pic.addEventListener('dragend', handleDragEnd, false);
-  });
+  pics.on('dragstart', 'profile-pic', handleDragStart);
+  pics.on('dragend', 'profile-pic', handleDragEnd);
+
 
   $('group-circle').on('dragover', function() {
     $(this).css({opacity:'0.6'});
@@ -67,7 +95,9 @@ $( document ).ready(function() {
     e.preventDefault();
   });
 
+
   $('group-circle').on('drop', function(e) {
+
     e.preventDefault();
       $(this).css({opacity:'1'});
       $(this).removeClass('scaleUp');
@@ -75,9 +105,7 @@ $( document ).ready(function() {
       isDropped = true;
         $('.circle-step-one').hide();
         $('.circle-step-two').fadeIn();
-  });
 
-  $('group-circle').on('drop', function(e) {
     groupFansName.push(forApiCall);
 
     if (groupFansName.length === 1 ) {
@@ -148,7 +176,8 @@ $( document ).ready(function() {
 
 
   $('container-group-fans').on('click', '.inside-group', function () {
-    var id = this.firstChild.attributes['0'].nodeValue;
+
+    var id = this.childNodes['0'].attributes['1'].nodeValue;
     image = 'img#' + id;
     $(image).css({opacity: 1});
     this.remove();
@@ -234,6 +263,32 @@ $( document ).ready(function() {
         }
       }
   });
+
+  var opts = {
+    lines: 17 // The number of lines to draw
+    , length: 0 // The length of each line
+    , width: 32 // The line thickness
+    , radius: 84 // The radius of the inner circle
+    , scale: 0.25 // Scales overall size of the spinner
+    , corners: 1 // Corner roundness (0..1)
+    , color: '#FF7F33' // #rgb or #rrggbb or array of colors
+    , opacity: 0.2 // Opacity of the lines
+    , rotate: 0 // The rotation offset
+    , direction: 1 // 1: clockwise, -1: counterclockwise
+    , speed: 1.1 // Rounds per second
+    , trail: 58 // Afterglow percentage
+    , fps: 20 // Frames per second when using setTimeout() as a fallback for CSS
+    , zIndex: 2e9 // The z-index (defaults to 2000000000)
+    , className: 'spinner' // The CSS class to assign to the spinner
+    , top: '50%' // Top position relative to parent
+    , left: '50%' // Left position relative to parent
+    , shadow: false // Whether to render a shadow
+    , hwaccel: false // Whether to use hardware acceleration
+    , position: 'absolute' // Element positioning
+  }
+
+  var spinner = new Spinner(opts).spin();
+  $('for-spin').append(spinner.el);
 
 
 });

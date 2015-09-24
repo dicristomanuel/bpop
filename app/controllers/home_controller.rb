@@ -1,3 +1,5 @@
+require 'sse.rb'
+
 class HomeController < ApplicationController
 
 	before_action :user_signed_in?
@@ -7,7 +9,27 @@ class HomeController < ApplicationController
 								:get_stats_for_carousel, :get_gender_percentage, :get_posts_for_group
 
 
-  def index
+	def check
+    # SSE expects the `text/event-stream` content type
+    response.headers['Content-Type'] = 'text/event-stream'
+
+    sse = BpopApp1::SSE.new(response.stream)
+    begin
+      1.times do
+        fans_data = current_user.fans_data
+        # unless fans_data.empty?
+          sse.write({fans_data: fans_data.as_json}, {event: 'refresh'})
+        # end
+        sleep 1
+      end
+    rescue IOError
+      # When the client disconnects, we'll get an IOError on write
+    ensure
+      sse.close
+    end
+  end
+
+	def index
 		@counter = 0
 		current_user.update_attribute(:fans_data, '')
 		ParseFacebook.perform_async(current_user.id)
@@ -252,12 +274,12 @@ class HomeController < ApplicationController
 		{'comments' => get_comments_1M(10), 'posts' => get_posts_1M(10)}
 	end
 
-	def get_gender_percentage
-		gender_percentage =	Typhoeus.get(
-			"http://localhost:4000/get-gender-percentage/" + current_user.bpopToken
-		)
-		[JSON.parse(gender_percentage.response_body)['total']['male'].round, JSON.parse(gender_percentage.response_body)['total']['female'].round]
- 	end
+	# def get_gender_percentage
+	# 	gender_percentage =	Typhoeus.get(
+	# 		"http://localhost:4000/get-gender-percentage/" + current_user.bpopToken
+	# 	)
+	# 	[JSON.parse(gender_percentage.response_body)['total']['male'].round, JSON.parse(gender_percentage.response_body)['total']['female'].round]
+ # 	end
 
 
 end

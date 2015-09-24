@@ -1,6 +1,6 @@
 require 'json'
 
-module SimpleApp
+module BpopApp1
   class SSE
     def initialize io
       @io = io

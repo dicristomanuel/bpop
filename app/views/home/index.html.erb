@@ -1,4 +1,5 @@
 <div ng-app="bpopApp" ng-controller="statsController" class="animated fadeIn" id="main-container">
+  <for-spin></for-spin>
   <div id="div-carousel" data-carousel="<%= get_stats_for_carousel %>"></div>
   <header>
     <div class="layer-one">
@@ -128,7 +129,7 @@
         <div id="colum-male-gender-percentage">
         </div>
         <span>male</span>
-        <number id="gender-percentage-male"><%= get_gender_percentage[0] %></number><symbol>%</symbol>
+        gender percentage male
       </male-percentage>
     </blue-box>
 
@@ -137,7 +138,8 @@
         <div id="colum-female-gender-percentage">
         </div>
         <span>female</span>
-        <number id="gender-percentage-female"><%= get_gender_percentage[1] %></number><symbol>%</symbol>
+        gender percentage female
+
       </female-percentage>
     </div>
 
@@ -169,6 +171,7 @@
       <p id="description">put together a group of fans and see the posts that they commonly liked or commented on your facebook page</p>
       <fan-name>...</fan-name>
       <fans-container>
+
         <group-circle>
 
           <empty-group-fan-container class="circle-step-one">
@@ -193,7 +196,7 @@
         <arrow class="fa fa-arrow-left"></arrow>
 
         <fans-super-list class="animated fadeIn">
-          fifth
+
         </fans-super-list>
       </fans-container>
       sixth
