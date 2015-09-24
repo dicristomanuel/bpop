@@ -23,7 +23,7 @@ class ParseFacebook
       }
 
     end
-    #  CHECK THE LENGTH OF FANS_DATA
+    
     User.where(bpopToken: bpopToken).update_all(fans_data: fans_data)
   end
 end

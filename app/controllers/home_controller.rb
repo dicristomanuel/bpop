@@ -17,15 +17,18 @@ class HomeController < ApplicationController
     begin
       1.times do
         fans_data = current_user.fans_data
-				completed = Typhoeus::Request.new(
-					"http://localhost:4000/is-complete/" + current_user.bpopToken
-				).run
-        if completed.response_body == 'true'
+
+				completed = Typhoeus.get(
+		      "http://localhost:4000/is-complete/" + current_user.bpopToken
+		    ).response_body
+
+				if completed == 'true'
           sse.write({fans_data: fans_data.as_json}, {event: 'refresh'})
         end
         sleep 1
       end
     rescue IOError
+      # When the client disconnects, we'll get an IOError on write
     ensure
       sse.close
     end
@@ -34,9 +37,6 @@ class HomeController < ApplicationController
 	def index
 		@counter = 0
 		current_user.update_attribute(:fans_data, '')
-		call = Typhoeus::Request.new(
-			"http://localhost:4000/is-complete-to-false/" + current_user.bpopToken
-		).run
 		ParseFacebook.perform_async(current_user.id)
   end
 
