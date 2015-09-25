@@ -21,8 +21,9 @@ class HomeController < ApplicationController
 				completed = Typhoeus.get(
 		      "http://localhost:4000/is-complete/" + current_user.bpopToken
 		    ).response_body
-
-				if completed == 'true'
+				if completed == 'true' && current_user.is_parsed == false
+					ParseFacebook.perform_async(current_user.id)
+				elsif completed == 'true' && current_user.is_parsed == true
           sse.write({fans_data: fans_data.as_json}, {event: 'refresh'})
         end
         sleep 1
@@ -37,7 +38,7 @@ class HomeController < ApplicationController
 	def index
 		@counter = 0
 		current_user.update_attribute(:fans_data, '')
-		ParseFacebook.perform_async(current_user.id)
+		current_user.update_attribute(:is_parsed, false)
   end
 
 	def group_posts

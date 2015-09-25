@@ -1,7 +1,3 @@
-for-spin {
-  background: gray;
-}
-
     #main-container {
       animation-timing-function: linear;
     }
@@ -503,25 +499,11 @@ for-spin {
     }
   }
 
-  fans-box {
+  top-5-fans {
     display: flex;
     flex-direction: column;
     width: 100vw;
     align-items: center;
-
-    fan-name {
-      margin: 2vw 7.35vw -2.5vw 0;
-      align-self: flex-end;
-      font-size: 1vw;
-      font-weight: 300;
-      width: 35vw;
-      text-align: center;
-
-      -webkit-transition: opacity 2.0s ease-in;
-      -moz-transition: opacity 2.0s ease-in;
-      -o-transition: opacity 2.0s ease-in;
-                              opacity: 1;
-    }
 
     title-fan {
       font-size: 2vw;
@@ -542,6 +524,13 @@ for-spin {
           transform: scale(1.1);
         }
       }
+    }
+
+    info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
       name {
         padding-top: 2vw;
       }
@@ -576,6 +565,29 @@ for-spin {
         }
       }
     }
+
+  }
+
+  fans-box {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    align-items: center;
+
+    fan-name {
+      margin: 2vw 6.90vw -2.5vw 0;
+      align-self: flex-end;
+      font-size: 1vw;
+      font-weight: 300;
+      width: 35vw;
+      text-align: center;
+
+      -webkit-transition: opacity 2.0s ease-in;
+      -moz-transition: opacity 2.0s ease-in;
+      -o-transition: opacity 2.0s ease-in;
+      opacity: 1;
+    }
+
     p#description {
       margin-top: .3vw;
       width: 30vw;
@@ -595,6 +607,10 @@ for-spin {
         height: 40vw;
         padding: 1vw;
         overflow: scroll;
+
+        loader {
+          @include loader;
+        }
 
         profile-pic {
           img {
@@ -712,7 +728,15 @@ for-spin {
 
    p#active-users {
      align-self: flex-end;
-     margin: -2vw 17.6vw 2vw 0;
+     margin: -2vw 17.3vw 2vw 0;
+   }
+
+   .fa-arrow-down {
+     font-size: 3vw;
+     margin-left: -54vw;
+     margin-top: -5vw;
+     color: $light-grey;
+
    }
   }
 
@@ -721,7 +745,7 @@ for-spin {
     width: 100vw;
     justify-content: center;
     margin-bottom: 3vw;
-    margin-top: 4vw;
+    margin-top: 1vw;
     div#total-posts {
       font-size: 1vw;
     }
@@ -734,6 +758,10 @@ for-spin {
       justify-content: space-around;
       flex-flow: wrap;
       width: 90vw;
+
+      loader {
+        @include loader;
+      }
 
       no-post {
         width: 100vw;
@@ -834,4 +862,114 @@ for-spin {
           size: contain;
         }
     }
+  }
+
+
+
+// ===================
+// LOADER
+// ===================
+
+  .wrapper {
+  	padding-left: 0em;
+  	padding-right: 0em;
+  	margin: auto;
+  	display: block;
+  	width: 70px;
+  }
+
+  .cssload-loader {
+  	width: 17px;
+  	height: 17px;
+  	border-radius: 50%;
+  	margin: 1em;
+  	display: inline-block;
+  	position: relative;
+  	vertical-align: middle;
+  }
+
+  .cssload-loader {
+  	width: 17px;
+  	height: 17px;
+  	border-radius: 50%;
+  	margin: 1em;
+  	display: inline-block;
+  	position: relative;
+  	vertical-align: middle;
+  }
+  .cssload-loader,
+  .cssload-loader:before,
+  .cssload-loader:after {
+  	animation: 1.15s infinite ease-in-out;
+  		-o-animation: 1.15s infinite ease-in-out;
+  		-ms-animation: 1.15s infinite ease-in-out;
+  		-webkit-animation: 1.15s infinite ease-in-out;
+  		-moz-animation: 1.15s infinite ease-in-out;
+  }
+  .cssload-loader:before,
+  .cssload-loader:after {
+  	width: 100%;
+  	height: 100%;
+  	border-radius: 50%;
+  	position: absolute;
+  	top: 0;
+  	left: 0;
+  }
+
+  .cssload-loader:before,
+  .cssload-loader:after {
+  		content: "";
+  }
+
+  .cssload-loader:before,
+  .cssload-loader:after {
+  		content: "";
+  		background-color: $dark-grey;
+  		transform: scale(0);
+  		-o-transform: scale(0);
+  		-ms-transform: scale(0);
+  		-webkit-transform: scale(0);
+  		-moz-transform: scale(0);
+  		animation: cssload-animation 1.73s infinite ease-in-out;
+  		-o-animation: cssload-animation 1.73s infinite ease-in-out;
+  		-ms-animation: cssload-animation 1.73s infinite ease-in-out;
+  		-webkit-animation: cssload-animation 1.73s infinite ease-in-out;
+  		-moz-animation: cssload-animation 1.73s infinite ease-in-out;
+  }
+  .cssload-loader:after { animation-delay: 0.86s;
+  		-o-animation-delay: 0.86s;
+  		-ms-animation-delay: 0.86s;
+  		-webkit-animation-delay: 0.86s;
+  		-moz-animation-delay: 0.86s; }
+
+
+
+  @keyframes cssload-animation {
+  	0%	 { transform: translateX(-100%) scale(0); }
+  	50%	{ transform: translateX(0%)		scale(1); }
+  	100% { transform: translateX(100%)	scale(0); }
+  }
+
+  @-o-keyframes cssload-animation {
+  	0%	 { -o-transform: translateX(-100%) scale(0); }
+  	50%	{ -o-transform: translateX(0%)		scale(1); }
+  	100% { -o-transform: translateX(100%)	scale(0); }
+  }
+
+  @-ms-keyframes cssload-animation {
+  	0%	 { -ms-transform: translateX(-100%) scale(0); }
+  	50%	{ -ms-transform: translateX(0%)		scale(1); }
+  	100% { -ms-transform: translateX(100%)	scale(0); }
+  }
+
+  @-webkit-keyframes cssload-animation {
+  	0%	 { -webkit-transform: translateX(-100%) scale(0); }
+  	50%	{ -webkit-transform: translateX(0%)		scale(1); }
+  	100% { -webkit-transform: translateX(100%)	scale(0); }
+  }
+
+  @-moz-keyframes cssload-animation {
+  	0%	 { -moz-transform: translateX(-100%) scale(0); }
+  	50%	{ -moz-transform: translateX(0%)		scale(1); }
+  	100% { -moz-transform: translateX(100%)	scale(0); }
   }

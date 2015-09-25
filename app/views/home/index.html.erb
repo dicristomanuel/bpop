@@ -1,5 +1,4 @@
 <div ng-app="bpopApp" ng-controller="statsController" class="animated fadeIn" id="main-container">
-  <for-spin></for-spin>
   <div id="div-carousel" data-carousel="<%= get_stats_for_carousel %>"></div>
   <header>
     <div class="layer-one">
@@ -147,33 +146,32 @@
       <p>FANS</p>
     </div>
 
-    <fans-box>
+    <top-5-fans>
       <title-fan>YOUR <span>TOP</span> FAN</title-fan>
       <top-fan class="animated pulse">
-        first
       </top-fan>
-        second
-        third
+      <info>
+
+      </info>
 
 
       <top-5>
-        fourth
+
       </top-5>
 
-    </fans-box>
+    </top-5-fans>
 
     <green-box>
     </green-box>
 
     <fans-box style="margin-top:2vw">
 
-      <title-fan draggable="true"><span>FANS</span> GROUP</title-fan>
+      <title-fan><span>FANS</span> GROUP</title-fan>
       <p id="description">put together a group of fans and see the posts that they commonly liked or commented on your facebook page</p>
       <fan-name>...</fan-name>
       <fans-container>
 
         <group-circle>
-
           <empty-group-fan-container class="circle-step-one">
             <p class="fa fa-user" id="circle-one"></p>
             <p class="fa fa-plus"></p>
@@ -199,7 +197,6 @@
 
         </fans-super-list>
       </fans-container>
-      sixth
 
   </fans-box>
 
@@ -218,12 +215,10 @@
     </display-posts>
   </center-posts>
 
-<footer>
-  <footer-logo>
+  <footer>
+    <footer-logo>
 
-  </footer-logo>
-
-
-</footer>
+    </footer-logo>
+  </footer>
 
 </div>

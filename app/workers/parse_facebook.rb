@@ -23,7 +23,7 @@ class ParseFacebook
       }
 
     end
-    
-    User.where(bpopToken: bpopToken).update_all(fans_data: fans_data)
+
+    User.where(bpopToken: bpopToken).update_all({fans_data: fans_data, is_parsed: true})
   end
 end

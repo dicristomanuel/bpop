@@ -1,5 +1,6 @@
 $( document ).ready(function() {
 
+
 // ===========================
 // RETRIEVING DATA
 // ===========================
@@ -7,6 +8,10 @@ $( document ).ready(function() {
   var counter = 1;
 
   var getFansData = function() {
+
+    $('fans-super-list').html('<loader><div class="wrapper"><div class="cssload-loader"></div></div></loader>');
+    $('top-fan').html('<loader><div class="wrapper"><div class="cssload-loader"></div></div></loader>');
+
     var source;
     source = new EventSource('/check');
     source.addEventListener("refresh", function(e) {
@@ -22,10 +27,31 @@ $( document ).ready(function() {
           );
           counter += 1;
         });
+
+        $('top-fan').html("");
+        $('info').append('<name>' + fans_data[0].fan_name + '</name> \
+          <interactions>' + fans_data[0].fan_interactions + '<span style="font-size:1vw">interactions</span></interactions>');
+        $('top-fan').append('<a href="' + fans_data[0].fan_link + '" target="_blank"><img src="' + fans_data[0].fan_pic + '"></a>');
+        $('fans-box').append('<p id="active-users"><span class="strong">' + fans_data.length + '</span> active fans on your profile</p>');
+
+        var index = 1;
+          while (index <= 4) {
+            $('top-5').append('<container class="animated fadeIn"> \
+            <profile-pic> \
+             <a href="' +  fans_data[index].fan_link + '" target="_blank"><img src="' + fans_data[index].fan_pic + '"></a> \
+            </profile-pic> \
+            <p>' + fans_data[index].fan_name + '</p> \
+            <interactions>' + fans_data[index].fan_interactions + '</interactions> \
+            </container>');
+
+            index += 1;
+          }
         source.close();
       }
     });
   }();
+
+  // ===========================
 
 
   var fanTransferred = '',
@@ -58,10 +84,11 @@ $( document ).ready(function() {
     }, 900);
   }, 5300);
 
-  $('profile-pic.small').hover(function() {
+
+  $('fans-super-list').on('mouseenter', 'profile-pic', function() {
     thisName = $(this).text();
-      $('fan-name').text(thisName);
-  });
+    $('fan-name').text(thisName);
+});
 
 
   function handleDragStart(e) {
@@ -97,6 +124,10 @@ $( document ).ready(function() {
 
 
   $('group-circle').on('drop', function(e) {
+
+    $('display-posts').html('<loader><div class="wrapper"><div class="cssload-loader"></div></div></loader>');
+    $('.fa-arrow-down').remove();
+    $('fans-box').append('<div class="fa fa-arrow-down animated pulse"></div>');
 
     e.preventDefault();
       $(this).css({opacity:'1'});
@@ -185,6 +216,7 @@ $( document ).ready(function() {
       $('.circle-step-one').hide();
       $('.circle-step-two').fadeIn();
     } else {
+      $('.fa-arrow-down').remove();
       $('.circle-step-two').hide();
       $('.circle-step-one').fadeIn();
     }
@@ -263,32 +295,4 @@ $( document ).ready(function() {
         }
       }
   });
-
-  var opts = {
-    lines: 17 // The number of lines to draw
-    , length: 0 // The length of each line
-    , width: 32 // The line thickness
-    , radius: 84 // The radius of the inner circle
-    , scale: 0.25 // Scales overall size of the spinner
-    , corners: 1 // Corner roundness (0..1)
-    , color: '#FF7F33' // #rgb or #rrggbb or array of colors
-    , opacity: 0.2 // Opacity of the lines
-    , rotate: 0 // The rotation offset
-    , direction: 1 // 1: clockwise, -1: counterclockwise
-    , speed: 1.1 // Rounds per second
-    , trail: 58 // Afterglow percentage
-    , fps: 20 // Frames per second when using setTimeout() as a fallback for CSS
-    , zIndex: 2e9 // The z-index (defaults to 2000000000)
-    , className: 'spinner' // The CSS class to assign to the spinner
-    , top: '50%' // Top position relative to parent
-    , left: '50%' // Left position relative to parent
-    , shadow: false // Whether to render a shadow
-    , hwaccel: false // Whether to use hardware acceleration
-    , position: 'absolute' // Element positioning
-  }
-
-  var spinner = new Spinner(opts).spin();
-  $('for-spin').append(spinner.el);
-
-
 });
