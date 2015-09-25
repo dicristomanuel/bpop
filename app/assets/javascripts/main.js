@@ -31,7 +31,7 @@ $( document ).ready(function() {
         $('top-fan').html("");
         $('info').append('<name>' + fans_data[0].fan_name + '</name> \
           <interactions>' + fans_data[0].fan_interactions + '<span style="font-size:1vw">interactions</span></interactions>');
-        $('top-fan').append('<a href="' + fans_data[0].fan_link + '" target="_blank"><img src="' + fans_data[0].fan_pic + '"></a>');
+        $('top-fan').append('<a href="' + fans_data[0].fan_link + '" target="_blank" class="animated pulse"><img src="' + fans_data[0].fan_pic + '"></a>');
         $('fans-box').append('<p id="active-users"><span class="strong">' + fans_data.length + '</span> active fans on your profile</p>');
 
         var index = 1;
