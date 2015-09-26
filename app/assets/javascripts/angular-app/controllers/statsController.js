@@ -10,22 +10,24 @@ angular.module('bpopApp').controller("statsController",
  // TODO change to jquery
   var div = document.getElementById('div-carousel');
   var dataToParse = div.getAttribute("data-carousel").replace(/=>/g, ':');
-  // dataToParse = JSON.parse(dataToParse);
+  console.log(dataToParse);
+  commentsAndPosts = JSON.parse(dataToParse);
+  console.log(commentsAndPosts);
 
   $scope.elements = [];
 
-  // dataToParse.comments.comments.forEach(function(comment) {
-  //   $scope.elements.push({
-  //     provider: 'facebook',
-  //     subject: 'comments',
-  //     pic: '',
-  //     message: comment.message,
-  //     author: comment.user_name,
-  //     url: ''
-  //   });
-  // });
+  commentsAndPosts.comments.comments.forEach(function(comment) {
+    $scope.elements.push({
+      provider: 'facebook',
+      subject: 'comments',
+      pic: '',
+      message: comment.message,
+      author: comment.user_name,
+      url: ''
+    });
+  });
 
-  dataToParse.posts.posts.forEach(function(post) {
+  commentsAndPosts.posts.posts.forEach(function(post) {
     $scope.elements.push({
       provider: 'facebook',
       subject: 'posts',

@@ -277,7 +277,7 @@ class HomeController < ApplicationController
 	# ======================
 
 	def get_stats_for_carousel
-		{'comments' => get_comments_1M(10), 'posts' => get_posts_1M(10)}
+		{"comments" => get_comments_1M(10), "posts" => get_posts_1M(10)}
 	end
 
 	# def get_gender_percentage
