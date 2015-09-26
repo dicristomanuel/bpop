@@ -16,7 +16,90 @@ $( document ).ready(function() {
     source = new EventSource('/check');
     source.addEventListener("refresh", function(e) {
       fans_data = JSON.parse(e.data).fans_data;
+      comments  = JSON.parse(e.data).comments;
+      posts     = JSON.parse(e.data).posts;
+
+      commentsAndPosts = [];
+
+      comments.forEach(function(comment) {
+        commentsAndPosts.push(comment);
+      });
+
+      posts.forEach(function(post) {
+        commentsAndPosts.push(post);
+      });
+
+
       if(fans_data !== "") {
+        var dots = '';
+        $('div.carousel-box-right').html('<div class="subject animated fadeIn"> \
+          <span class="medium animated fadeIn">latest </span><span class="bold animated fadeIn">facebook</span> posts \
+        </div> \
+        <div class="message light" animated fadeIn> \
+          <p class="light animated fadeIn"> \
+            ' + posts[0].message.substring(0, 80) + dots + ' \
+          </p> \
+          <span class="animated fadeIn"> \
+            <a href="' + posts[0].url + '" target="_blank"><img src="' + posts[0].picture + '"></a> \
+          </span> \
+        </div> \
+        <div class="after-message animated fadeIn"> \
+            <span>likes</span> <span class="strong">' + posts[0].likes + '</span> \
+            <span>comments</span> <span class="strong">' + posts[0].comments + '</span> \
+        </div>');
+
+        setInterval(function(){
+          var data = commentsAndPosts[Math.floor(Math.random() * commentsAndPosts.length)];
+
+          if(data.url) {
+            console.log(data.picture);
+            if(data.message.length > 79) { dots = ' ...'; }
+
+            $('div.carousel-box-right').html('<div class="subject animated fadeIn"> \
+              <span class="medium animated fadeIn">latest </span><span class="bold animated fadeIn">facebook</span> posts \
+            </div> \
+            <div class="message light" animated fadeIn> \
+              <p class="light animated fadeIn"> \
+                ' + data.message.substring(0, 80) + dots + ' \
+              </p> \
+              <span class="animated fadeIn"> \
+                <a href="' + data.url + '" target="_blank"><img src="' + data.picture + '"></a> \
+              </span> \
+            </div> \
+            <div class="after-message animated fadeIn"> \
+                <span>likes</span> <span class="strong">' + data.likes + '</span> \
+                <span>comments</span> <span class="strong">' + data.comments + '</span> \
+            </div>');
+          } else {
+            $('div.carousel-box-right').html('<div class="subject animated fadeIn"> \
+              <span class="medium animated fadeIn">latest </span><span class="bold animated fadeIn">facebook</span> comments \
+            </div> \
+            <div class="message light" animated fadeIn> \
+              <p class="light animated fadeIn"> \
+                ' + data.message.substring(0, 80) + dots + ' \
+              </p> \
+            </div> \
+            <div class="after-message animated fadeIn"> \
+              <span class="strong animated fadeIn">from</span>' + data.user_name + ' \
+            </div>');
+          }
+        },5000);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         $('fans-super-list').html("");
         fans_data.forEach(function(fan) {
           $('fans-super-list').append(

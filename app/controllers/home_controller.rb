@@ -21,10 +21,14 @@ class HomeController < ApplicationController
 				completed = Typhoeus.get(
 		      "http://localhost:4000/is-complete/" + current_user.bpopToken
 		    ).response_body
+
+ 				carousel_comments = get_comments_1M(10)
+				carousel_posts = get_posts_1M(10)
+
 				if completed == 'true' && current_user.is_parsed == false
 					ParseFacebook.perform_async(current_user.id)
 				elsif completed == 'true' && current_user.is_parsed == true
-          sse.write({fans_data: fans_data.as_json}, {event: 'refresh'})
+          sse.write({fans_data: fans_data.as_json, posts: carousel_posts, comments: carousel_comments}, {event: 'refresh'})
         end
         sleep 1
       end
@@ -207,18 +211,18 @@ class HomeController < ApplicationController
 
 	# === GET COMMENTS ===
 
-	def get_comments_1W(limit=nil)
-		if limit
-			request_monthly_comments =	Typhoeus.get(
-				"http://localhost:4000/fbcomments/" + current_user.bpopToken + "?since=one+week+ago&limit=" + limit.to_s
-			)
-		else
-		request_monthly_comments =	Typhoeus.get(
-			"http://localhost:4000/fbcomments/" + current_user.bpopToken + "?since=one+week+ago"
-		)
-		JSON.parse(request_monthly_comments.response_body)['count']
-		end
-	end
+	# def get_comments_1W(limit=nil)
+	# 	if limit
+	# 		request_monthly_comments =	Typhoeus.get(
+	# 			"http://localhost:4000/fbcomments/" + current_user.bpopToken + "?since=one+week+ago&limit=" + limit.to_s
+	# 		)
+	# 	else
+	# 	request_monthly_comments =	Typhoeus.get(
+	# 		"http://localhost:4000/fbcomments/" + current_user.bpopToken + "?since=one+week+ago"
+	# 	)
+	# 	JSON.parse(request_monthly_comments.response_body)['count']
+	# 	end
+	# end
 
 	def get_comments_1M(limit=nil)
 		if limit

@@ -1,5 +1,5 @@
 <div ng-app="bpopApp" ng-controller="statsController" class="animated fadeIn" id="main-container">
-  <div id="div-carousel" data-carousel="<%= get_stats_for_carousel %>"></div>
+  <div id="div-carousel" data-carousel="<//%= get_stats_for_carousel %>"></div>
   <header>
     <div class="layer-one">
       <div class="logo"></div>
@@ -32,17 +32,17 @@
               </p>
             </div>
             <p class="provider">facebook</p>
-            <p class="number" ng-if="timeRange === 'WEEK'   && subject === 'likes'"> <%= get_likes_1W %> </p>
-            <p class="number" ng-if="timeRange === 'MONTH'  && subject === 'likes'"> <%= get_likes_1M %> </p>
-            <p class="number" ng-if="timeRange === '2MONTH' && subject === 'likes'"> <%= get_likes_2M %> </p>
-            <p class="number" ng-if="timeRange === '3MONTH' && subject === 'likes'"> <%= get_likes_3M %> </p>
-            <p class="number" ng-if="timeRange === '6MONTH' && subject === 'likes'"> <%= get_likes_6M %> </p>
+            <p class="number" ng-if="timeRange === 'WEEK'   && subject === 'likes'"> <//%= get_likes_1W %> </p>
+            <p class="number" ng-if="timeRange === 'MONTH'  && subject === 'likes'"> <//%= get_likes_1M %> </p>
+            <p class="number" ng-if="timeRange === '2MONTH' && subject === 'likes'"> <//%= get_likes_2M %> </p>
+            <p class="number" ng-if="timeRange === '3MONTH' && subject === 'likes'"> <//%= get_likes_3M %> </p>
+            <p class="number" ng-if="timeRange === '6MONTH' && subject === 'likes'"> <//%= get_likes_6M %> </p>
 
-            <p class="number" ng-if="timeRange === 'WEEK'   && subject === 'comments'"> <%= get_comments_1W %> </p>
-            <p class="number" ng-if="timeRange === 'MONTH'  && subject === 'comments'"> <%= get_comments_1M %> </p>
-            <p class="number" ng-if="timeRange === '2MONTH' && subject === 'comments'"> <%= get_comments_2M %> </p>
-            <p class="number" ng-if="timeRange === '3MONTH' && subject === 'comments'"> <%= get_comments_3M %> </p>
-            <p class="number" ng-if="timeRange === '6MONTH' && subject === 'comments'"> <%= get_comments_6M %> </p>
+            <p class="number" ng-if="timeRange === 'WEEK'   && subject === 'comments'"> <//%= get_comments_1W %> </p>
+            <p class="number" ng-if="timeRange === 'MONTH'  && subject === 'comments'"> <//%= get_comments_1M %> </p>
+            <p class="number" ng-if="timeRange === '2MONTH' && subject === 'comments'"> <//%= get_comments_2M %> </p>
+            <p class="number" ng-if="timeRange === '3MONTH' && subject === 'comments'"> <//%= get_comments_3M %> </p>
+            <p class="number" ng-if="timeRange === '6MONTH' && subject === 'comments'"> <//%= get_comments_6M %> </p>
 
             <p class="subject" id="subject">
               <span><select ng-model="subject" id="select-subject">
@@ -54,29 +54,6 @@
 
         <div class="carousel-box-right" ng-cloak>
 
-          <div class="subject">
-            <span class="medium">latest </span><span class="bold">{{elements[counter].provider}}</span> {{elements[counter].subject}}
-          </div>
-          <div class="message light">
-            <p class="light">
-              {{'"' + elements[counter].message + '"'| cut:true:80:' ...'}}
-            </p>
-            <span ng-if="elements[counter].pic != '' && elements[counter].url != ''">
-              <a href="{{elements[counter].url}}" target="_blank"><img src="{{elements[counter].pic}}"></a>
-            </span>
-
-            <span ng-if="elements[counter].pic != '' elements[counter].url == ''">
-              <img src="{{elements[counter].pic}}" >
-            </span>
-
-          </div>
-          <div class="after-message">
-
-              <span class="strong" ng-if='elements[counter].author'>from</span> {{elements[counter].author}}
-              <span ng-if='elements[counter].likesAmount'>likes</span> <span class="strong">{{elements[counter].likesAmount}}</span>
-              <span ng-if='elements[counter].commentsAmount'>comments</span> <span class="strong">{{elements[counter].commentsAmount}}</span>
-
-          </div>
         </div>
       </div>
     </div>
@@ -90,7 +67,7 @@
     <div class="column_charts">
       <div class="six-m-posts">
         <container-span-number>
-          <number id="6-m-posts"><%= get_posts_6M %></number>
+          <number id="6-m-posts"><//%= get_posts_6M %></number>
           <span>POSTS</span>
         </container-span-number>
         <div id="bar_posts">
@@ -99,7 +76,7 @@
 
       <div class="six-m-likes">
         <container-span-number>
-          <number id="6-m-likes"><%= get_likes_6M %></number>
+          <number id="6-m-likes"><//%= get_likes_6M %></number>
           <span>LIKES</span>
         </container-span-number>
         <div id="bar_likes">
@@ -108,7 +85,7 @@
 
       <div class="six-m-comments">
         <container-span-number>
-          <number id="6-m-comments"><%= get_comments_6M %></number>
+          <number id="6-m-comments"><//%= get_comments_6M %></number>
           <span>COMMENTS</span>
         </container-span-number>
         <div id="bar_comments">
