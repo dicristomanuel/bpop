@@ -36,7 +36,8 @@ class Users::SessionsController < ApplicationController
           if current_user.identities.select {|social| social.provider == 'twitter'}
             session[:twitter] = 'loggedin'
           end
-        redirect_to 'http://localhost:3000/users/sign_in#/success'
+        # redirect_to 'http://localhost:3000/users/sign_in#/success'
+        redirect_to 'http://localhost:3000/users/auth/facebook'
       end
   end
 
@@ -54,8 +55,4 @@ class Users::SessionsController < ApplicationController
   def user_params
     params.require(:user).permit(:email, :password)
   end
-
-  # def after_sign_in_path_for
-  #   redirect_to user_session_path
-  # end
 end
