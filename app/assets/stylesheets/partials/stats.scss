@@ -290,7 +290,6 @@
             }
           }
           div#bar_posts {
-            @include posts-grow-animation(5vw);
             width: 5vw;
             background: #8edacf;
             border-radius: 8%;
@@ -328,7 +327,6 @@
             }
           }
           div#bar_likes {
-            @include likes-grow-animation(15vw);
             width: 5vw;
             background: #8edacf;
             border-radius: 8%;
@@ -366,7 +364,6 @@
             }
           }
           div#bar_comments {
-            @include comments-grow-animation(7vw);
             width: 5vw;
             background: #8edacf;
             border-radius: 8%;
@@ -380,8 +377,10 @@
 
     blue-box {
       display: flex;
-      // min-height: 2vw;
+      justify-content: center;
       margin-top: 7vw;
+      margin-bottom: 3vw;
+      width: 100vw;
       box-shadow: $box-shadow-simple;
 
       background: {
@@ -390,13 +389,20 @@
         size: contain;
       }
 
+
+    container-percentage {
+      display: flex;
+      justify-content: center;
+      align-self: center;
+      width: 80vw;
+
       male-percentage {
         display: flex;
-        flex-flow: wrap;
-        min-width: 50vw;
-        height: 25vw;
-        margin: 2.5vw 0 0 4vw;
         align-items: flex-end;
+        min-width: 45vw;
+        height: 25vw;
+        margin-top: 4vw;
+
 
         background: {
           image: url('male-head.png');
@@ -405,20 +411,15 @@
         }
 
         div#colum-male-gender-percentage {
-          @include male-percentage-grow-animation(17vw);
           width: 5vw;
-          margin: 0 0 2.90vw 18vw;
+          margin: 0 0 5.1vw 17vw;
           background: #f1e775;
           border-radius: 10%;
-          animation-name: grow-male-percentage;
-          animation-duration: 2s;
-          animation-fill-mode: forwards;
-          animation-direction: normal;
         }
 
         span {
           font-size: 2vw;
-          margin: 0 0 2.58vw -4.72vw;
+          margin: 0 0 5.1vw -4.72vw;
         }
 
         number {
@@ -435,55 +436,50 @@
           color: $dark-grey;
         }
       }
+
+      female-percentage {
+        display: flex;
+        align-items: flex-end;
+        min-width: 45vw;
+        height: 25vw;
+        margin-top: 4vw;
+
+        background: {
+          image: url('female-head.png');
+          repeat: no-repeat;
+          size: contain;
+        }
+
+        div#colum-female-gender-percentage {
+          width: 5vw;
+          margin: 0 0 5.1vw 24vw;
+          background: #ed88a7;
+          border-radius: 10%;
+        }
+
+        span {
+          font-size: 1.4vw;
+          margin: 0 0 5.1vw -4.8vw;
+        }
+
+        number {
+          font-size: 7vw;
+          font-weight: 700;
+          margin: 7vw 0 0 -20vw;
+          align-self: flex-start;
+          color: $dark-grey;
+        }
+
+        symbol {
+          font-size: 7vw;
+          font-weight: 700;
+          margin: 0 0 10.7vw .9vw;
+          color: $dark-grey;
+        }
+      }
     }
-
-
-    female-percentage {
-      display: flex;
-      flex-flow: wrap;
-      align-items: flex-end;
-      min-width: 50vw;
-      min-height: 30vw;
-      margin: -25vw 4vw 0 0;
-
-      background: {
-        image: url('female-head.png');
-        repeat: no-repeat;
-        size: contain;
-      }
-
-      div#colum-female-gender-percentage {
-        @include female-percentage-grow-animation(20vw);
-        width: 5vw;
-        margin: 0 0 7.90vw 28vw;
-        background: #ed88a7;
-        border-radius: 10%;
-        animation-name: grow-female-percentage;
-        animation-duration: 2s;
-        animation-fill-mode: forwards;
-        animation-direction: normal;
-      }
-
-      span {
-        font-size: 1.4vw;
-        margin: 0 0 7.8vw -4.8vw;
-      }
-
-      number {
-        font-size: 7vw;
-        font-weight: 700;
-        margin: 7vw 0 0 -20vw;
-        align-self: flex-start;
-        color: $dark-grey;
-      }
-
-      symbol {
-        font-size: 7vw;
-        font-weight: 700;
-        margin: 0 0 15vw .9vw;
-        color: $dark-grey;
-      }
   }
+
 
   green-box {
     display: flex;
@@ -939,6 +935,79 @@
   		-ms-animation-delay: 0.86s;
   		-webkit-animation-delay: 0.86s;
   		-moz-animation-delay: 0.86s; }
+
+
+
+
+
+
+
+      .cssload-loader-dark {
+        width: 17px;
+        height: 17px;
+        border-radius: 50%;
+        margin: 1em;
+        display: inline-block;
+        position: relative;
+        vertical-align: middle;
+      }
+
+      .cssload-loader-dark {
+        width: 17px;
+        height: 17px;
+        border-radius: 50%;
+        margin: 1em;
+        display: inline-block;
+        position: relative;
+        vertical-align: middle;
+      }
+      .cssload-loader-dark,
+      .cssload-loader-dark:before,
+      .cssload-loader-dark:after {
+        animation: 1.15s infinite ease-in-out;
+          -o-animation: 1.15s infinite ease-in-out;
+          -ms-animation: 1.15s infinite ease-in-out;
+          -webkit-animation: 1.15s infinite ease-in-out;
+          -moz-animation: 1.15s infinite ease-in-out;
+      }
+      .cssload-loader-dark:before,
+      .cssload-loader-dark:after {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+      .cssload-loader-dark:before,
+      .cssload-loader-dark:after {
+          content: "";
+      }
+
+      .cssload-loader-dark:before,
+      .cssload-loader-dark:after {
+          content: "";
+          background-color: $ultra-dark-grey;
+          transform: scale(0);
+          -o-transform: scale(0);
+          -ms-transform: scale(0);
+          -webkit-transform: scale(0);
+          -moz-transform: scale(0);
+          animation: cssload-animation 1.73s infinite ease-in-out;
+          -o-animation: cssload-animation 1.73s infinite ease-in-out;
+          -ms-animation: cssload-animation 1.73s infinite ease-in-out;
+          -webkit-animation: cssload-animation 1.73s infinite ease-in-out;
+          -moz-animation: cssload-animation 1.73s infinite ease-in-out;
+      }
+      .cssload-loader-dark:after { animation-delay: 0.86s;
+          -o-animation-delay: 0.86s;
+          -ms-animation-delay: 0.86s;
+          -webkit-animation-delay: 0.86s;
+          -moz-animation-delay: 0.86s; }
+
+
+
 
 
 

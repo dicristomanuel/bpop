@@ -1,6 +1,6 @@
 <div ng-app="bpopApp" ng-controller="authController">
-  <span class="step-arrow fa fa-arrow-left" ng-show="<%= session[:user_id].nil? %>" ng-cloak></span>
-  <span class="step-arrow fa fa-arrow-right" ng-hide="<%= session[:user_id].nil? %>" ng-cloak></span>
+  <span class="step-arrow animated swing fa fa-arrow-left" ng-show="<%= session[:user_id].nil? %>" ng-cloak></span>
+  <span class="step-arrow animated swing fa fa-arrow-right" ng-hide="<%= session[:user_id].nil? %>" ng-cloak></span>
 
   <main-for-auth>
       <!-- TODO make it animate only when is first visit -->

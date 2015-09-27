@@ -11,6 +11,7 @@ $( document ).ready(function() {
 
     $('fans-super-list').html('<loader><div class="wrapper"><div class="cssload-loader"></div></div></loader>');
     $('top-fan').html('<loader><div class="wrapper"><div class="cssload-loader"></div></div></loader>');
+    $('div.carousel-box-right').html('<loader><div class="wrapper"><div class="cssload-loader-dark"></div></div></loader>');
 
     var source;
     source = new EventSource('/check');
@@ -51,10 +52,9 @@ $( document ).ready(function() {
         setInterval(function(){
           var data = commentsAndPosts[Math.floor(Math.random() * commentsAndPosts.length)];
 
-          if(data.url) {
-            console.log(data.picture);
-            if(data.message.length > 79) { dots = ' ...'; }
+          if(data.message.length > 79) { dots = ' ...'; } else { dots='' }
 
+          if(data.url) {
             $('div.carousel-box-right').html('<div class="subject animated fadeIn"> \
               <span class="medium animated fadeIn">latest </span><span class="bold animated fadeIn">facebook</span> posts \
             </div> \
@@ -80,25 +80,10 @@ $( document ).ready(function() {
               </p> \
             </div> \
             <div class="after-message animated fadeIn"> \
-              <span class="strong animated fadeIn">from</span>' + data.user_name + ' \
+              <span class="strong animated fadeIn">from </span>' + data.user_name + ' \
             </div>');
           }
         },5000);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         $('fans-super-list').html("");
         fans_data.forEach(function(fan) {
@@ -129,12 +114,126 @@ $( document ).ready(function() {
 
             index += 1;
           }
+
+          $.get(
+             "http://localhost:3000/get-carousel-numbers?since=one+week+ago&subject=likes",
+             function(data) {
+               $('p.number').html(data);
+             }
+           );
+
+           $.get(
+              "http://localhost:3000/get-6-month-data",
+              function(data) {
+                $('number#6-m-posts').html(data[0].posts);
+                $('number#6-m-likes').html(data[1].likes);
+                $('number#6-m-comments').html(data[2].comments);
+
+                $('#6-m-posts').animateNumber({ number: $('#6-m-posts').text() }, 1500);
+                $('#6-m-likes').animateNumber({ number: $('#6-m-likes').text() }, 1500);
+                $('#6-m-comments').animateNumber({ number: $('#6-m-comments').text() }, 1500);
+
+                var values = [data[0].posts, data[1].likes, data[2].comments];
+                var max = Math.max.apply(Math, values);
+
+                var percentagePosts = values[0] / max * 100;
+                var percentageLikes = values[1] / max * 100;
+                var percentageComments = values[2] / max * 100;
+
+                $( "#bar_posts" ).animate({
+                 height: percentagePosts + '%'
+               });
+
+                $( "#bar_likes" ).animate({
+                 height: percentageLikes + '%'
+               });
+
+               var values = [data[0].posts, data[1].likes, data[2].comments];
+               var max = Math.max.apply(Math, values);
+
+               var percentagePosts = values[0] / max * 100;
+               var percentageLikes = values[1] / max * 100;
+               var percentageComments = values[2] / max * 100;
+
+               $( "#bar_posts" ).animate({
+                height: percentagePosts + '%'
+              });
+
+               $( "#bar_likes" ).animate({
+                height: percentageLikes + '%'
+              });
+
+               $( "#bar_comments" ).animate({
+                height: percentageComments + '%'
+              });
+              }
+            );
+
+
+            $.get(
+               "http://localhost:3000/get-gender-percentage",
+               function(data) {
+                 console.log(data.male);
+                 console.log(data.female);
+                 $('#gender-percentage-male').html(data.male);
+                 $('#gender-percentage-female').html(data.female);
+
+                 $('#gender-percentage-male').animateNumber({ number: $('#gender-percentage-male').text() }, 1500);
+                 $('#gender-percentage-female').animateNumber({ number: $('#gender-percentage-female').text() }, 1500);
+
+
+                 $( "#colum-male-gender-percentage" ).animate({
+                  height: data.male + '%'
+                });
+
+                 $( "#colum-female-gender-percentage" ).animate({
+                  height: data.female + '%'
+                });
+               }
+             );
+
         source.close();
       }
     });
   }();
 
+
+
+$('#time-range-select').change(function() {
+  $( "#time-range-select option:selected" ).text(function() {
+    subject = $( "#select-subject option:selected" ).text().replace(/\s+/, "") ;
+      $.get(
+         "http://localhost:3000/get-carousel-numbers?since=" + this.id + "&subject=" + subject,
+         function(data) {
+           $('p.number').html(data);
+         }
+       );
+    });
+});
+
+
+  $('#select-subject').change(function() {
+    $( "#select-subject option:selected" ).text(function() {
+      timeRange = $( "#time-range-select option:selected" );
+        $.get(
+           "http://localhost:3000/get-carousel-numbers?since=" + timeRange['0'].id + "&subject=" + this.innerHTML,
+           function(data) {
+             $('p.number').html(data);
+           }
+         );
+      });
+  });
+
+
+
   // ===========================
+
+  window.setInterval(function(){
+    $('.step-arrow').addClass( "animated swing" );
+    window.setInterval(function(){
+      $('.step-arrow').removeClass( "animated swing" );
+    }, 900);
+  }, 7000);
 
 
   var fanTransferred = '',
@@ -147,11 +246,6 @@ $( document ).ready(function() {
       $('.circle-step-one').show();
       $('.circle-step-two').hide();
 
-  $('#6-m-posts').animateNumber({ number: $('#6-m-posts').text() }, 1500);
-  $('#6-m-likes').animateNumber({ number: $('#6-m-likes').text() }, 1500);
-  $('#6-m-comments').animateNumber({ number: $('#6-m-comments').text() }, 1500);
-  $('#gender-percentage-male').animateNumber({ number: $('#gender-percentage-male').text() }, 1500);
-  $('#gender-percentage-female').animateNumber({ number: $('#gender-percentage-female').text() }, 1500);
 
   window.setInterval(function(){
     $('#time-range-select').addClass( "animated pulse" );
@@ -165,7 +259,7 @@ $( document ).ready(function() {
     window.setInterval(function(){
       $('.subject').removeClass( "animated pulse" );
     }, 900);
-  }, 5300);
+  }, 5200);
 
 
   $('fans-super-list').on('mouseenter', 'profile-pic', function() {

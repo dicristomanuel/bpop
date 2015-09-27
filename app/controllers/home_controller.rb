@@ -6,7 +6,7 @@ class HomeController < ApplicationController
 	helper_method :get_posts_1W, :get_posts_1M, :get_posts_2M, :get_posts_3M, :get_posts_6M,
 								:get_likes_1W, :get_likes_1M, :get_likes_2M, :get_likes_3M, :get_likes_6M,
 								:get_comments_1W, :get_comments_1M, :get_comments_2M, :get_comments_3M, :get_comments_6M,
-								:get_stats_for_carousel, :get_gender_percentage, :get_posts_for_group
+								:get_stats_for_carousel, :get_posts_for_group
 
 
 	def check
@@ -44,6 +44,59 @@ class HomeController < ApplicationController
 		current_user.update_attribute(:fans_data, '')
 		current_user.update_attribute(:is_parsed, false)
   end
+
+	def get_carousel_numbers
+		since = URI.escape(params[:since])
+		subject = params[:subject]
+
+		count_data =	Typhoeus.get(
+			'http://localhost:4000/fb' + subject + '/' + current_user.bpopToken + '?since=' + since
+		)
+		if subject == 'likes'
+			@number = JSON.parse(count_data.response_body)['likes'].length
+		else
+			@number = JSON.parse(count_data.response_body).length
+		end
+		render json: @number
+	end
+
+	def get_6_month_data
+		@data = []
+
+		posts =	Typhoeus.get(
+			'http://localhost:4000/fbposts/' + current_user.bpopToken
+		)
+
+		likes =	Typhoeus.get(
+			'http://localhost:4000/fblikes/' + current_user.bpopToken
+		)
+
+		comments =	Typhoeus.get(
+			'http://localhost:4000/fbcomments/' + current_user.bpopToken
+		)
+
+
+		@data << { posts: 		JSON.parse(posts.response_body).length }
+		@data << { likes: 		JSON.parse(likes.response_body)['count'] }
+		@data << { comments: JSON.parse(comments.response_body).length }
+
+		render json: @data
+	end
+
+
+	def get_gender_percentage
+		gender_percentage =	Typhoeus.get(
+			'http://localhost:4000/get-gender-percentage/' + current_user.bpopToken
+		)
+
+		@total_percentages = {
+			male:   JSON.parse(gender_percentage.response_body)['total']['male'].round(),
+		  female: JSON.parse(gender_percentage.response_body)['total']['female'].round()
+		}
+
+		render json: @total_percentages
+	end
+
 
 	def group_posts
 		names = ''
