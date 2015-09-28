@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
 
   def current_user
     if session[:user_id]
-      current_user = User.where(bpopToken: session[:user_id]).first
+      current_user = User.where(bpoptoken: session[:user_id]).first
     end
   end
 

@@ -3,16 +3,16 @@ class ParseFacebook
 
   def perform(id)
     user = User.where(id: id)
-    bpopToken = user.first.bpopToken
+    bpoptoken = user.first.bpoptoken
     fans_data = []
 
     fans = Typhoeus.get(
-      "http://localhost:4000/stats/topfan/" + bpopToken
+      "https://bpop-api.herokuapp.com/stats/topfan/" + bpoptoken
     ).response_body
 
     JSON.parse(fans)[1].each do |key, value|
       this_fan_id = Typhoeus.get(
-        "http://localhost:4000/stats/get-fan-id/" + bpopToken + "?userFanName=" + URI.escape(key)
+        "https://bpop-api.herokuapp.com/stats/get-fan-id/" + bpoptoken + "?userFanName=" + URI.escape(key)
       ).response_body
 
       fans_data << { fan_id: JSON.parse(this_fan_id)[0],
@@ -24,6 +24,6 @@ class ParseFacebook
 
     end
 
-    User.where(bpopToken: bpopToken).update_all({fans_data: fans_data, is_parsed: true})
+    User.where(bpoptoken: bpoptoken).update_all({fans_data: fans_data, is_parsed: true})
   end
 end

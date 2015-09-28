@@ -1,12 +1,12 @@
 class PostsFacebook
   include Sidekiq::Worker
 
-  def perform(posts, fb_token, bpopToken, owner, session)
+  def perform(posts, fb_token, bpoptoken, owner, session)
     #API call post request to bPop_api for fbposts / passing posts, tokens and owner's name
-    fbposts_to_bPop_api(posts, fb_token, bpopToken, owner, session)
+    fbposts_to_bPop_api(posts, fb_token, bpoptoken, owner, session)
   end
 
-  def fbposts_to_bPop_api(posts, fb_token, bpopToken, owner, session)
+  def fbposts_to_bPop_api(posts, fb_token, bpoptoken, owner, session)
     #create likes / likes_data variables
     posts.each do |post|
       if post['likes']
@@ -43,7 +43,7 @@ class PostsFacebook
           comments_data: comments_data,
           url: post['link'],
           date: post['created_time'][0..9],
-          bpopToken: bpopToken,
+          bpoptoken: bpoptoken,
           fb_user_token: fb_token,
           fb_post_id: post['id'],
           is_last: is_last
@@ -52,7 +52,7 @@ class PostsFacebook
 
         #send post request to bPop_api to create or update posts
         response = Typhoeus::Request.new(
-          "http://localhost:4000/fbposts",
+          "https://bpop-api.herokuapp.com/fbposts",
           method: :post,
           params: params
         ).run

@@ -1,5 +1,5 @@
 class AddBpopTokenToUsers < ActiveRecord::Migration
   def change
-    add_column :users, :bpopToken, :string
+    add_column :users, :bpoptoken, :string
   end
 end

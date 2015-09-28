@@ -20,7 +20,7 @@ before_filter :configure_account_update_params, only: [:update]
         flash[:alert] = @user.errors.messages[:password_confirmation][0]
         redirect_to 'http://localhost:3000/users/sign_in#/signup'
       else
-        session[:user_id] = @user.bpopToken
+        session[:user_id] = @user.bpoptoken
         redirect_to 'http://localhost:3000/users/sign_in#/success'
       end
   end

@@ -15,7 +15,7 @@ class HomeController < ApplicationController
         fans_data = current_user.fans_data
 
 				completed = Typhoeus.get(
-		      "http://localhost:4000/is-complete/" + current_user.bpopToken
+		      "https://bpop-api.herokuapp.com/is-complete/" + current_user.bpoptoken
 		    ).response_body
 
  				carousel_comments = get_comments_1M(10)
@@ -46,7 +46,7 @@ class HomeController < ApplicationController
 		subject = params[:subject]
 
 		count_data =	Typhoeus.get(
-			'http://localhost:4000/fb' + subject + '/' + current_user.bpopToken + '?since=' + since
+			'https://bpop-api.herokuapp.com/fb' + subject + '/' + current_user.bpoptoken + '?since=' + since
 		)
 		if subject == 'likes'
 			@number = JSON.parse(count_data.response_body)['likes'].length
@@ -60,15 +60,15 @@ class HomeController < ApplicationController
 		@data = []
 
 		posts =	Typhoeus.get(
-			'http://localhost:4000/fbposts/' + current_user.bpopToken
+			'https://bpop-api.herokuapp.com/fbposts/' + current_user.bpoptoken
 		)
 
 		likes =	Typhoeus.get(
-			'http://localhost:4000/fblikes/' + current_user.bpopToken
+			'https://bpop-api.herokuapp.com/fblikes/' + current_user.bpoptoken
 		)
 
 		comments =	Typhoeus.get(
-			'http://localhost:4000/fbcomments/' + current_user.bpopToken
+			'https://bpop-api.herokuapp.com/fbcomments/' + current_user.bpoptoken
 		)
 
 
@@ -82,7 +82,7 @@ class HomeController < ApplicationController
 
 	def get_gender_percentage
 		gender_percentage =	Typhoeus.get(
-			'http://localhost:4000/get-gender-percentage/' + current_user.bpopToken
+			'https://bpop-api.herokuapp.com/get-gender-percentage/' + current_user.bpoptoken
 		)
 
 		@total_percentages = {
@@ -99,7 +99,7 @@ class HomeController < ApplicationController
 		params[:names].each {|name| names += (URI.escape(name) + ',')}
 
 		request_posts_for_group =	Typhoeus.get(
-			'http://localhost:4000/stats/searchgroup/' + current_user.bpopToken + '?users_fans=' + names
+			'https://bpop-api.herokuapp.com/stats/searchgroup/' + current_user.bpoptoken + '?users_fans=' + names
 		)
 
 		@posts = request_posts_for_group.response_body
@@ -111,7 +111,7 @@ class HomeController < ApplicationController
 		name = URI.escape(params[:names])
 
 		request_posts_for_group =	Typhoeus.get(
-			'http://localhost:4000/stats/searchfan/' + current_user.bpopToken + '?userfan=' + name
+			'https://bpop-api.herokuapp.com/stats/searchfan/' + current_user.bpoptoken + '?userfan=' + name
 		)
 
 		@posts = request_posts_for_group.response_body
@@ -124,12 +124,12 @@ class HomeController < ApplicationController
 	def get_posts_1M(limit=nil)
 		if limit
 			request_monthly_posts =	Typhoeus.get(
-				"http://localhost:4000/fbposts/" + current_user.bpopToken + "?since=one+month+ago&limit=" + limit.to_s
+				"https://bpop-api.herokuapp.com/fbposts/" + current_user.bpoptoken + "?since=one+month+ago&limit=" + limit.to_s
 			).response_body
 			JSON.parse(request_monthly_posts)
 		else
 		request_monthly_posts =	Typhoeus.get(
-			"http://localhost:4000/fbposts/" + current_user.bpopToken + "?since=one+month+ago"
+			"https://bpop-api.herokuapp.com/fbposts/" + current_user.bpoptoken + "?since=one+month+ago"
 		)
 		JSON.parse(request_monthly_posts.response_body)['count']
 		end
@@ -139,12 +139,12 @@ class HomeController < ApplicationController
 	def get_comments_1M(limit=nil)
 		if limit
 			request_monthly_comments =	Typhoeus.get(
-				"http://localhost:4000/fbcomments/" + current_user.bpopToken + "?since=one+month+ago&limit=" + limit.to_s
+				"https://bpop-api.herokuapp.com/fbcomments/" + current_user.bpoptoken + "?since=one+month+ago&limit=" + limit.to_s
 			).response_body
 			JSON.parse(request_monthly_comments)
 		else
 		request_monthly_comments =	Typhoeus.get(
-			"http://localhost:4000/fbcomments/" + current_user.bpopToken + "?since=one+month+ago"
+			"https://bpop-api.herokuapp.com/fbcomments/" + current_user.bpoptoken + "?since=one+month+ago"
 		)
 		JSON.parse(request_monthly_comments.response_body)['count']
 		end

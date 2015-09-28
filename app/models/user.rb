@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-	before_create :generate_bpopToken
+	before_create :generate_bpoptoken
 
 	serialize :fans_data, JSON
 
@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
 
 	private
 
-	def generate_bpopToken
-		 self.bpopToken = SecureRandom.hex
+	def generate_bpoptoken
+		 self.bpoptoken = SecureRandom.hex
 	end
 end

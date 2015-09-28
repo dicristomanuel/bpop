@@ -29,7 +29,7 @@ class Users::SessionsController < ApplicationController
         redirect_to :back
       else
         @user = User.find_by_email(params[:user][:email])
-        session[:user_id] = @user.bpopToken
+        session[:user_id] = @user.bpoptoken
           if current_user.identities.select {|social| social.provider == 'facebook'}
             session[:facebook] = 'loggedin'
           end
