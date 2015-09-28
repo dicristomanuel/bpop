@@ -116,14 +116,14 @@ $( document ).ready(function() {
           }
 
           $.get(
-             "http://localhost:3000/get-carousel-numbers?since=one+week+ago&subject=likes",
+             "https://bpop.herokuapp.com/get-carousel-numbers?since=one+week+ago&subject=likes",
              function(data) {
                $('p.number').html(data);
              }
            );
 
            $.get(
-              "http://localhost:3000/get-6-month-data",
+              "https://bpop.herokuapp.com/get-6-month-data",
               function(data) {
                 $('number#6-m-posts').html(data[0].posts);
                 $('number#6-m-likes').html(data[1].likes);
@@ -171,7 +171,7 @@ $( document ).ready(function() {
 
 
             $.get(
-               "http://localhost:3000/get-gender-percentage",
+               "https://bpop.herokuapp.com/get-gender-percentage",
                function(data) {
                  console.log(data.male);
                  console.log(data.female);
@@ -203,7 +203,7 @@ $('#time-range-select').change(function() {
   $( "#time-range-select option:selected" ).text(function() {
     subject = $( "#select-subject option:selected" ).text().replace(/\s+/, "") ;
       $.get(
-         "http://localhost:3000/get-carousel-numbers?since=" + this.id + "&subject=" + subject,
+         "https://bpop.herokuapp.com/get-carousel-numbers?since=" + this.id + "&subject=" + subject,
          function(data) {
            $('p.number').html(data);
          }
@@ -216,7 +216,7 @@ $('#time-range-select').change(function() {
     $( "#select-subject option:selected" ).text(function() {
       timeRange = $( "#time-range-select option:selected" );
         $.get(
-           "http://localhost:3000/get-carousel-numbers?since=" + timeRange['0'].id + "&subject=" + this.innerHTML,
+           "https://bpop.herokuapp.com/get-carousel-numbers?since=" + timeRange['0'].id + "&subject=" + this.innerHTML,
            function(data) {
              $('p.number').html(data);
            }
@@ -318,7 +318,7 @@ $('#time-range-select').change(function() {
 
     if (groupFansName.length === 1 ) {
         $.get(
-           "http://localhost:3000/get-single_fan_posts",
+           "https://bpop.herokuapp.com/get-single_fan_posts",
            { names: groupFansName[0] },
            function(data) {
              $('div#total-posts').text(data.length);
@@ -348,7 +348,7 @@ $('#time-range-select').change(function() {
 
     } else {
       $.get(
-         "http://localhost:3000/get-group-posts",
+         "https://bpop.herokuapp.com/get-group-posts",
          { names: groupFansName },
          function(data) {
            if (data.length === 0) {
@@ -408,7 +408,7 @@ $('#time-range-select').change(function() {
     } else {
       if (groupFansName.length === 1 ) {
           $.get(
-             "http://localhost:3000/get-single_fan_posts",
+             "https://bpop.herokuapp.com/get-single_fan_posts",
              { names: groupFansName[0] },
              function(data) {
                $('div#total-posts').text(data.length);
@@ -438,7 +438,7 @@ $('#time-range-select').change(function() {
 
       } else {
         $.get(
-           "http://localhost:3000/get-group-posts",
+           "https://bpop.herokuapp.com/get-group-posts",
            { names: groupFansName },
            function(data) {
              if (data.length === 0) {

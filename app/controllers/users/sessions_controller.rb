@@ -36,8 +36,7 @@ class Users::SessionsController < ApplicationController
           if current_user.identities.select {|social| social.provider == 'twitter'}
             session[:twitter] = 'loggedin'
           end
-        # redirect_to 'http://localhost:3000/users/sign_in#/success'
-        redirect_to 'http://localhost:3000/users/auth/facebook'
+        redirect_to 'https://bpop.herokuapp.com/users/auth/facebook'
       end
   end
 

@@ -17,16 +17,16 @@ before_filter :configure_account_update_params, only: [:update]
 
       if @user.errors.messages[:password]
         flash[:alert] = @user.errors.messages[:password][0]
-        redirect_to 'http://localhost:3000/users/sign_in#/signup'
+        redirect_to 'https://bpop.herokuapp.com/users/sign_in#/signup'
       elsif @user.errors.messages[:email]
         flash[:alert] = @user.errors.messages[:email][0]
-        redirect_to 'http://localhost:3000/users/sign_in#/signup'
+        redirect_to 'https://bpop.herokuapp.com/users/sign_in#/signup'
       elsif @user.errors.messages[:password_confirmation]
         flash[:alert] = @user.errors.messages[:password_confirmation][0]
-        redirect_to 'http://localhost:3000/users/sign_in#/signup'
+        redirect_to 'https://bpop.herokuapp.com/users/sign_in#/signup'
       else
         session[:user_id] = @user.bpoptoken
-        redirect_to 'http://localhost:3000/users/sign_in#/success'
+        redirect_to 'https://bpop.herokuapp.com/users/sign_in#/success'
       end
   end
 

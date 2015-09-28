@@ -28,7 +28,7 @@ class CallbacksController < Devise::OmniauthCallbacksController
         flash[:error] = 'social account already connected to other user'
       end
 			session[:twitter] = 'loggedin'
-    redirect_to 'http://localhost:3000/users/sign_in#/success'
+    redirect_to 'https://bpop.herokuapp.com/users/sign_in#/success'
   end
 
   def remove_social
