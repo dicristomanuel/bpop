@@ -5,7 +5,6 @@
 //= require angular-rails-templates
 //= require angular-cookie
 //= require angular-animate
-//= require_tree ../stylesheets/materialize/js
 //= require jquery.animateNumber.min.js
 
 //= require angular-app/app
