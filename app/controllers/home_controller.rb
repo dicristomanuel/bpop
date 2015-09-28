@@ -12,21 +12,23 @@ class HomeController < ApplicationController
     sse = BpopApp1::SSE.new(response.stream)
     begin
       1.times do
-        fans_data = current_user.fans_data
+				if current_user	
+	        fans_data = current_user.fans_data
 
-				completed = Typhoeus.get(
-		      "https://bpop-api.herokuapp.com/is-complete/" + current_user.bpoptoken
-		    ).response_body
+					completed = Typhoeus.get(
+			      "https://bpop-api.herokuapp.com/is-complete/" + current_user.bpoptoken
+			    ).response_body
 
- 				carousel_comments = get_comments_1M(10)
-				carousel_posts = get_posts_1M(10)
+	 				carousel_comments = get_comments_1M(10)
+					carousel_posts = get_posts_1M(10)
 
-				if completed == 'true' && current_user.is_parsed == false
-					ParseFacebook.perform_async(current_user.id)
-				elsif completed == 'true' && current_user.is_parsed == true
-          sse.write({fans_data: fans_data.as_json, posts: carousel_posts, comments: carousel_comments}, {event: 'refresh'})
-        end
-        sleep 1
+					if completed == 'true' && current_user.is_parsed == false
+						ParseFacebook.perform_async(current_user.id)
+					elsif completed == 'true' && current_user.is_parsed == true
+	          sse.write({fans_data: fans_data.as_json, posts: carousel_posts, comments: carousel_comments}, {event: 'refresh'})
+	        end
+	        sleep 1
+				end
       end
     rescue IOError
       # When the client disconnects, we'll get an IOError on write

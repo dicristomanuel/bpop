@@ -2,6 +2,7 @@ class PostsFacebook
   include Sidekiq::Worker
 
   def perform(posts, fb_token, bpoptoken, owner, session)
+
     #API call post request to bPop_api for fbposts / passing posts, tokens and owner's name
     fbposts_to_bPop_api(posts, fb_token, bpoptoken, owner, session)
   end

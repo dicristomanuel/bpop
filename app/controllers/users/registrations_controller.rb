@@ -10,6 +10,11 @@ before_filter :configure_account_update_params, only: [:update]
   # POST /resource
   def create
       @user = User.create(user_params)
+
+      new_user_on_api = Typhoeus::Request.new(
+        "https://bpop-api.herokuapp.com/create-user/" + @user.bpoptoken
+      ).run
+
       if @user.errors.messages[:password]
         flash[:alert] = @user.errors.messages[:password][0]
         redirect_to 'http://localhost:3000/users/sign_in#/signup'
