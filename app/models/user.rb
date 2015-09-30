@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
 	serialize :fans_data, JSON
 
 	validates_uniqueness_of :email
-	validates_presence_of :password, :password_confirmation
+	# validates_presence_of :password, :password_confirmation
 
 	has_many :identities, dependent: :destroy
   # Include default devise modules. Others available are:

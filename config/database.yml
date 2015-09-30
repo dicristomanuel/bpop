@@ -81,5 +81,3 @@ test:
 production:
   <<: *default
   database: bpop_app_1_production
-  username: bpop_app_1
-  password: <%= ENV['BPOP_APP_1_DATABASE_PASSWORD'] %>

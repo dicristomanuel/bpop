@@ -2,7 +2,6 @@ class PostsFacebook
   include Sidekiq::Worker
 
   def perform(posts, fb_token, bpoptoken, owner, session)
-
     #API call post request to bPop_api for fbposts / passing posts, tokens and owner's name
     fbposts_to_bPop_api(posts, fb_token, bpoptoken, owner, session)
   end
@@ -51,9 +50,10 @@ class PostsFacebook
         }
       }
 
+
         #send post request to bPop_api to create or update posts
         response = Typhoeus::Request.new(
-          "https://bpop-api.herokuapp.com/fbposts",
+          "http://localhost:4000/fbposts",
           method: :post,
           params: params
         ).run

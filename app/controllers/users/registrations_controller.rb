@@ -11,35 +11,36 @@ before_filter :configure_account_update_params, only: [:update]
   def create
     if params[:user][:password].length < 8
       flash[:alert] = 'password too short - min 8 chars'
-      redirect_to :back
+      redirect_to '/users/sign_in#/signup'
     else
       if params[:user][:password] != params[:user][:password_confirmation]
         flash[:alert] = 'passwords don\'t match'
-        redirect_to :back
+        redirect_to '/users/sign_in#/signup'
       else
         is_present = User.where(email: params[:user][:email])
+        binding.pry
           if !is_present.empty?
             flash[:alert] = 'email address taken'
             redirect_to :back
           else
             @user = User.create(user_params)
             new_user_on_api = Typhoeus::Request.new(
-              "https://bpop-api.herokuapp.com/create-user/" + @user.bpoptoken
+              "http://localhost:4000/create-user/" + @user.bpoptoken
             ).run
 
             if @user.errors.messages[:password]
               flash[:alert] = @user.errors.messages[:password][0]
-              redirect_to 'https://bpop.herokuapp.com/users/sign_in#/signup'
+              redirect_to '/users/sign_in#/signup'
             elsif @user.errors.messages[:email]
               flash[:alert] = @user.errors.messages[:email][0]
-              redirect_to 'https://bpop.herokuapp.com/users/sign_in#/signup'
+              redirect_to '/users/sign_in#/signup'
             elsif @user.errors.messages[:password_confirmation]
               flash[:alert] = @user.errors.messages[:password_confirmation][0]
-              redirect_to 'https://bpop.herokuapp.com/users/sign_in#/signup'
+              redirect_to '/users/sign_in#/signup'
             else
               session[:user_id] = @user.bpoptoken
               flash[:alert] = ""
-              redirect_to 'https://bpop.herokuapp.com/users/sign_in#/success'
+              redirect_to '/users/sign_in#/success'
             end
         end
       end

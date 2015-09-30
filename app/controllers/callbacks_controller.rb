@@ -1,5 +1,6 @@
 class CallbacksController < Devise::OmniauthCallbacksController
 
+
   def facebook
         #get facebook access_token
         fb_response = request.env["omniauth.auth"]
@@ -12,23 +13,21 @@ class CallbacksController < Devise::OmniauthCallbacksController
         posts = get_posts(for_user)
 
         call = Typhoeus::Request.new(
-          "https://bpop-api.herokuapp.com/is-complete-to-false/" + current_user.bpoptoken
+          "http://localhost:4000/is-complete-to-false/" + current_user.bpoptoken
         ).run
+
 
         PostsFacebook.perform_async(posts, fb_token, current_user.bpoptoken, fb_response['info']['name'], session[:facebook])
         session[:facebook] = 'loggedin'
 
-  			redirect_to 'https://bpop.herokuapp.com/users/sign_in#/success'
+  			redirect_to '/users/sign_in#/success'
   end
 
 
   def twitter
 			identity = current_user.identities.create(twitter_categorize(request.env["omniauth.auth"]))
-      if identity.errors.messages[:profile_url]
-        flash[:error] = 'social account already connected to other user'
-      end
 			session[:twitter] = 'loggedin'
-    redirect_to 'https://bpop.herokuapp.com/users/sign_in#/success'
+      redirect_to '/users/sign_in#/success'
   end
 
   def remove_social
@@ -43,7 +42,9 @@ class CallbacksController < Devise::OmniauthCallbacksController
 
   def get_posts(for_user)
     since_this_date = Chronic.parse("six months ago").to_s[0..9]
+    binding.pry
     for_user.get_object('me/posts?limit=5000&since=' + since_this_date)
+
   end
 
 

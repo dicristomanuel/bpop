@@ -1,6 +1,6 @@
 # class Users::SessionsController < Devise::SessionsController
 class Users::SessionsController < ApplicationController
-
+require 'pry-rails'
 
   def new
     if current_user
@@ -19,6 +19,14 @@ class Users::SessionsController < ApplicationController
         @tw_profile_pic = find_provider_tw.first.image_url
         @tw_name = find_provider_tw.first.name.upcase
       end
+
+      if not flash[:alert].nil? and flash[:alert].include?('acebook')
+        flash[:alert] = ""
+        flash[:alert_social] = "please try again"
+      end
+
+      render "/users/sessions/new"
+
   end
 
 
@@ -38,7 +46,11 @@ class Users::SessionsController < ApplicationController
           end
 
         flash[:alert] = ""
-        redirect_to 'https://bpop.herokuapp.com/users/auth/facebook'
+        if current_user.identities.any? {|identity| identity[:provider].include?('facebook')}
+          redirect_to '/users/auth/facebook'
+        else
+          redirect_to '/users/sign_in#/success'
+        end
       end
   end
 

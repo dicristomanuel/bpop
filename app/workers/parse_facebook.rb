@@ -7,12 +7,12 @@ class ParseFacebook
     fans_data = []
 
     fans = Typhoeus.get(
-      "https://bpop-api.herokuapp.com/stats/topfan/" + bpoptoken
+      "http://localhost:4000/stats/topfan/" + bpoptoken
     ).response_body
 
     JSON.parse(fans)[1].each do |key, value|
       this_fan_id = Typhoeus.get(
-        "https://bpop-api.herokuapp.com/stats/get-fan-id/" + bpoptoken + "?userFanName=" + URI.escape(key)
+        "http://localhost:4000/stats/get-fan-id/" + bpoptoken + "?userFanName=" + URI.escape(key)
       ).response_body
 
       fans_data << { fan_id: JSON.parse(this_fan_id)[0],
