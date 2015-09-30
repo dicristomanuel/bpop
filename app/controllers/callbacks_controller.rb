@@ -52,7 +52,7 @@ class CallbacksController < Devise::OmniauthCallbacksController
   		provider: fb_auth.provider,
       name: fb_auth.info.name,
       image_url: fb_auth.info.image,
-      profile_url: 'https://www.facebook.com/' + fb_auth.uid
+      profile_url: 'https://www.facebook.com/' + fb_auth.info.uid
       access_token: fb_auth.credentials["token"]
     }
   end
