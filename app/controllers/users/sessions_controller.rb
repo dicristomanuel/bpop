@@ -41,8 +41,8 @@ class Users::SessionsController < ApplicationController
         if current_user.identities.any {|social| social.provider == 'facebook'}
           redirect_to 'https://bpop.herokuapp.com/users/auth/facebook'
         else
-          redirect_to :back
-        end
+          redirect_to 'https://bpop.herokuapp.com/users/sign_in#/success'
+        end1
       end
   end
 
