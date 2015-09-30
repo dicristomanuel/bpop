@@ -9,25 +9,36 @@ before_filter :configure_account_update_params, only: [:update]
 
   # POST /resource
   def create
-      @user = User.create(user_params)
+    if params[:user][:password].length < 8
+      flash[:alert] = 'password too short - min 8 chars'
+      redirect_to :back
+    else
+      is_present = User.where(email: params[:user][:email])
+        if is_present
+          flash[:alert] = 'email address taken'
+          redirect_to :back
+        else
+          @user = User.create(user_params)
+          new_user_on_api = Typhoeus::Request.new(
+            "https://bpop-api.herokuapp.com/create-user/" + @user.bpoptoken
+          ).run
 
-      new_user_on_api = Typhoeus::Request.new(
-        "https://bpop-api.herokuapp.com/create-user/" + @user.bpoptoken
-      ).run
-
-      if @user.errors.messages[:password]
-        flash[:alert] = @user.errors.messages[:password][0]
-        redirect_to 'https://bpop.herokuapp.com/users/sign_in#/signup'
-      elsif @user.errors.messages[:email]
-        flash[:alert] = @user.errors.messages[:email][0]
-        redirect_to 'https://bpop.herokuapp.com/users/sign_in#/signup'
-      elsif @user.errors.messages[:password_confirmation]
-        flash[:alert] = @user.errors.messages[:password_confirmation][0]
-        redirect_to 'https://bpop.herokuapp.com/users/sign_in#/signup'
-      else
-        session[:user_id] = @user.bpoptoken
-        redirect_to 'https://bpop.herokuapp.com/users/sign_in#/success'
+          if @user.errors.messages[:password]
+            flash[:alert] = @user.errors.messages[:password][0]
+            redirect_to 'https://bpop.herokuapp.com/users/sign_in#/signup'
+          elsif @user.errors.messages[:email]
+            flash[:alert] = @user.errors.messages[:email][0]
+            redirect_to 'https://bpop.herokuapp.com/users/sign_in#/signup'
+          elsif @user.errors.messages[:password_confirmation]
+            flash[:alert] = @user.errors.messages[:password_confirmation][0]
+            redirect_to 'https://bpop.herokuapp.com/users/sign_in#/signup'
+          else
+            session[:user_id] = @user.bpoptoken
+            flash[:alert] = ""
+            redirect_to 'https://bpop.herokuapp.com/users/sign_in#/success'
+          end
       end
+    end
   end
 
   # GET /resource/edit
