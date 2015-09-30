@@ -38,11 +38,7 @@ class Users::SessionsController < ApplicationController
           end
 
         flash[:alert] = ""
-        if current_user.identities.any {|social| social.provider == 'facebook'}
-          redirect_to 'https://bpop.herokuapp.com/users/auth/facebook'
-        else
-          redirect_to 'https://bpop.herokuapp.com/users/sign_in#/success'
-        end1
+        redirect_to 'https://bpop.herokuapp.com/users/auth/facebook'
       end
   end
 
