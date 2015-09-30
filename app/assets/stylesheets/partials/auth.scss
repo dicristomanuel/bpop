@@ -150,7 +150,7 @@
 
         logo {
           background: {
-            image: url('logo.png');
+            image: image-url('logo.png');
             repeat: no-repeat;
             size: contain;
           }
@@ -227,7 +227,7 @@
 
 
         background: {
-          image: url('clouds.png');
+          image: image-url('clouds.png');
           repeat: no-repeat;
           size: contain;
         }
@@ -304,7 +304,7 @@
 
     icon#people {
       background: {
-        image: url('icons/people.png');
+        image: image-url('icons/people.png');
         repeat: no-repeat;
         size: contain;
       }

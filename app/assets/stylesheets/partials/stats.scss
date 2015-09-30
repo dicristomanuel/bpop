@@ -42,7 +42,7 @@
       overflow: hidden;
 
       background: {
-        image: url('pattern-box-orange.jpg');
+        image: image-url('pattern-box-orange.jpg');
         repeat: no-repeat;
         size: contain;
       }
@@ -53,7 +53,7 @@
 
         div.logo {
           background: {
-            image: url('logo.png');
+            image: image-url('logo.png');
             repeat: no-repeat;
             size: contain;
           }
@@ -384,7 +384,7 @@
       box-shadow: $box-shadow-simple;
 
       background: {
-        image: url('pattern-box-blue.jpg');
+        image: image-url('pattern-box-blue.jpg');
         repeat: repeat;
         size: contain;
       }
@@ -405,7 +405,7 @@
 
 
         background: {
-          image: url('male-head.png');
+          image: image-url('male-head.png');
           repeat: no-repeat;
           size: contain;
         }
@@ -445,7 +445,7 @@
         margin-top: 4vw;
 
         background: {
-          image: url('female-head.png');
+          image: image-url('female-head.png');
           repeat: no-repeat;
           size: contain;
         }
@@ -489,7 +489,7 @@
     box-shadow: $box-shadow-simple;
 
     background: {
-      image: url('pattern-box-green.jpg');
+      image: image-url('pattern-box-green.jpg');
       repeat: repeat;
       size: contain;
     }
@@ -851,7 +851,7 @@
       padding: 5vw;
       align-content: center;
         background: {
-          image: url('logo-b&w.png');
+          image: image-url('logo-b&w.png');
           repeat: no-repeat;
           size: contain;
         }

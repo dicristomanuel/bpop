@@ -1,5 +1,5 @@
-angular.module('bpopApp').controller("authController", ['$scope', function($scope) {
-  // 
+app.controller("authController", ['$scope', function($scope) {
+  //
   // $cookies.put('myFavorite', 'oatmeal');
   //
   // var favoriteCookie = $cookies.get('myFavorite');
