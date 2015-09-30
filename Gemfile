@@ -67,9 +67,9 @@
   gem 'capistrano-sidekiq', github: 'seuros/capistrano-sidekiq'
   gem 'capistrano-passenger'
 
+  gem 'dotenv-rails'
 
-
-  gem 'rails_12factor', :group => :production
+  # gem 'rails_12factor', :group => :production
 
   group :development, :test do
     # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -77,7 +77,7 @@
     # Access an IRB console on exception pages or by using <%= console %> in views
     gem 'web-console', '~> 2.0'
 
-    gem 'dotenv-rails'
+    # gem 'dotenv-rails'
     # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
     gem 'spring'
 

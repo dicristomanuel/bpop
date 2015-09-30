@@ -18,7 +18,7 @@ class CallbacksController < Devise::OmniauthCallbacksController
         PostsFacebook.perform_async(posts, fb_token, current_user.bpoptoken, fb_response['info']['name'], session[:facebook])
         session[:facebook] = 'loggedin'
 
-  			redirect_to 'https://bpop.herokuapp.com/users/sign_in#/success'
+  			redirect_to :back
   end
 
 
