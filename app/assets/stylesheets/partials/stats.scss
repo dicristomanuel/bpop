@@ -553,9 +553,9 @@
         height: 11vw;
         transition: all .2s ease-in-out;
         // TODO find out why it doesn't work anymore
-        // &:hover {
-        //   transform: scale(1.1);
-        // }
+        &:hover {
+          transform: scale(1.1);
+        }
       }
     }
 
