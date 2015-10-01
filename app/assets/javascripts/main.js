@@ -197,17 +197,17 @@ $( document ).ready(function() {
 
 
 
-$('#time-range-select').change(function() {
-  $( "#time-range-select option:selected" ).text(function() {
-    subject = $( "#select-subject option:selected" ).text().replace(/\s+/, "");
-      $.get(
-         "/get-carousel-numbers?since=" + this.id + "&subject=" + subject,
-         function(data) {
-           $('p.number').html(data);
-         }
-       );
+  $('#time-range-select').change(function() {
+    $( "#time-range-select option:selected" ).text(function() {
+      subject = $( "#select-subject option:selected" ).text().replace(/\s+/, "");
+        $.get(
+           "/get-carousel-numbers?since=" + this.id + "&subject=" + subject,
+           function(data) {
+             $('p.number').html(data);
+           }
+         );
+      });
     });
-});
 
 
   $('#select-subject').change(function() {
@@ -221,7 +221,7 @@ $('#time-range-select').change(function() {
            }
          );
       });
-  });
+    });
 
 
 

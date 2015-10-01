@@ -55,7 +55,7 @@ class PostsFacebook
 
         #send post request to bPop_api to create or update posts
         response = Typhoeus::Request.new(
-          "http://localhost:4000/fbposts",
+          "bpop-api.herokuapp.com/fbposts",
           method: :post,
           params: params
         ).run

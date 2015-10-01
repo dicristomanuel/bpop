@@ -13,7 +13,7 @@ class CallbacksController < Devise::OmniauthCallbacksController
         posts = get_posts(for_user)
 
         call = Typhoeus::Request.new(
-          "http://localhost:4000/is-complete-to-false/" + current_user.bpoptoken
+          "bpop-api.herokuapp.com/is-complete-to-false/" + current_user.bpoptoken
         ).run
 
         PostsFacebook.perform_async(posts, fb_token, current_user.bpoptoken, identity[:name], session[:facebook])

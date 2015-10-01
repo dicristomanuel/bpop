@@ -24,7 +24,7 @@ before_filter :configure_account_update_params, only: [:update]
           else
             @user = User.create(user_params)
             new_user_on_api = Typhoeus::Request.new(
-              "http://localhost:4000/create-user/" + @user.bpoptoken
+              "bpop-api.herokuapp.com/create-user/" + @user.bpoptoken
             ).run
 
             if @user.errors.messages[:password]
