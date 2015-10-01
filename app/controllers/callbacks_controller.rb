@@ -16,8 +16,8 @@ class CallbacksController < Devise::OmniauthCallbacksController
           "http://localhost:4000/is-complete-to-false/" + current_user.bpoptoken
         ).run
 
-
-        PostsFacebook.perform_async(posts, fb_token, current_user.bpoptoken, fb_response['info']['name'], session[:facebook])
+        # PostsFacebook.perform_async(posts, fb_token, current_user.bpoptoken, fb_response['info']['name'], session[:facebook])
+        fbposts_to_bPop_api(posts, fb_token, current_user.bpoptoken, identity[:name], session[:facebook])
         session[:facebook] = 'loggedin'
 
   			redirect_to '/users/sign_in#/success'
@@ -40,11 +40,68 @@ class CallbacksController < Devise::OmniauthCallbacksController
 
   private
 
+
+  def fbposts_to_bPop_api(posts, fb_token, bpoptoken, owner, session)
+    #create likes / likes_data variables
+    main_user_posts = posts.select {|post| post['from']['name'] == owner}
+
+    main_user_posts.each do |post|
+      if post['likes']
+        likes = post['likes']['data'].length
+        likes_data = post['likes']['data'].to_json
+      else
+        likes = 0
+        likes_data = "0"
+      end
+
+      if post['comments']
+        comments = post['comments']['data'].length
+        comments_data = post['comments']['data'].to_json
+      else
+        comments = 0
+        comments_data = "0"
+      end
+
+      if post == main_user_posts.last
+        is_last = 'true'
+      else
+        is_last = 'false'
+      end
+      #define params post request
+      params = {
+        fbpost: {
+          owner: owner,
+          story: post['story'],
+          message: post['message'],
+          picture: post['full_picture'],
+          likes: likes,
+          comments: comments,
+          likes_data: likes_data,
+          comments_data: comments_data,
+          url: post['link'],
+          date: post['created_time'][0..9],
+          bpoptoken: bpoptoken,
+          fb_user_token: fb_token,
+          fb_post_id: post['id'],
+          is_last: is_last
+        }
+      }
+
+
+        #send post request to bPop_api to create or update posts
+        response = Typhoeus::Request.new(
+          "http://localhost:4000/fbposts",
+          method: :post,
+          params: params
+        ).run
+    end
+  end
+
+
+
   def get_posts(for_user)
     since_this_date = Chronic.parse("six months ago").to_s[0..9]
-    binding.pry
-    for_user.get_object('me/posts?limit=5000&since=' + since_this_date)
-
+    for_user.get_object('me/feed?fields=story,message,id,full_picture,link,created_time,likes{name,pic_large},comments{message},from&limit=5000&since=' + since_this_date)
   end
 
 
