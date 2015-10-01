@@ -463,10 +463,10 @@ $( document ).ready(function() {
                       <picture><img src="' + post.picture + '"></picture> \
                       <gender> \
                         <likes> \
-                          <span class="strong">Likes: 21</span> \
+                          <span class="strong">Likes: ' + post.likes + '</span> \
                         </likes> \
                         <comments> \
-                          <span class="strong">Comments: 21</span> \
+                          <span class="strong">Comments: ' + post.comments + '</span> \
                         </comments> \
                       </gender> \
                     </post>');
