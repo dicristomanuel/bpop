@@ -1,10 +1,17 @@
 <div class="animated fadeIn" id="main-container">
-  <div id="div-carousel" data-carousel="<//%= get_stats_for_carousel %>"></div>
+<while-loading class="animated fadeIn">
+  <logo></logo>
+  <p>We are processing your data. <br />
+    This might take up to 5 minutes if it's the first time you connect to your social.</p>
+  <loader><div class="wrapper"><div class="cssload-loader"></div></div></loader>
+</while-loading>
+
+<once-loaded>
   <header>
     <div class="layer-one">
       <div class="logo"></div>
-      <div class="email"> <%= current_user.email %></div>
     </div>
+      <div class="email"> <%= current_user.email %></div>
 
     <div class="layer-two">
       <div class="circles-first">
@@ -24,7 +31,7 @@
               <p class="range"><span id='last'>LAST</span>
                 <span>
                   <select id="time-range-select">
-                    <option id="one+week+ago" value="WEEK" > WEEK'S</option>
+                    <option id="one+week+ago" value="WEEK"> WEEK'S</option>
                     <option id="one+month+ago" value="MONTH">MONTH'S</option>
                     <option id="two+month+ago" value="2MONTH">2 MONTHS</option>
                     <option id="three+month+ago" value="3MONTH">3 MONTHS</option>
@@ -182,5 +189,5 @@
 
     </footer-logo>
   </footer>
-
+</once-loaded>
 </div>

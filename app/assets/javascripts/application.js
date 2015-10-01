@@ -6,6 +6,7 @@
 //= require angular-cookie
 //= require angular-animate
 //= require jquery.animateNumber.min.js
+//= require phaser.min.js
 
 //= require angular-app/app
 //= require_tree ./templates

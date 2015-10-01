@@ -2,6 +2,7 @@
       animation-timing-function: linear;
     }
 
+
     .scaleUp {
       -ms-transform: scale(1.03, 1.03);
       -webkit-transform: scale(1.03, 1.03);
@@ -37,6 +38,38 @@
      outline: none;
      }
 
+     while-loading {
+       display: flex;
+       justify-content: center;
+       flex-direction: column;
+       align-items: center;
+       height: 100vh;
+       width: 100vw;
+       background: rgba(0,0,0,.4);
+       z-index: 999;
+       position: absolute;
+       top: 0;
+       overflow: hidden;
+
+       logo {
+         padding: 5vw;
+         background-image: image-url('logo.png');
+         background-repeat: no-repeat;
+         opacity: .8;
+         background-size: contain;
+       }
+
+       p {
+         text-align: center;
+       }
+
+       loader {
+         margin-left: 2.5vw;
+       }
+     }
+
+  once-loaded {
+
     header {
       min-height: 30vw;
       overflow: hidden;
@@ -48,11 +81,10 @@
       }
 
       div.layer-one {
-        display: flex;
-        justify-content: space-around;
-
         div.logo {
-          margin-right: 3.5vw;
+          margin-left: 16.8vw;
+          margin-top: -1vw;
+          width: 2vw;
           background: {
             image: image-url('logo.png');
             repeat: no-repeat;
@@ -60,19 +92,22 @@
           }
           padding: 7vw;
         }
-        div.email {
-          margin-right: 3vw;
-          font-weight: bold;
-          margin-top: 6vw;
-          font-size: 1.15vw;
-          color: darken($dark-grey, 7%);
-        }
+      }
+
+      div.email {
+        top: 6vw;
+        right: 21vw;
+        background: gray;
+        font-weight: bold;
+        font-size: 1.15vw;
+        position: absolute;
+        color: darken($dark-grey, 7%);
       }
 
       div.layer-two {
         display: flex;
         justify-content: space-around;
-        margin-top: -6.2vw;
+        margin-top: -5vw;
 
         div.circles-first {
           display: flex;
@@ -859,6 +894,7 @@
         }
     }
   }
+}
 
 
 

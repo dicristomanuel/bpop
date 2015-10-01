@@ -13,9 +13,15 @@ $( document ).ready(function() {
     $('top-fan').html('<loader><div class="wrapper"><div class="cssload-loader"></div></div></loader>');
     $('div.carousel-box-right').html('<loader><div class="wrapper"><div class="cssload-loader-dark"></div></div></loader>');
 
+    $('while-loading').show();
+    $('once-loaded').hide();
+
     var source;
     source = new EventSource('/check');
     source.addEventListener("refresh", function(e) {
+      $('while-loading').hide();
+      $('once-loaded').fadeIn();
+
       fans_data = JSON.parse(e.data).fans_data;
       comments  = JSON.parse(e.data).comments;
       posts     = JSON.parse(e.data).posts;
