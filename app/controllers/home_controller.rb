@@ -46,10 +46,11 @@ class HomeController < ApplicationController
 	def get_carousel_numbers
 		since = URI.escape(params[:since])
 		subject = params[:subject]
-
+		
 		count_data =	Typhoeus.get(
 			'http://localhost:4000/fb' + subject + '/' + current_user.bpoptoken + '?since=' + since
 		)
+
 		if subject == 'likes'
 			@number = JSON.parse(count_data.response_body)['likes'].length
 		else

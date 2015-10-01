@@ -199,7 +199,7 @@ $( document ).ready(function() {
 
 $('#time-range-select').change(function() {
   $( "#time-range-select option:selected" ).text(function() {
-    subject = $( "#select-subject option:selected" ).text().replace(/\s+/, "") ;
+    subject = $( "#select-subject option:selected" ).text().replace(/\s+/, "");
       $.get(
          "/get-carousel-numbers?since=" + this.id + "&subject=" + subject,
          function(data) {
@@ -213,8 +213,9 @@ $('#time-range-select').change(function() {
   $('#select-subject').change(function() {
     $( "#select-subject option:selected" ).text(function() {
       timeRange = $( "#time-range-select option:selected" );
+      subject = $(this).text().replace(/\s+/, "");
         $.get(
-           "/get-carousel-numbers?since=" + timeRange['0'].id + "&subject=" + this.innerHTML,
+           "/get-carousel-numbers?since=" + timeRange[0].id + "&subject=" + subject,
            function(data) {
              $('p.number').html(data);
            }

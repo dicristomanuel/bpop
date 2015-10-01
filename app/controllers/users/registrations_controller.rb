@@ -18,7 +18,6 @@ before_filter :configure_account_update_params, only: [:update]
         redirect_to '/users/sign_in#/signup'
       else
         is_present = User.where(email: params[:user][:email])
-        binding.pry
           if !is_present.empty?
             flash[:alert] = 'email address taken'
             redirect_to :back
