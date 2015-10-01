@@ -52,6 +52,7 @@
         justify-content: space-around;
 
         div.logo {
+          margin-right: 3.5vw;
           background: {
             image: image-url('logo.png');
             repeat: no-repeat;
@@ -60,6 +61,7 @@
           padding: 7vw;
         }
         div.email {
+          margin-right: 3vw;
           font-weight: bold;
           margin-top: 6vw;
           font-size: 1.15vw;

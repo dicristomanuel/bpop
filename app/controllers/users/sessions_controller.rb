@@ -46,6 +46,7 @@ require 'pry-rails'
           end
 
         flash[:alert] = ""
+
         if current_user.identities.any? {|identity| identity[:provider].include?('facebook')}
           redirect_to '/users/auth/facebook'
         else

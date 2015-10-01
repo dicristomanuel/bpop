@@ -173,8 +173,6 @@ $( document ).ready(function() {
             $.get(
                "/get-gender-percentage",
                function(data) {
-                 console.log(data.male);
-                 console.log(data.female);
                  $('#gender-percentage-male').html(data.male);
                  $('#gender-percentage-female').html(data.female);
 
