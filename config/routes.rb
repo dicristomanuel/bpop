@@ -2,6 +2,9 @@ Rails.application.routes.draw do
 
  root 'home#index'
  get '/check', to: 'home#check'
+ get '/check', to: 'home#check'
+ get '/log_out', to: 'users/sessions#destroy'
+
 
  get '/search-fan', to: 'home#search_byfan'
  get '/get-group-posts', to: 'home#group_posts'
@@ -14,7 +17,8 @@ Rails.application.routes.draw do
    sessions: 'users/sessions',
    passwords: 'users/passwords',
    registrations: 'users/registrations',
-   omniauth_callbacks: 'callbacks' }
+   omniauth_callbacks: 'callbacks'
+ }
 
   devise_scope :user do
     get 'users/:user_id/remove_social', to: 'callbacks#remove_social', as: 'remove_social'

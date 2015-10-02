@@ -881,15 +881,26 @@
     display: flex;
     justify-content: center;
     overflow: hidden;
+    align-items: center;
+    color: white;
+    font-size: 1vw;
+
+    p {
+      color: white;
+      font-weight: 400;
+      font-size: 1vw;
+    }
 
     footer-logo {
       padding: 5vw;
       align-content: center;
+      margin-top: 3vw;
         background: {
           image: image-url('logo-b&w.png');
           repeat: no-repeat;
           size: contain;
         }
+
     }
   }
 }

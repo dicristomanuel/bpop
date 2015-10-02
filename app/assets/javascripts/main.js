@@ -13,8 +13,11 @@ $( document ).ready(function() {
     $('top-fan').html('<loader><div class="wrapper"><div class="cssload-loader"></div></div></loader>');
     $('div.carousel-box-right').html('<loader><div class="wrapper"><div class="cssload-loader-dark"></div></div></loader>');
 
-    $('while-loading').show();
-    $('once-loaded').hide();
+    $('while-loading').hide();
+    // $('once-loaded').hide();
+
+    // $('while-loading').show();
+    // $('once-loaded').hide();
 
     var source;
     source = new EventSource('/check');
