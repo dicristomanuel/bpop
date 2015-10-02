@@ -20,7 +20,7 @@ require 'pry-rails'
         @tw_name = find_provider_tw.first.name.upcase
       end
 
-      if not flash[:alert].nil? and flash[:alert].include?('acebook')
+      if not flash[:alert].nil? and flash[:alert].include?('acebook') or flash[:alert].include?('witter')
         flash[:alert] = ""
         flash[:alert_social] = "please try again"
       end
