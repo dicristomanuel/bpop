@@ -25,6 +25,11 @@ require 'pry-rails'
         flash[:alert_social] = "please try again"
       end
 
+      if not flash[:alert].nil? and flash[:alert].include?('witter')
+        flash[:alert] = ""
+        flash[:alert_social] = "please try again"
+      end
+
       render "/users/sessions/new"
 
   end
