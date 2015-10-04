@@ -156,13 +156,14 @@
           }
           padding: 110px;
           margin-top: 5px;
+          margin-bottom: 5vh;
         }
 
 
         span#welcome {
           @include title-md;
           align-self: flex-start;
-          margin: 1vw 0 2vw -2vw;
+          margin: 3vw 0 2vw -2vw;
         }
 
         form#auth-form {
