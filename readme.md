@@ -24,7 +24,7 @@ To design the layout of the app I've used
  - Adobe Photoshop
  - Avocode
 
-*This is one of the first project I've created at Galvanize EDU after learning to manipulate the DOM with* **Vanilla Javascript** *(no jQuery involved)*
+*more info to come*
 
 ![alt text](https://github.com/dicristomanuel/bpop/blob/master/app/assets/images/screenshot2.png "Logo Title Text 1")
 
