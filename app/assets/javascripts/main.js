@@ -38,16 +38,39 @@ $( document ).ready(function() {
 
 
       if(fans_data !== "") {
+       var message = "";
+        if (posts[0].message) {
+          message = posts[0].message;
+        } else {
+          message = "";
+        }
+
+        var url = "";
+         if (posts[0].url) {
+           url = posts[0].url;
+         } else {
+           url = "";
+         }
+
+         var picture = "";
+          if (posts[0].picture) {
+            picture = posts[0].picture;
+          } else {
+            picture = "";
+          }
+
+
+
         var dots = '';
         $('div.carousel-box-right').html('<div class="subject animated fadeIn"> \
           <span class="medium animated fadeIn">latest </span><span class="bold animated fadeIn">facebook</span> posts \
         </div> \
         <div class="message light" animated fadeIn> \
           <p class="light animated fadeIn"> \
-            ' + posts[0].message.substring(0, 80) + dots + ' \
+            ' + message.substring(0, 80) + dots + ' \
           </p> \
           <span class="animated fadeIn"> \
-            <a href="' + posts[0].url + '" target="_blank"><img src="' + posts[0].picture + '"></a> \
+            <a href="' + url + '" target="_blank"><img src="' + picture + '"></a> \
           </span> \
         </div> \
         <div class="after-message animated fadeIn"> \
