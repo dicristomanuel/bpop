@@ -37,14 +37,20 @@ $( document ).ready(function() {
       });
 
 
-      if(fans_data !== "" && posts[0] !== 'undefined') {
+      var openingMessage = "";
+
+      if(fans_data !== "") {
         var dots = '';
+        if(posts[0] !== 'undefined') {
+          openingMessage = posts[0].message.substring(0, 80);
+        }
+
         $('div.carousel-box-right').html('<div class="subject animated fadeIn"> \
           <span class="medium animated fadeIn">latest </span><span class="bold animated fadeIn">facebook</span> posts \
         </div> \
         <div class="message light" animated fadeIn> \
           <p class="light animated fadeIn"> \
-            ' + posts[0].message.substring(0, 80) + dots + ' \
+            ' + openingMessage + dots + ' \
           </p> \
           <span class="animated fadeIn"> \
             <a href="' + posts[0].url + '" target="_blank"><img src="' + posts[0].picture + '"></a> \
