@@ -37,24 +37,24 @@ $( document ).ready(function() {
       });
 
 
-      // if(fans_data !== "" && posts !== 'undefined' && comments !== 'undefined') {
-      //   var dots = '';
-      //   $('div.carousel-box-right').html('<div class="subject animated fadeIn"> \
-      //     <span class="medium animated fadeIn">latest </span><span class="bold animated fadeIn">facebook</span> posts \
-      //   </div> \
-      //   <div class="message light" animated fadeIn> \
-      //     <p class="light animated fadeIn"> \
-      //       ' + posts[0].message.substring(0, 80) + dots + ' \
-      //     </p> \
-      //     <span class="animated fadeIn"> \
-      //       <a href="' + posts[0].url + '" target="_blank"><img src="' + posts[0].picture + '"></a> \
-      //     </span> \
-      //   </div> \
-      //   <div class="after-message animated fadeIn"> \
-      //       <span>likes</span> <span class="strong">' + posts[0].likes + '</span> \
-      //       <span>comments</span> <span class="strong">' + posts[0].comments + '</span> \
-      //   </div>');
-      //   }
+      if(fans_data !== "" && posts[0] !== 'undefined') {
+        var dots = '';
+        $('div.carousel-box-right').html('<div class="subject animated fadeIn"> \
+          <span class="medium animated fadeIn">latest </span><span class="bold animated fadeIn">facebook</span> posts \
+        </div> \
+        <div class="message light" animated fadeIn> \
+          <p class="light animated fadeIn"> \
+            ' + posts[0].message.substring(0, 80) + dots + ' \
+          </p> \
+          <span class="animated fadeIn"> \
+            <a href="' + posts[0].url + '" target="_blank"><img src="' + posts[0].picture + '"></a> \
+          </span> \
+        </div> \
+        <div class="after-message animated fadeIn"> \
+            <span>likes</span> <span class="strong">' + posts[0].likes + '</span> \
+            <span>comments</span> <span class="strong">' + posts[0].comments + '</span> \
+        </div>');
+        }
 
         setInterval(function(){
           var data = commentsAndPosts[Math.floor(Math.random() * commentsAndPosts.length)];
