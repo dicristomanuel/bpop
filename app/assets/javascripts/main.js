@@ -40,7 +40,7 @@ $( document ).ready(function() {
       if(fans_data !== "") {
        var message = "";
         if (posts[0].message) {
-          message = posts[0].message;
+          message = posts[0].message.substring(0, 80);
         } else {
           message = "";
         }
@@ -67,7 +67,7 @@ $( document ).ready(function() {
         </div> \
         <div class="message light" animated fadeIn> \
           <p class="light animated fadeIn"> \
-            ' + message.substring(0, 80) + dots + ' \
+            ' + message + dots + ' \
           </p> \
           <span class="animated fadeIn"> \
             <a href="' + url + '" target="_blank"><img src="' + picture + '"></a> \
@@ -81,7 +81,21 @@ $( document ).ready(function() {
         setInterval(function(){
           var data = commentsAndPosts[Math.floor(Math.random() * commentsAndPosts.length)];
 
-          if(data.message.length > 79) { dots = ' ...'; } else { dots='' }
+          var messageTwo = "";
+
+          if(!data.message) {
+            messageTwo = "";
+          } else {
+            messageTwo = data.message.substring(0, 80);
+          }
+
+          if(!data.picture) {
+            pictureTwo = "";
+          } else {
+            pictureTwo = data.picture;
+          }
+
+          if(messageTwo.length > 79) { dots = ' ...'; } else { dots='' }
 
           if(data.url) {
             $('div.carousel-box-right').html('<div class="subject animated fadeIn"> \
@@ -89,10 +103,10 @@ $( document ).ready(function() {
             </div> \
             <div class="message light" animated fadeIn> \
               <p class="light animated fadeIn"> \
-                ' + data.message.substring(0, 80) + dots + ' \
+                ' + messageTwo + dots + ' \
               </p> \
               <span class="animated fadeIn"> \
-                <a href="' + data.url + '" target="_blank"><img src="' + data.picture + '"></a> \
+                <a href="' + data.url + '" target="_blank"><img src="' + pictureTwo + '"></a> \
               </span> \
             </div> \
             <div class="after-message animated fadeIn"> \
@@ -105,7 +119,7 @@ $( document ).ready(function() {
             </div> \
             <div class="message light" animated fadeIn> \
               <p class="light animated fadeIn"> \
-                ' + data.message.substring(0, 80) + dots + ' \
+                ' + messageTwo + dots + ' \
               </p> \
             </div> \
             <div class="after-message animated fadeIn"> \
