@@ -37,40 +37,17 @@ $( document ).ready(function() {
       });
 
 
-      if(fans_data !== "") {
-       var message = "";
-        if (posts[0].message) {
-          message = posts[0].message.substring(0, 80);
-        } else {
-          message = "";
-        }
-
-        var url = "";
-         if (posts[0].url) {
-           url = posts[0].url;
-         } else {
-           url = "";
-         }
-
-         var picture = "";
-          if (posts[0].picture) {
-            picture = posts[0].picture;
-          } else {
-            picture = "";
-          }
-
-
-
+      if(fans_data !== "" && posts && comments) {
         var dots = '';
         $('div.carousel-box-right').html('<div class="subject animated fadeIn"> \
           <span class="medium animated fadeIn">latest </span><span class="bold animated fadeIn">facebook</span> posts \
         </div> \
         <div class="message light" animated fadeIn> \
           <p class="light animated fadeIn"> \
-            ' + message + dots + ' \
+            ' + posts[0].message.substring(0, 80) + dots + ' \
           </p> \
           <span class="animated fadeIn"> \
-            <a href="' + url + '" target="_blank"><img src="' + picture + '"></a> \
+            <a href="' + posts[0].url + '" target="_blank"><img src="' + posts[0].picture + '"></a> \
           </span> \
         </div> \
         <div class="after-message animated fadeIn"> \
@@ -81,21 +58,7 @@ $( document ).ready(function() {
         setInterval(function(){
           var data = commentsAndPosts[Math.floor(Math.random() * commentsAndPosts.length)];
 
-          var messageTwo = "";
-
-          if(!data.message) {
-            messageTwo = "";
-          } else {
-            messageTwo = data.message.substring(0, 80);
-          }
-
-          if(!data.picture) {
-            pictureTwo = "";
-          } else {
-            pictureTwo = data.picture;
-          }
-
-          if(messageTwo.length > 79) { dots = ' ...'; } else { dots='' }
+          if(data.message.length > 79) { dots = ' ...'; } else { dots='' }
 
           if(data.url) {
             $('div.carousel-box-right').html('<div class="subject animated fadeIn"> \
@@ -103,10 +66,10 @@ $( document ).ready(function() {
             </div> \
             <div class="message light" animated fadeIn> \
               <p class="light animated fadeIn"> \
-                ' + messageTwo + dots + ' \
+                ' + data.message.substring(0, 80) + dots + ' \
               </p> \
               <span class="animated fadeIn"> \
-                <a href="' + data.url + '" target="_blank"><img src="' + pictureTwo + '"></a> \
+                <a href="' + data.url + '" target="_blank"><img src="' + data.picture + '"></a> \
               </span> \
             </div> \
             <div class="after-message animated fadeIn"> \
@@ -119,7 +82,7 @@ $( document ).ready(function() {
             </div> \
             <div class="message light" animated fadeIn> \
               <p class="light animated fadeIn"> \
-                ' + messageTwo + dots + ' \
+                ' + data.message.substring(0, 80) + dots + ' \
               </p> \
             </div> \
             <div class="after-message animated fadeIn"> \
