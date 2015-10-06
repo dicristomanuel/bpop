@@ -37,7 +37,7 @@ $( document ).ready(function() {
       });
 
 
-      if(fans_data !== "" && posts && comments) {
+      if(fans_data !== "" && posts[0].message && comments) {
         var dots = '';
         $('div.carousel-box-right').html('<div class="subject animated fadeIn"> \
           <span class="medium animated fadeIn">latest </span><span class="bold animated fadeIn">facebook</span> posts \
