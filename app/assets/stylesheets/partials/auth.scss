@@ -3,6 +3,7 @@
     color: darken($pink, 20%);
     margin: 10px 9.5vw -5px 0;
     align-self: flex-end;
+    -webkit-align-self: flex-end;
   }
 
 
@@ -23,6 +24,7 @@
 
   main-for-auth {
     display: flex;
+    display: -webkit-flex;
 
   auth-box-left {
     overflow: hidden;
@@ -63,7 +65,9 @@
     about-box {
       margin-top: 2vw;
       display: flex;
+      display: -webkit-flex;
       flex-direction: column;
+      -webkit-flex-direction: column;
 
       a#logout-main-page {
         @include button;
@@ -72,19 +76,24 @@
         padding-top: .5vw;
         margin-top: 3.9vw;
         align-self: center;
+        -webkit-align-self: center;
         text-align: center;
         color: white;
         font-size: .8vw;
         align-items: center;
+        -webkit-align-items: center;
       }
 
         circles {
           display: flex;
+          display: -webkit-flex;
           flex-direction: column;
+          -webkit-flex-direction: column;
           margin-top: -9vw;
 
           p.bottom-title {
             align-self: center;
+            -webkit-align-self: center;
             font-weight: bold;
             font-size: 2vw;
             margin-top:2vw;
@@ -92,12 +101,15 @@
 
         span {
           display: flex;
+          display: -webkit-flex;
           flex-direction: column;
+          -webkit-flex-direction: column;
 
           p {
             margin-bottom: 1.5vw;
             font-size: 1vw;
             align-self: center;
+            -webkit-align-self: center;
 
             &.text {
               font-size: 3vw;
@@ -109,16 +121,19 @@
             &.first {
               font-size: .5vw;
               align-self: center;
+              -webkit-align-self: center;
             }
 
             &.second {
               font-size: .7vw;
               align-self: center;
+              -webkit-align-self: center;
             }
 
             &.third {
               font-size: 1vw;
               align-self: center;
+              -webkit-align-self: center;
               margin-bottom: 1vw;
             }
           }
@@ -129,6 +144,7 @@
         .flash {
           font-size: 1vw;
           align-self: flex-end;
+          -webkit-align-self: flex-end;
           margin-right: 9.5vw;
         }
 
@@ -161,18 +177,23 @@
         span#welcome {
           @include title-md;
           align-self: flex-start;
+          -webkit-align-self: flex-start;
           margin: 3vw 0 2vw -2vw;
         }
 
         form#auth-form {
           display: flex;
+          display: -webkit-flex;
           flex-direction: column;
+          -webkit-flex-direction: column;
           justify-content: center;
+          -webkit-justify-content: center;
 
         p#forgot-password {
           @include p-sm;
           margin-top: 5px;
           align-self: flex-end;
+          -webkit-align-self: flex-end;
           &:hover {
             color: $lightblue;
           }
@@ -182,6 +203,7 @@
           @include p-sm;
           margin-top: 5vw;
           align-self: center;
+          -webkit-align-self: center;
           span {
             margin-left: 0.5vw;
           }
@@ -199,6 +221,7 @@
           @include button;
           margin-top: 2vw;
           align-self: center;
+          -webkit-align-self: center;
             &:hover {
               span {
                 opacity: 0.8;
@@ -255,6 +278,7 @@
     div.flash {
       font-size: 1vw;
       align-self: center;
+      -webkit-align-self: center;
       margin-bottom: -2vw;
       margin-top: 2vw;
     }
@@ -319,7 +343,9 @@
 
     connect-social {
       display: flex;
+      display: -webkit-flex;
       justify-content: space-around;
+      -webkit-justify-content: space-around;
       width: 85%;
       margin-left: 5vw;
       padding-top: 2vw;
@@ -327,7 +353,9 @@
 
       container-button-social {
         display: flex;
+        display: -webkit-flex;
         flex-direction: column;
+        -webkit-flex-direction: column;
         max-width: 210px;
 
 

@@ -11,13 +11,17 @@
 
     .center-this {
       display: flex;
+      display: -webkit-flex;
       justify-content: center;
+      -webkit-justify-content: center;
       width: 100vw;
     }
 
     .right-this {
       display: flex;
+      display: -webkit-flex;
       justify-content: flex-end;
+      -webkit-justify-content: flex-end;
       width: 100vw;
     }
 
@@ -40,9 +44,13 @@
 
      while-loading {
        display: flex;
+       display: -webkit-flex;
        justify-content: center;
+       -webkit-justify-content: center;
        flex-direction: column;
+       -webkit-flex-direction: column;
        align-items: center;
+       -webkit-align-items: center;
        height: 100vh;
        width: 100vw;
        background: rgba(0,0,0,.4);
@@ -105,44 +113,53 @@
 
       div.layer-two {
         display: flex;
+        display: -webkit-flex;
         justify-content: space-around;
+        -webkit-justify-content: space-around;
         margin-top: -5vw;
 
         div.circles-first {
           display: flex;
+          display: -webkit-flex;
           flex-direction: column;
-          // margin: -2vw 0 0 -61vw;
+          -webkit-flex-direction: column;
 
             div {
               color: darken($dark-grey, 5%);
               &.first {
                 font-size: .7vw;
                 align-self: center;
+                -webkit-align-self: center;
                 margin-bottom: .1vw;
               }
 
               &.second {
                 font-size: 1vw;
                 align-self: center;
+                -webkit-align-self: center;
               }
             }
           }
 
           div.circles-second {
             display: flex;
+            display: -webkit-flex;
             flex-direction: column;
+            -webkit-flex-direction: column;
 
             div {
               color: darken($dark-grey, 5%);
                 &.first {
                   font-size: .7vw;
                   align-self: center;
+                  -webkit-align-self: center;
                   margin-bottom: .1vw;
                 }
 
                 &.second {
                   font-size: 1vw;
                   align-self: center;
+                  -webkit-align-self: center;
                 }
                }
              }
@@ -151,13 +168,17 @@
 
     div.layer-three {
       display: flex;
+      display: -webkit-flex;
       width: 100%;
       justify-content: center;
+      -webkit-justify-content: center;
 
       div.centered-box {
         overflow: hidden;
         display: flex;
+        display: -webkit-flex;
         justify-content: space-around;
+        -webkit-justify-content: space-around;
         width: 65vw;
         height: 17.25vw;
         background-color: rgba(83, 28, 28, .4);
@@ -165,22 +186,29 @@
         border-top-right-radius: 10px;
         margin: 1vw 0 0 0;
         align-items: center;
+        -webkit-align-items: center;
       }
 
       div.carousel-box-left {
         display: flex;
+        display: -webkit-flex;
         flex-direction: column;
+        -webkit-flex-direction: column;
         justify-content: center;
+        -webkit-justify-content: center;
         align-items: center;
+        -webkit-align-items: center;
         height: 80%;
         width: 30vw;
         border-right: 1px solid #733331;
 
         div.time-range {
           align-self: center;
+          -webkit-align-self: center;
           width: 50%;
           margin-left: 1vw;
           align-items: center;
+          -webkit-align-items: center;
 
           span#last {
             margin: 0 .25vw 0 .5vw;
@@ -196,9 +224,12 @@
 
             p.range {
               align-self: center;
+              -webkit-align-self: center;
               font-weight: 600;
               display: flex;
+              display: -webkit-flex;
               justify-content: space-around;
+              -webkit-justify-content: space-around;
             }
           }
 
@@ -218,8 +249,11 @@
             &.subject {
               font-weight: 400;
               align-self: center;
+              -webkit-align-self: center;
               display: flex;
+              display: -webkit-flex;
               justify-content: space-around;
+              -webkit-justify-content: space-around;
 
               #select-subject {
                 transition: all .2s ease-in-out;
@@ -232,6 +266,7 @@
             span {
               width: 100%;
               align-self: center;
+              -webkit-align-self: center;
             }
           }
         }
@@ -239,9 +274,13 @@
 
         div.carousel-box-right {
           display: flex;
+          display: -webkit-flex;
           flex-direction: column;
+          -webkit-flex-direction: column;
           justify-content: center;
+          -webkit-justify-content: center;
           align-items: center;
+          -webkit-align-items: center;
           height: 100%;
           width: 70vw;
           padding: 1vw;
@@ -253,8 +292,10 @@
 
           div.message {
             display: flex;
+            display: -webkit-flex;
             margin: 0 0 0 0;
             align-items: center;
+            -webkit-align-items: center;
 
             span {
               width: 7vw;
@@ -279,6 +320,7 @@
 
           div.after-message {
             align-self: flex-end;
+            -webkit-align-self: flex-end;
             margin: .5vw 1vw 0 2vw;
             font-size: 1.2vw;
           }
@@ -288,33 +330,43 @@
 
     p {
       align-self: center;
+      -webkit-align-self: center;
       font-size: 1vw;
       font-weight: 400;
     }
 
     div.column_charts {
       display: flex;
+      display: -webkit-flex;
       justify-content: space-around;
+      -webkit-justify-content: space-around;
       width: 90vw;
       height: 20vw;
 
       div.six-m-posts {
         display: flex;
+        display: -webkit-flex;
         width: 25vw;
         margin-right: 2vw;
         margin-left: 4vw;
         height: 20vw;
         align-items: flex-end;
+        -webkit-align-items: flex-end;
         border-bottom: 1px solid gray;
         justify-content: center;
+        -webkit-justify-content: center;
           container-span-number {
             display: flex;
+            display: -webkit-flex;
             flex-flow: wrap;
+            -webkit-flex-flow: wrap;
             flex-direction: column;
+            -webkit-flex-direction: column;
             span {
               font-size: 2vw;
               font-weight: 600;
               align-self: flex-end;
+              -webkit-align-self: flex-end;
               margin: -1.5vw .5vw 0 0;
             }
             number {
@@ -338,20 +390,27 @@
 
       div.six-m-likes {
         display: flex;
+        display: -webkit-flex;
         width: 25vw;
         margin-right: 2vw;
         height: 20vw;
         align-items: flex-end;
+        -webkit-align-items: flex-end;
         border-bottom: 1px solid gray;
         justify-content: center;
+        -webkit-justify-content: center;
           container-span-number {
             display: flex;
+            display: -webkit-flex;
             flex-flow: wrap;
+            -webkit-flex-flow: wrap;
             flex-direction: column;
+            -webkit-flex-direction: column;
             span {
               font-size: 2vw;
               font-weight: 600;
               align-self: flex-end;
+              -webkit-align-self: flex-end;
               margin: -1.5vw .5vw 0 0;
             }
             number {
@@ -375,20 +434,27 @@
 
       div.six-m-comments {
         display: flex;
+        display: -webkit-flex;
         width: 25vw;
         margin-right: 2vw;
         height: 20vw;
         align-items: flex-end;
+        -webkit-align-items: flex-end;
         border-bottom: 1px solid gray;
         justify-content: center;
+        -webkit-justify-content: center;
           container-span-number {
             display: flex;
+            display: -webkit-flex;
             flex-flow: wrap;
+            -webkit-flex-flow: wrap;
             flex-direction: column;
+            -webkit-flex-direction: column;
             span {
               font-size: 2vw;
               font-weight: 600;
               align-self: flex-end;
+              -webkit-align-self: flex-end;
               margin: -1.5vw .5vw 0 0;
             }
             number {
@@ -413,7 +479,9 @@
 
     blue-box {
       display: flex;
+      display: -webkit-flex;
       justify-content: center;
+      -webkit-justify-content: center;
       margin-top: 7vw;
       margin-bottom: 3vw;
       width: 100vw;
@@ -428,13 +496,18 @@
 
     container-percentage {
       display: flex;
+      display: -webkit-flex;
       justify-content: center;
+      -webkit-justify-content: center;
       align-self: center;
+      -webkit-align-self: center;
       width: 80vw;
 
       male-percentage {
         display: flex;
+        display: -webkit-flex;
         align-items: flex-end;
+        -webkit-align-items: flex-end;
         min-width: 45vw;
         height: 25vw;
         margin-top: 4vw;
@@ -475,7 +548,9 @@
 
       female-percentage {
         display: flex;
+        display: -webkit-flex;
         align-items: flex-end;
+        -webkit-align-items: flex-end;
         min-width: 45vw;
         height: 25vw;
         margin-top: 4vw;
@@ -503,6 +578,7 @@
           font-weight: 700;
           margin: 7vw 0 0 -20vw;
           align-self: flex-start;
+          -webkit-align-self: flex-start;
           color: $dark-grey;
         }
 
@@ -519,6 +595,7 @@
 
   green-box {
     display: flex;
+    display: -webkit-flex;
     min-height: 4vw;
     margin-top: 5vw;
     opacity: .6;
@@ -533,9 +610,12 @@
 
   top-5-fans {
     display: flex;
+    display: -webkit-flex;
     flex-direction: column;
+    -webkit-flex-direction: column;
     width: 100vw;
     align-items: center;
+    -webkit-align-items: center;
 
     title-fan {
       font-size: 2vw;
@@ -560,8 +640,11 @@
 
     info {
       display: flex;
+      display: -webkit-flex;
       flex-direction: column;
+      -webkit-flex-direction: column;
       align-items: center;
+      -webkit-align-items: center;
 
       name {
         padding-top: 2vw;
@@ -570,15 +653,21 @@
 
     top-5 {
       display: flex;
+      display: -webkit-flex;
       width: 80vw;
       justify-content: space-around;
+      -webkit-justify-content: space-around;
       align-items: center;
+      -webkit-align-items: center;
       margin-top: 4vw;
 
       container {
         display: flex;
+        display: -webkit-flex;
         flex-direction: column;
+        -webkit-flex-direction: column;
         align-items: center;
+        -webkit-align-items: center;
 
         profile-pic {
           img {
@@ -602,13 +691,17 @@
 
   fans-box {
     display: flex;
+    display: -webkit-flex;
     flex-direction: column;
+    -webkit-flex-direction: column;
     width: 100vw;
     align-items: center;
+    -webkit-align-items: center;
 
     fan-name {
       margin: 2vw 6.90vw -2.5vw 0;
       align-self: flex-end;
+      -webkit-align-self: flex-end;
       font-size: 1vw;
       font-weight: 300;
       width: 35vw;
@@ -629,8 +722,11 @@
 
     fans-container {
       display: flex;
+      display: -webkit-flex;
       justify-content: space-around;
+      -webkit-justify-content: space-around;
       align-items: center;
+      -webkit-align-items: center;
       width: 90vw;
 
       fans-super-list {
@@ -672,7 +768,9 @@
         height: 33vw;
         overflow: hidden;
         display: flex;
+        display: -webkit-flex;
         flex-direction: column;
+        -webkit-flex-direction: column;
 
 
       container-group-fans {
@@ -680,15 +778,23 @@
         height: 32vw;
         width: 32vw;
         align-self: center;
+        -webkit-align-self: center;
         display: flex;
+        display: -webkit-flex;
         justify-content: center;
+        -webkit-justify-content: center;
 
         profile-pic {
           display: flex;
+          display: -webkit-flex;
           justify-content: center;
+          -webkit-justify-content: center;
             display: flex;
+            display: -webkit-flex;
             justify-content: center;
+            -webkit-justify-content: center;
             align-items: center;
+            -webkit-align-items: center;
           img {
             @include profile-thumb-pic;
             width: 65%;
@@ -700,7 +806,9 @@
 
     empty-group-fan-container {
       display: flex;
+      display: -webkit-flex;
       justify-content: space-around;
+      -webkit-justify-content: space-around;
       margin: 9vw 0 0 1.1vw;
 
         p.fa-user {
@@ -760,6 +868,7 @@
 
    p#active-users {
      align-self: flex-end;
+     -webkit-align-self: flex-end;
      margin: -2vw 17.3vw 2vw 0;
    }
 
@@ -774,8 +883,10 @@
 
   head-fan-posts {
     display: flex;
+    display: -webkit-flex;
     width: 100vw;
     justify-content: center;
+    -webkit-justify-content: center;
     margin-bottom: 3vw;
     margin-top: 1vw;
     div#total-posts {
@@ -787,8 +898,11 @@
 
     display-posts {
       display: flex;
+      display: -webkit-flex;
       justify-content: space-around;
+      -webkit-justify-content: space-around;
       flex-flow: wrap;
+      -webkit-flex-flow: wrap;
       width: 90vw;
 
       loader {
@@ -807,8 +921,11 @@
 
       post {
         display: flex;
+        display: -webkit-flex;
         flex-direction: column;
+        -webkit-flex-direction: column;
         justify-content: space-around;
+        -webkit-justify-content: space-around;
         width: 25vw;
         height: 18vw;
         margin-bottom: 3vw;
@@ -846,18 +963,22 @@
 
       message {
         align-self: flex-end;
+        -webkit-align-self: flex-end;
         font-size: 1.2vw;
         font-weight: 400;
       }
 
       gender {
         display: flex;
+        display: -webkit-flex;
         justify-content: space-between;
+        -webkit-justify-content: space-between;
         font-size: 1vw;
       }
 
         picture {
           align-self: center;
+          -webkit-align-self: center;
           width: 6vw;
           overflow: hidden;
           border-radius: 3%;
@@ -879,9 +1000,12 @@
     background: $dark-grey;
     height: 7vw;
     display: flex;
+    display: -webkit-flex;
     justify-content: center;
+    -webkit-justify-content: center;
     overflow: hidden;
     align-items: center;
+    -webkit-align-items: center;
     color: white;
     font-size: 1vw;
 
