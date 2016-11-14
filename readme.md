@@ -33,7 +33,3 @@ To design the layout of the app I've used
 ![alt text](https://github.com/dicristomanuel/bpop/blob/master/app/assets/images/screenshot4.png "Logo Title Text 1")
 
 ![alt text](https://github.com/dicristomanuel/bpop/blob/master/app/assets/images/screenshot5.png "Logo Title Text 1")
-
-#### ENJOY!
-
-https://bpop.herokuapp.com/
